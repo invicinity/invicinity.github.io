@@ -1,6 +1,6 @@
 title: 'invicinity.github.io'
 description: "A jekyll theme inspired by linux consoles for hackers, developers and script kiddies."
-baseurl: "/jekyll-theme-console-demo-dark"
+baseurl: "/"
 url: "https://invicinity.github.io"
 
 header_pages:
@@ -13,6 +13,6 @@ style: dark
 
 footer: 'follow us on <a href="https://twitter.com/">twitter</a>'
 
-Build settings
+#Build settings
 markdown: kramdown
 remote_theme: invicinity/jekyll-theme-console
