@@ -13,6 +13,6 @@ style: dark
 
 footer: 'follow us on <a href="https://twitter.com/">twitter</a>'
 
-# Build settings
+Build settings
 markdown: kramdown
 remote_theme: invicinity/jekyll-theme-console
