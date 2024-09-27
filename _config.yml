@@ -1,11 +1,11 @@
 title: 'invicinity.github.io'
-description: "A jekyll theme inspired by linux consoles for hackers, developers and script kiddies."
-baseurl: "/"
+description: "Github for horror game"
+baseurl: "Vicinity"
 url: "https://invicinity.github.io"
 
 header_pages:
   - index.md
-  - peter.md
+  - Vicinity.md
   - about.md
   - contact.md
 
