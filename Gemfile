@@ -5,5 +5,3 @@ gemspec
 
 
 gem 'jekyll-seo-tag'
-gem "jekyll-theme-console"
-
