@@ -1,13 +1,10 @@
-# Example Site settings
-
-#google_analytics: UA-NNNNNNNN-N
-
-#header_pages:
+header_pages:
   - index.md
   - about.md
 
-#footer: 'follow us on <a href="https://twitter.com/">twitter</a>'
+style: dark # dark (default), light or hacker
+listen_for_clients_preferred_style: true # false (default) or true
 
-#style: dark
-#listen_for_clients_preferred_style: true # true or false (default)
+footer: 'follow us on <a href="https://twitter.com/xxx">twitter</a>'
 
+google_analytics: UA-NNNNNNNN-N
