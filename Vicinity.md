@@ -1,7 +1,7 @@
 ---
-title: /peter
+title: /vicinity
 layout: page
-permalink: /peter
+permalink: /vicinity
 ---
 
 # Peter principle
