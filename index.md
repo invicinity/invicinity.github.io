@@ -1,5 +1,5 @@
 ---
-title: Vicinity: Sorrow
+title: Vicinity Sorrow
 layout: home
 permalink: /
 ---
