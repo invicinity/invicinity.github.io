@@ -1,5 +1,5 @@
 ---
-title: /
+title: in Vicinity of Sorrow
 layout: home
 permalink: /
 ---
