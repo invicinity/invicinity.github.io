@@ -1,6 +1,6 @@
 title: 'invicinity.github.io'
 description: "Github for horror game"
-baseurl: "/jekyll-theme-console-demo-dark"
+baseurl: "/"
 url: "https://invicinity.github.io"
 
 header_pages:
