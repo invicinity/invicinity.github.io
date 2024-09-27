@@ -1,12 +1,14 @@
 # Example Site settings
 
 #google_analytics: UA-NNNNNNNN-N
+remote_theme: b2a3e8/jekyll-theme-console
+theme: jekyll-theme-console
 
 header_pages:
   - index.md
   - about.md
 
-footer: 'follow us on <a href="indiedb.com/games/invicinity">twitter</a>'
+footer: 'follow us on <a href="indiedb.com/games/invicinity">IndieDB</a>'
 
 #style: light # dark (default) or light
 #listen_for_clients_preferred_style: true # true or false (default)
