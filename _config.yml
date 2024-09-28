@@ -2,6 +2,7 @@ title: Hacked Jekyll
 description: Jekyll microtheme that looks like JSON
 baseurl: /hacked-jekyll
 url: https://invicinity.github.io
+theme: hacked-jekyll
 
 
 exclude:
