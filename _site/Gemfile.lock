@@ -270,6 +270,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  github-pages
   hacked-jekyll (~> 3.0)
 
 BUNDLED WITH
