@@ -276,8 +276,8 @@ PLATFORMS
 
 DEPENDENCIES
   faraday-retry (~> 2.2.1)
-  github-pages (~> 231)
-  hacked-jekyll (~> 3.0.0)
+  github-pages
+  hacked-jekyll
   jekyll (~> 3.9.5)
 
 BUNDLED WITH
