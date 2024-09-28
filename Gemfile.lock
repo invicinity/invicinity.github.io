@@ -263,6 +263,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.8.0)
     uri (0.13.0)
+    wdm (0.2.0)
     webrick (1.8.1)
 
 PLATFORMS
@@ -272,6 +273,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   hacked-jekyll (~> 3.0)
+  wdm (>= 0.1.0)
 
 BUNDLED WITH
    2.3.5
