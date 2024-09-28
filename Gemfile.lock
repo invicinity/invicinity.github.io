@@ -275,9 +275,10 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  faraday-retry
-  github-pages
-  hacked-jekyll (~> 3.0)
+  faraday-retry (~> 2.2.1)
+  github-pages (~> 231)
+  hacked-jekyll (~> 3.0.0)
+  jekyll (~> 3.9.5)
 
 BUNDLED WITH
    2.5.20
