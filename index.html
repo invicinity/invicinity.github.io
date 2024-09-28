@@ -56,6 +56,14 @@
     "<span class="key">CV</span>":
     "<a class="value" href="/hacked-jekyll/cv.pdf" target="_self">cv.pdf</a>",
   </div>
+
+  <div class="my ms1">
+    <div id="strings1">
+      <span>Hellooooo!</span><span>This tiny weboooosite</span><span>Looks like oooooJSON</span>
+    </div>
+    "<span class="key">Description2</span>":
+    "<span class="value"><span id="typed1"></span></span>",
+  </div>
   
   <div class="my ms">
     "<span class="key">Address</span>": [
@@ -122,7 +130,18 @@
       loop: true,
       smartBackspace: true,
     });
+	
   </script>
+  <script>
+    var typed1 = new Typed("#typed1", {
+      stringsElement: "#strings1",
+      backSpeed: 50,
+      typeSpeed: 200,
+      backDelay: 1000,
+      loop: true,
+      smartBackspace: true,
+    });
+	</script>
 </body>
 
 </html>
