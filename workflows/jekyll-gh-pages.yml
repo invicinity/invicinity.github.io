@@ -1,0 +1,62 @@
+name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      # Ensure Jekyll is installed
+      - name: Install Jekyll
+        run: |
+          gem install jekyll  # Make sure Jekyll is installed
+          bundle install --jobs 4 --retry 3  # Reinstall dependencies to catch any missing gems
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        run: |
+          echo "Building the Jekyll site..."
+          bundle exec jekyll build --source ./ --destination ./_site || { echo 'Jekyll build failed'; exit 1; }  # Build the site with error handling
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
