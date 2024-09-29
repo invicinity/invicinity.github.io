@@ -8,28 +8,35 @@ export const banner = `
     Copyright (c) 2024 Nemanja Davidovic <invicinityofsorrow@gmail.com>
     .............................................................................
 
-    ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
-    ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
-    ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  
-    ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  
-    ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗
-     ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
-                                                                  
+ 	
+     ██╗   ██╗    ██╗     ██████╗    ██╗    ███╗   ██╗    ██╗    ████████╗    ██╗   ██╗
+     ██║   ██║    ██║    ██╔════╝    ██║    ████╗  ██║    ██║    ╚══██╔══╝    ╚██╗ ██╔╝
+     ██║   ██║    ██║    ██║         ██║    ██╔██╗ ██║    ██║       ██║        ╚████╔╝ 
+     ╚██╗ ██╔╝    ██║    ██║         ██║    ██║╚██╗██║    ██║       ██║         ╚██╔╝  
+      ╚████╔╝     ██║    ╚██████╗    ██║    ██║ ╚████║    ██║       ██║          ██║   
+       ╚═══╝      ╚═╝     ╚═════╝    ╚═╝    ╚═╝  ╚═══╝    ╚═╝       ╚═╝          ╚═╝   
+	  
+           ██████     ▒█████      ██▀███      ██▀███      ▒█████      █     █░
+         ▒██    ▒    ▒██▒  ██▒   ▓██ ▒ ██▒   ▓██ ▒ ██▒   ▒██▒  ██▒   ▓█░ █ ░█░
+         ░ ▓██▄      ▒██░  ██▒   ▓██ ░▄█ ▒   ▓██ ░▄█ ▒   ▒██░  ██▒   ▒█░ █ ░█ 
+           ▒   ██▒   ▒██   ██░   ▒██▀▀█▄     ▒██▀▀█▄     ▒██   ██░   ░█░ █ ░█ 
+         ▒██████▒▒   ░ ████▓▒░   ░██▓ ▒██▒   ░██▓ ▒██▒   ░ ████▓▒░   ░░██▒██▓ 
+         ▒ ▒▓▒ ▒ ░   ░ ▒░▒░▒░    ░ ▒▓ ░▒▓░   ░ ▒▓ ░▒▓░   ░ ▒░▒░▒░    ░ ▓░▒ ▒  
+         ░ ░▒  ░ ░     ░ ▒ ▒░      ░▒ ░ ▒░     ░▒ ░ ▒░     ░ ▒ ▒░      ▒ ░ ░  
+         ░  ░  ░     ░ ░ ░ ▒       ░░   ░      ░░   ░    ░ ░ ░ ▒       ░   ░  
+               ░         ░ ░        ░           ░            ░ ░         ░    
+                                                                              
     .............................................................................
+	
+	
 
     Type 'help' for a list of available commands.
 `;
 
 export const about = `
 
-    * About Me:
-        Hello, I'm Onur Gülkokan! After several years of studying and working in 
-        a variety of fields, decided to pursue my career in the data science and software 
-        development area. I successfully finished the medical systems engineering master's 
-        program and specialized in medical computer science. 
-        
-        I am a versatile person and always eager to learn new skills regardless 
-        of a specific area.
+    * About:
+        Unique
     .......................................................................................
 `;
 
@@ -61,7 +68,7 @@ export const education = `
 
 export const contact = `
     * Contact Information:
-        - Email: ${email}
+        - Email: ${invicinityofsorrow@gmail.com}
         - LinkedIn: ${linkedinURL}
         - GitHub: ${githubURL}
 
