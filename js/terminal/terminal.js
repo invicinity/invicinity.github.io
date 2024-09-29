@@ -48,9 +48,9 @@ export function processCommand(inputText) {
 	  case "theme green":
 		applyTheme('Green');
 		return userCommand + "\n" + "Theme changed to Green.";
-	  case "theme black":
-		applyTheme('Black');
-		return userCommand + "\n" + "Theme changed to Black.";
+	  case "theme orange":
+		applyTheme('Orange');
+		return userCommand + "\n" + "Theme changed to Orange.";
 	  case "test":
 		return userCommand + "\n" + test;
 	  default:
