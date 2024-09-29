@@ -122,7 +122,7 @@ function addThemeOption(container) {
   const optionGroup = createOptionGroup(container, 'Theme: ');
 
   const select = document.createElement('select');
-  const themes = ['Green', 'Orange'];
+  const themes = ['Green', 'Black'];
   themes.forEach((theme) => {
     const option = document.createElement('option');
     option.textContent = theme;
@@ -132,7 +132,7 @@ function addThemeOption(container) {
 
   // Set the default theme based on the current background color
   const currentBackgroundColor = getComputedStyle(document.querySelector('.terminal')).backgroundColor;
-  select.value = currentBackgroundColor === 'rgba(5, 50, 30, 1)' ? 'Green' : 'Orange';
+  select.value = currentBackgroundColor === 'rgba(5, 50, 30, 1)' ? 'Green' : 'Black';
 
   select.addEventListener('change', (event) => {
     applyTheme(event.target.value);
