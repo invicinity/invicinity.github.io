@@ -1,147 +1,49 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>In Vicinity of Sorrow</title>
+  <!-- Metadata and Title -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Retro Computer Terminal</title>
 
-<!-- Begin Jekyll SEO tag v2.8.0 -->
-<meta name="generator" content="Jekyll v3.9.5" />
-<meta property="og:title" content="v_terminal" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="horror_terminal" />
-<meta property="og:description" content="Terminal for horror game" />
-<link rel="canonical" href="https://invicinity.github.io" />
-<meta property="og:url" content="https://invicinity.github.io" />
-<meta property="og:site_name" content="v_terminal" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="v_terminal" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Jekyll microtheme that looks like JSON","headline":"Hacked Jekyll","name":"Hacked Jekyll","url":"https://piazzai.github.io/hacked-jekyll/"}</script>
-<!-- End Jekyll SEO tag -->
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/xterm@5.2.1/css/xterm.css">
 
-  <link rel="icon" type="image/x-icon" href="/hacked-jekyll/assets/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/hacked-jekyll/assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/hacked-jekyll/assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/hacked-jekyll/assets/favicon-16x16.png">
-  <link rel="manifest" href="/hacked-jekyll/assets/site.webmanifest">
-  <link rel="stylesheet" href="/hacked-jekyll/assets/css/normalize.css" />
-  <link rel="stylesheet" href="/hacked-jekyll/assets/css/open-color.css" />
-  <link rel="stylesheet" href="/hacked-jekyll/assets/css/styles.css" />
-  <script src="/hacked-jekyll/assets/js/typed.umd.js"></script>
+  <!-- JavaScript Libraries -->
+  <script src="https://unpkg.com/xterm@5.2.1/lib/xterm.js"></script>
+  <script src="https://unpkg.com/xterm-addon-fit@0.7.0/lib/xterm-addon-fit.js"></script>
+  <script src="https://unpkg.com/xterm-addon-web-links@0.8.0/lib/xterm-addon-web-links.js"></script>
+  <script src="js/scripts.js"></script>
 </head>
 
 <body>
-  <main>
-
-<div id="json">
-  
-  <div class="my ms">
-    "<span class="key">Name</span>":
-    "<span class="value">In Vicinity of Sorrow</span>",
+  <div id="terminal">
+<!--     <pre>
+      ________  ________  ________   _______         
+      |\_____  \|\   __  \|\   ___  \|\  ___ \      
+       \|___/  /\ \  \|\  \ \  \\ \  \ \   __/|      
+           /  / /\ \   __  \ \  \\ \  \ \  \_|/__      
+          /  /_/__\ \  \ \  \ \  \\ \  \ \  \_|\ \      
+         |\________\ \__\ \__\ \__\\ \__\ \_______\      
+          \|_______|\|__|\|__|\|__| \|__|\|_______|        
+                                                                                                                                   
+                                                                                                                                 
+                                                                                                                                   
+    </pre> -->
+    <pre>
+      ________  ________  ________   _______           ________  _______   ________  ________  _________  ________  ________      
+      |\_____  \|\   __  \|\   ___  \|\  ___ \         |\   __  \|\  ___ \ |\   __  \|\   __  \|\___   ___\\   __  \|\   ___  \    
+       \|___/  /\ \  \|\  \ \  \\ \  \ \   __/|        \ \  \|\  \ \   __/|\ \  \|\  \ \  \|\  \|___ \  \_\ \  \|\  \ \  \\ \  \   
+           /  / /\ \   __  \ \  \\ \  \ \  \_|/__       \ \   ____\ \  \_|/_\ \   __  \ \   _  _\   \ \  \ \ \  \\\  \ \  \\ \  \  
+          /  /_/__\ \  \ \  \ \  \\ \  \ \  \_|\ \       \ \  \___|\ \  \_|\ \ \  \ \  \ \  \\  \|   \ \  \ \ \  \\\  \ \  \\ \  \ 
+         |\________\ \__\ \__\ \__\\ \__\ \_______\       \ \__\    \ \_______\ \__\ \__\ \__\\ _\    \ \__\ \ \_______\ \__\\ \__\
+          \|_______|\|__|\|__|\|__| \|__|\|_______|        \|__|     \|_______|\|__|\|__|\|__|\|__|    \|__|  \|_______|\|__| \|__|
+                                                                                                                                                                                                                                                    
+                                                                                                                                   
+    </pre>
   </div>
-  
-  <div class="my ms">
-    <div id="strings">
-      <span>Hello!</span><span>This tiny website</span><span>Looks like JSON</span>
-    </div>
-    "<span class="key">Description</span>":
-    "<span class="value"><span id="typed"></span></span>",
-  </div>
-  
-  <div class="my ms">
-    "<span class="key">CV</span>":
-    "<a class="value" href="/hacked-jekyll/cv.pdf" target="_self">cv.pdf</a>",
-  </div>
-
-  <div class="my ms1">
-    <div id="strings1">
-      <span>Hellooooo!</span><span>This tiny weboooosite</span><span>Looks like oooooJSON</span>
-    </div>
-    "<span class="key">Description2</span>":
-    "<span class="value"><span id="typed1"></span></span>",
-  </div>
-  
-  <div class="my ms">
-    "<span class="key">Address</span>": [
-    <p class="ms">
-      "<span class="value">University of Jekyll</span>",
-    </p>
-    <p class="ms">
-      "<span class="value">Department of Themes</span>",
-    </p>
-    <p class="ms">
-      "<span class="value">123 Main St, Anytown, USA</span>"
-    </p>
-    ],
-  </div>
-  
-  <div class="my ms">
-    "<span class="key">Contact</span>": [
-    <p class="ms">
-      "<span class="key">Office</span>":
-      "<span class="value">Foobar Hall 1.23</span>",
-    </p>
-    <p class="ms">
-      "<span class="key">Phone</span>":
-      "<span class="value">+1 234 567 890</span>",
-    </p>
-    <p class="ms">
-      "<span class="key">Email</span>":
-      "<a class="value" href="mailto:username@domain.com" target="_self">username@domain.com</a>"
-    </p>
-    ],
-  </div>
-  
-  <div class="my ms">
-    "<span class="key">Source</span>":
-    "<a class="value" href="https://github.com/piazzai/hacked-jekyll" target="_self">piazzai/hacked-jekyll</a>",
-  </div>
-  
-  <div class="my ms">
-    "<span class="key">Profiles</span>": [
-    <p class="ms">
-      "<a class="value" href="https://www.instagram.com" target="_self">Instagram</a>",
-    </p>
-    <p class="ms">
-      "<a class="value" href="https://www.linkedin.com" target="_self">LinkedIn</a>",
-    </p>
-    <p class="ms">
-      "<a class="value" href="https://stackoverflow.com" target="_self">StackOverflow</a>",
-    </p>
-    <p class="ms">
-      "<a class="value" href="https://github.com" target="_self">GitHub</a>"
-    </p>
-    ]
-  </div>
-  
-</div>
-
-  </main>
-  <script>
-    var typed = new Typed("#typed", {
-      stringsElement: "#strings",
-      backSpeed: 10,
-      typeSpeed: 30,
-      backDelay: 1000,
-      loop: true,
-      smartBackspace: true,
-    });
-	
-  </script>
-  <script>
-    var typed1 = new Typed("#typed1", {
-      stringsElement: "#strings1",
-      backSpeed: 50,
-      typeSpeed: 200,
-      backDelay: 1000,
-      loop: true,
-      smartBackspace: true,
-    });
-	</script>
 </body>
 
 </html>
