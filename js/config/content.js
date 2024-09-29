@@ -4,37 +4,32 @@ export const githubURL = "https://github.com/ogulkokan";
 
 // Banner text ascii art
 export const banner = `
-    Initializing Invicinity2000 v0.7
-    Copyright (c) 2024 Nemanja Davidovic <invicinityofsorrow@gmail.com>
+    Initializing RetroShell 2000 v0.1
+    Copyright (c) 2023 Onur Gulkokan <onurgulkokan@gmail.com>
     .............................................................................
 
- 	
-     ██╗   ██╗    ██╗     ██████╗    ██╗    ███╗   ██╗    ██╗    ████████╗    ██╗   ██╗
-     ██║   ██║    ██║    ██╔════╝    ██║    ████╗  ██║    ██║    ╚══██╔══╝    ╚██╗ ██╔╝
-     ██║   ██║    ██║    ██║         ██║    ██╔██╗ ██║    ██║       ██║        ╚████╔╝ 
-     ╚██╗ ██╔╝    ██║    ██║         ██║    ██║╚██╗██║    ██║       ██║         ╚██╔╝  
-      ╚████╔╝     ██║    ╚██████╗    ██║    ██║ ╚████║    ██║       ██║          ██║   
-       ╚═══╝      ╚═╝     ╚═════╝    ╚═╝    ╚═╝  ╚═══╝    ╚═╝       ╚═╝          ╚═╝   
-	  
-           ██████     ▒█████      ██▀███      ██▀███      ▒█████      █     █░
-         ▒██    ▒    ▒██▒  ██▒   ▓██ ▒ ██▒   ▓██ ▒ ██▒   ▒██▒  ██▒   ▓█░ █ ░█░
-         ░ ▓██▄      ▒██░  ██▒   ▓██ ░▄█ ▒   ▓██ ░▄█ ▒   ▒██░  ██▒   ▒█░ █ ░█ 
-           ▒   ██▒   ▒██   ██░   ▒██▀▀█▄     ▒██▀▀█▄     ▒██   ██░   ░█░ █ ░█ 
-         ▒██████▒▒   ░ ████▓▒░   ░██▓ ▒██▒   ░██▓ ▒██▒   ░ ████▓▒░   ░░██▒██▓ 
-         ▒ ▒▓▒ ▒ ░   ░ ▒░▒░▒░    ░ ▒▓ ░▒▓░   ░ ▒▓ ░▒▓░   ░ ▒░▒░▒░    ░ ▓░▒ ▒  
-         ░ ░▒  ░ ░     ░ ▒ ▒░      ░▒ ░ ▒░     ░▒ ░ ▒░     ░ ▒ ▒░      ▒ ░ ░  
-         ░  ░  ░     ░ ░ ░ ▒       ░░   ░      ░░   ░    ░ ░ ░ ▒       ░   ░  
-               ░         ░ ░        ░           ░            ░ ░         ░    
-                                                                              
+    ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
+    ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
+    ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  
+    ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  
+    ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗
+     ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
+                                                                  
     .............................................................................
-	
+
     Type 'help' for a list of available commands.
 `;
 
 export const about = `
 
     * About Me:
-        Unique
+        Hello, I'm Onur Gülkokan! After several years of studying and working in 
+        a variety of fields, decided to pursue my career in the data science and software 
+        development area. I successfully finished the medical systems engineering master's 
+        program and specialized in medical computer science. 
+        
+        I am a versatile person and always eager to learn new skills regardless 
+        of a specific area.
     .......................................................................................
 `;
 
@@ -66,7 +61,7 @@ export const education = `
 
 export const contact = `
     * Contact Information:
-        - Email: ${invicinityofsorrow@gmail.com}
+        - Email: ${email}
         - LinkedIn: ${linkedinURL}
         - GitHub: ${githubURL}
 
@@ -90,7 +85,7 @@ export const help = `
       - date: Show the current date and time.
       - clear: Clear the terminal output.
       - theme green: Change the terminal theme to green.
-      - theme black: Change the terminal theme to black.
+      - theme orange: Change the terminal theme to orange.
       - contact: Show my contact information.
       - about: Learn more about me.
       - skills: Explore my skills and technologies.
