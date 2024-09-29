@@ -12,11 +12,11 @@
   padding: 1em;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  width: calc(100vw - 2em);
-  max-width: 95vw;
+  width: calc(100vw);
+  max-width: 98.5vw;
   height: calc(80vh - 2em);
-  max-height: calc(100vh - 10em);
-  background: radial-gradient(circle, hsla(30, 57%, 14%, 1) 0%, hsla(30, 67%, 5%, 1) 100%);
+  max-height: calc(100vh);
+  background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 5%, 1) 100%);
   animation: txt-shadow 1.6s infinite;
   font-size: calc(10px + (16 - 10) * ((100vw - 300px) / (1600 - 300)));
   overflow: auto;
@@ -30,7 +30,7 @@
 }
 
 .terminal #terminal-output {
-  color: #FFA128;
+  color: #FFFFFF;
   font-weight: bold;
   margin-bottom: 0.5em;
   white-space: pre-wrap;  
@@ -44,7 +44,7 @@
   
 @media (min-width: 768px) {
   .terminal {
-    width: 75vw;
+    width: 100vw;
     height: 100vh;
   }
 }
@@ -90,7 +90,7 @@
 .terminal #terminal-input {
   outline: none;
   cursor: none;
-  color: #FFA128;
+  color: #FFFFFF;
   font-weight: bold;
   background-color: transparent;
   border: none;
@@ -102,7 +102,7 @@
 }
 
 #input-prefix {
-  color: #FFA128;
+  color: #FFFFFF;
   font-weight: bold;
   margin-right: 0.5em;
 }
