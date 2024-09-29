@@ -30,7 +30,7 @@
 }
 
 .terminal #terminal-output {
-  color: #FFA128;
+  color: #FFFFFF;
   font-weight: bold;
   margin-bottom: 0.5em;
   white-space: pre-wrap;  
@@ -90,7 +90,7 @@
 .terminal #terminal-input {
   outline: none;
   cursor: none;
-  color: #FFA128;
+  color: #FFFFFF;
   font-weight: bold;
   background-color: transparent;
   border: none;
