@@ -4,7 +4,7 @@ export function initSettings() {
   settingsButton.style.position = 'fixed';
   settingsButton.style.top = '10px';
   settingsButton.style.right = '10px';
- # document.body.appendChild(settingsButton);
+ //document.body.appendChild(settingsButton);
 
   settingsButton.addEventListener('click', () => {
     // Open the settings panel
