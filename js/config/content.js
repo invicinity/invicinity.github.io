@@ -4,8 +4,8 @@ export const githubURL = "https://github.com/ogulkokan";
 
 // Banner text ascii art
 export const banner = `
-    Initializing RetroShell 2000 v0.1
-    Copyright (c) 2023 Onur Gulkokan <onurgulkokan@gmail.com>
+    Initializing Invicinity2000 v0.7
+    Copyright (c) 2024 Nemanja Davidovic <invicinityofsorrow@gmail.com>
     .............................................................................
 
     ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
@@ -85,7 +85,7 @@ export const help = `
       - date: Show the current date and time.
       - clear: Clear the terminal output.
       - theme green: Change the terminal theme to green.
-      - theme orange: Change the terminal theme to orange.
+      - theme black: Change the terminal theme to black.
       - contact: Show my contact information.
       - about: Learn more about me.
       - skills: Explore my skills and technologies.
