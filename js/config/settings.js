@@ -132,7 +132,7 @@ function addThemeOption(container) {
 
   // Set the default theme based on the current background color
   const currentBackgroundColor = getComputedStyle(document.querySelector('.terminal')).backgroundColor;
-  select.value = currentBackgroundColor === 'rgba(5, 50, 30, 1)' ? 'Green' : 'Orange';
+  select.value = currentBackgroundColor === 'rgba(0, 0, 30, 1)' ? 'Green' : 'Orange';
 
   select.addEventListener('change', (event) => {
     applyTheme(event.target.value);
@@ -155,11 +155,11 @@ export function applyTheme(theme) {
     inputPrefix.style.color = 'rgb(62, 209, 46)';
     document.documentElement.style.setProperty('--cursor-color', 'rgb(62, 209, 46)');
   } else if (theme === 'Orange') {
-    terminal.style.background = 'hsla(30, 57%, 14%, 1)';
-    terminal.style.backgroundImage = 'radial-gradient(circle, hsla(30, 57%, 14%, 1) 0%, hsla(30, 67%, 5%, 1) 100%)';
-    terminalInput.style.color = '#FFA128';
-    terminalOutput.style.color = '#FFA128';
-    inputPrefix.style.color = '#FFA128';
-    document.documentElement.style.setProperty('--cursor-color', '#FFA128');
+    terminal.style.background = 'hsla(0, 0%, 14%, 1)';
+    terminal.style.backgroundImage = 'radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 5%, 1) 100%)';
+    terminalInput.style.color = '#FFFFFF';
+    terminalOutput.style.color = '#FFFFFF';
+    inputPrefix.style.color = '#FFFFFF';
+    document.documentElement.style.setProperty('--cursor-color', '#FFFFFF');
   }
 }
