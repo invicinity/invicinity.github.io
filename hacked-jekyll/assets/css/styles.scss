@@ -1,12 +1,28 @@
-$color_bg: #000000; // Dark background like CMD
-$color_punct: #00FF00; // Green punctuation
-$color_key: #7FFF00; // Light green for keys
-$color_value: #FFFFFF; // White for values
-$color_hover: #00FF00; // Bright green for hover
+---
+---
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+$color_bg: var(--oc-{{ site.color_bg | default: 'black' }});
+$color_punct: var(--oc-{{ site.color_punct | default: 'gray-2' }});
+$color_key: var(--oc-{{ site.color_key | default: 'red-4' }});
+$color_value: var(--oc-{{ site.color_value | default: 'white' }});
+$color_hover: var(--oc-{{ site.color_hover | default: 'red-8' }});
 
-// No text transformation for a raw CMD look
+{% case site.lowercase -%}
+{% when 'keys' -%}
+$transform_key: lowercase;
+$transform_value: none;
+{% when 'values' -%}
+$transform_key: none;
+$transform_value: lowercase;
+{% when false -%}
 $transform_key: none;
 $transform_value: none;
+{% else -%}
+$transform_key: lowercase;
+$transform_value: lowercase;
+{% endcase -%}
 
 @import "default";
 @import "custom";
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
