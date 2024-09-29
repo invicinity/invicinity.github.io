@@ -1,5 +1,5 @@
 export function initSettings() {
-  const settingsButton = document.createElement('button');
+  #const settingsButton = document.createElement('button');
   settingsButton.textContent = 'Settings';
   settingsButton.style.position = 'fixed';
   settingsButton.style.top = '10px';
@@ -156,7 +156,7 @@ export function applyTheme(theme) {
     document.documentElement.style.setProperty('--cursor-color', 'rgb(62, 209, 46)');
   } else if (theme === 'Black') {
     terminal.style.background = 'hsla(0, 0%, 100%, 1)';
-    terminal.style.backgroundImage = 'radial-gradient(circle, hsla(30, 57%, 14%, 1) 0%, hsla(30, 67%, 5%, 1) 100%)';
+    terminal.style.backgroundImage = 'radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 5%, 1) 100%)';
     terminalInput.style.color = '#FFFFFF';
     terminalOutput.style.color = '#FFFFFF';
     inputPrefix.style.color = '#FFFFFF';
