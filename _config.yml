@@ -1,7 +1,7 @@
 title: Hacked Jekyll
 description: Jekyll microtheme that looks like JSON
 baseurl: /
-url: https://piazzai.github.io
+url: https://invicinity.github.io
 
 theme: hacked-jekyll
 
@@ -9,10 +9,6 @@ exclude:
   - LICENSE
   - README.md
   - vendor/
-
-plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
 
 sass:
   sourcemap: never
