@@ -28,14 +28,12 @@ export const banner = `
                                                                               
     .............................................................................
 	
-	
-
     Type 'help' for a list of available commands.
 `;
 
 export const about = `
 
-    * About:
+    * About Me:
         Unique
     .......................................................................................
 `;
