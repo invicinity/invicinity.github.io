@@ -1,26 +1,12 @@
----
----
+$color_bg: #000000; // Dark background like CMD
+$color_punct: #00FF00; // Green punctuation
+$color_key: #7FFF00; // Light green for keys
+$color_value: #FFFFFF; // White for values
+$color_hover: #00FF00; // Bright green for hover
 
-$color_bg: var(--oc-{{ site.color_bg | default: 'gray-9' }});
-$color_punct: var(--oc-{{ site.color_punct | default: 'green-9' }});
-$color_key: var(--oc-{{ site.color_key | default: 'green-4' }});
-$color_value: var(--oc-{{ site.color_value | default: 'green-4' }});
-$color_hover: var(--oc-{{ site.color_hover | default: 'green-5' }});
-
-{% case site.lowercase -%}
-{% when 'keys' -%}
-$transform_key: lowercase;
-$transform_value: none;
-{% when 'values' -%}
-$transform_key: none;
-$transform_value: lowercase;
-{% when false -%}
+// No text transformation for a raw CMD look
 $transform_key: none;
 $transform_value: none;
-{% else -%}
-$transform_key: lowercase;
-$transform_value: lowercase;
-{% endcase -%}
 
 @import "default";
 @import "custom";
