@@ -122,7 +122,7 @@ function addThemeOption(container) {
   const optionGroup = createOptionGroup(container, 'Theme: ');
 
   const select = document.createElement('select');
-  const themes = ['Green', 'Orange'];
+  const themes = ['Green', 'Black'];
   themes.forEach((theme) => {
     const option = document.createElement('option');
     option.textContent = theme;
@@ -132,7 +132,7 @@ function addThemeOption(container) {
 
   // Set the default theme based on the current background color
   const currentBackgroundColor = getComputedStyle(document.querySelector('.terminal')).backgroundColor;
-  select.value = currentBackgroundColor === 'rgba(0, 0, 30, 1)' ? 'Green' : 'Orange';
+  select.value = currentBackgroundColor === 'rgba(0, 0, 30, 1)' ? 'Green' : 'Black';
 
   select.addEventListener('change', (event) => {
     applyTheme(event.target.value);
@@ -154,7 +154,7 @@ export function applyTheme(theme) {
     terminalOutput.style.color = 'rgb(62, 209, 46)';
     inputPrefix.style.color = 'rgb(62, 209, 46)';
     document.documentElement.style.setProperty('--cursor-color', 'rgb(62, 209, 46)');
-  } else if (theme === 'Orange') {
+  } else if (theme === 'Black') {
     terminal.style.background = 'hsla(0, 0%, 14%, 1)';
     terminal.style.backgroundImage = 'radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 5%, 1) 100%)';
     terminalInput.style.color = '#FFFFFF';
