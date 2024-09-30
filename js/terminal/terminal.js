@@ -1,13 +1,24 @@
 import { applyTheme } from "../config/settings.js";
-import { banner, about, rules, contact, demo, help, test, linkedinURL, githubURL, email } from "../config/content.js";
+import { banner, bannerPart1, bannerPart2, about, rules, contact, demo, help, test, linkedinURL, githubURL, email } from "../config/content.js";
 import { scrollToBottom } from '../handlers/utils.js';
 
 export async function showWelcomeMessage() {
 	const terminalOutput = document.getElementById("terminal-output");
 	const welcomeMessage = banner;
+	const welcome1 = bannerPart1;
+	const welcome2 = bannerPart2;
+	
+	const newOutputLine1 = document.createElement("div");
+	terminalOutput.appendChild(newOutputLine1);
+	const newOutputLine2 = document.createElement("div");
+	terminalOutput.appendChild(newOutputLine2);
 	const newOutputLine = document.createElement("div");
 	terminalOutput.appendChild(newOutputLine);
+
+	await animateText(newOutputLine1, welcome1);
+	await animateText(newOutputLine1, welcome2);
 	await animateText(newOutputLine, welcomeMessage);
+	
 	scrollToBottom();
 }
 

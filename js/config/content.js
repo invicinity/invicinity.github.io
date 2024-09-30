@@ -3,10 +3,14 @@ export const linkedinURL = "https://www.linkedin.com/in/onurgulkokan/";
 export const githubURL = "https://github.com/ogulkokan";
 
 // Banner text ascii art
-export const banner = `
+
+export const bannerPart1 = `
     Initializing Invicinity Technologies 2000 v4.1
     Successully initialized - 2024 Game by Nemanja Davidovic invicinityofsorrow@gmail.com>
-    .............................................................................
+    ....................................................................................................
+`;
+
+export const bannerPart2 = `
              ██▒   █▓    ██▓    ▄████▄   ██▓ ███▄    █  ██▓   ▄▄▄█████▓   ▓██   ██▓
             ▓██░   █▒   ▓██▒   ▒██▀ ▀█  ▓██▒ ██ ▀█   █ ▓██▒   ▓  ██▒ ▓▒    ▒██  ██▒
              ▓██  █▒░   ▒██▒   ▒▓█    ▄ ▒██▒▓██  ▀█ ██▒▒██▒   ▒ ▓██░ ▒░     ▒██ ██░
@@ -15,10 +19,16 @@ export const banner = `
                ░ ▐░     ░▓     ░ ░▒ ▒  ░░▓  ░ ▒░   ▒ ▒ ░▓       ▒ ░░         ██▒▒▒ 
                ░ ░░      ▒ ░     ░  ▒    ▒ ░░ ░░   ░ ▒░ ▒ ░       ░        ▓██ ░▒░ 
                  ░░      ▒ ░             ▒ ░   ░   ░ ░  ▒ ░     ░          ▒ ▒ ░░                                                             
-    .............................................................................
+`;
 
-    Type 'help' for a list of available commands.
-   ____________________________________________________________________________________________________
+
+export const banner = `
+    ....................................................................................................
+    
+	
+	 Type 'help' for a list of available commands.
+	 
+    ....................................................................................................
 `;
 
 export const about = `
