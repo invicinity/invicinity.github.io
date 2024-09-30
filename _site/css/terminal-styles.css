@@ -13,7 +13,7 @@ background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 1
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   width: calc(100vw);
-  max-width: 98.5vw;
+  max-width: 93.5vw;
   height: calc(80vh - 2em);
   max-height: calc(100vh);
   background: radial-gradient(circle, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
@@ -46,6 +46,7 @@ background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 1
   .terminal {
     width: 100vw;
     height: 100vh;
+
   }
 }
     
@@ -105,4 +106,12 @@ background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 1
   color: #FFFFFF;
   font-weight: bold;
   margin-right: 0.5em;
+
+
 }
+/* When zooming out (for smaller viewports), prevent wrapping */
+@media (max-width: 800px) {
+  .terminal #terminal-output,
+  .terminal #terminal-input {
+    white-space: pre; /* Prevent wrapping entirely */
+  }
