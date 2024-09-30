@@ -8,15 +8,16 @@ export async function showWelcomeMessage() {
 	const welcome1 = bannerPart1;
 	const welcome2 = bannerPart2;
 	
-	const newOutputLine1 = document.createElement("div");
-	terminalOutput.appendChild(newOutputLine1);
-	const newOutputLine2 = document.createElement("div");
-	terminalOutput.appendChild(newOutputLine2);
 	const newOutputLine = document.createElement("div");
 	terminalOutput.appendChild(newOutputLine);
 
-	await animateText(newOutputLine1, welcome1);
-	await animateText(newOutputLine1, welcome2);
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+
+	await animateText(newOutputLine, welcome1);
+	 if (!isMobile) {
+        await animateText(newOutputLine, welcome2); // Only animate bannerPart2 if not mobile
+    }
 	await animateText(newOutputLine, welcomeMessage);
 	
 	scrollToBottom();
