@@ -1,4 +1,4 @@
-export const email = "onurgulkokan@gmail.com";
+export const email = "invicinityofsorrow@gmail.com";
 export const linkedinURL = "https://www.linkedin.com/in/onurgulkokan/";
 export const githubURL = "https://github.com/ogulkokan";
 
@@ -28,46 +28,32 @@ export const about = `
     .......................................................................................
 `;
 
-export const education = `
-    - Master's degree: Medical Systems Engineering
-        University: Otto-von-Guericke-Universität - Magdeburg
-        Specialization: Medical Computer Science
-        2018 - 2020
+export const rules = `
+    - Rule 1:
+	
+    - Rule 2:
+	
+    - Rule 3:
+	
+    - Rule 4:
+	
+    - Rule 5:
 
-    - Master's degree: Energy Department
-        University: Muğla Sıtkı Koçman University - Muğla 
-        Specialization: Focused on Renewable Energies especially wind and solar hybrid systems
-        2012 - 2017
-
-    - Bachelor's degree: Physics
-        University: Anadolu University - Eskişehir 
-        2007 - 2012
-
-    - Bachelor's degree: Business Administration
-        University: Anadolu University - Eskişehir 
-        Open Education
-        2008 - 2013
-
-    - Pedagogical Proficiency
-        University: Anadolu University - Eskişehir 
-        2010 - 2012
+    - Rule 6:
+	
+    - Rule 7:
+	
+	
     .......................................................................................
 `;
 
 export const contact = `
     * Contact Information:
         - Email: ${email}
-        - LinkedIn: ${linkedinURL}
-        - GitHub: ${githubURL}
-
-    * Available Commands for contact information:
-        - contact email: Compose a new email to my address using your default email client.
-        - contact linkedin: Open my LinkedIn profile in a new window.
-        - contact github: Open my GitHub profile in a new window.
     .......................................................................................
 `
 
-export const skills = `
+export const demo = `
     * Technical Skills:
         - Python, JavaScript,
         - Vue.js, Quasar Framework
@@ -83,8 +69,8 @@ export const help = `
       - theme black: Change the terminal theme to black.
       - contact: Show my contact information.
       - about: Learn more about me.
-      - skills: Explore my skills and technologies.
-      - education: Discover my educational background.
+      - demo: Information about the demo.
+      - rules: A set of rules to keep you in check.
     .......................................................................................
 `
 

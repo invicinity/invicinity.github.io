@@ -1,5 +1,5 @@
 import { applyTheme } from "../config/settings.js";
-import { banner, about, education, contact, skills, help, test, linkedinURL, githubURL, email } from "../config/content.js";
+import { banner, about, rules, contact, demo, help, test, linkedinURL, githubURL, email } from "../config/content.js";
 import { scrollToBottom } from '../handlers/utils.js';
 
 export async function showWelcomeMessage() {
@@ -27,12 +27,12 @@ export function processCommand(inputText) {
 		return "";
 	  case "about":
 		return userCommand + "\n" + about;
-	  case "skills":
-		return userCommand + "\n" + skills;
+	  case "demo":
+		return userCommand + "\n" + demo;
 	  case "experience":
-		return userCommand + "\n" + skills;
-	  case "education":
-		return userCommand + "\n" + education;
+		return userCommand + "\n" + demo;
+	  case "rules":
+		return userCommand + "\n" + rules;
 	  case "contact":
 		return userCommand + "\n" + contact;
 	  case "contact linkedin":

@@ -93,9 +93,9 @@ function getAutocompleteSuggestions(inputText) {
     "clear",
     "about",
     "projects",
-    "skills",
+    "demo",
     "experience",
-    "education",
+    "rules",
     "contact",
   ];
 
