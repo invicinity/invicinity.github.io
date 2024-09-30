@@ -116,7 +116,7 @@ function addFontFamilyOption(container) {
   container.appendChild(document.createElement('br'));
 }
   
-    
+
   
 function addThemeOption(container) {
   const optionGroup = createOptionGroup(container, 'Theme: ');
@@ -162,4 +162,6 @@ export function applyTheme(theme) {
     inputPrefix.style.color = '#FFFFFF';
     document.documentElement.style.setProperty('--cursor-color', 'rgb(0, 0, 46)');
   }
+  
+
 }

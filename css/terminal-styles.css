@@ -2,11 +2,11 @@ color: #000000;
 background: hsla(0, 0%, 14%, 1);
 background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
 
-
 .terminal-wrapper {
   position: relative;
   overflow: pre-wrap;
 }
+
 .terminal {
   margin-top: 3em;
   background-color: rgba(0, 0, 0, 0.75);

@@ -17,4 +17,5 @@ export function init() {
   if (terminalInput) {
     terminalInput.addEventListener("keydown", handleInput);
   }
+
 }

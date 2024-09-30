@@ -11,21 +11,34 @@
 
 </head>
 <body>
+
+
     <!-- the overlay and horizontal pattern -->
     <div id="crt" class="off" onClick="handleClick(event)"> 
         <div class="terminal-wrapper">
+		
             <div class="terminal">
                 <div class="scanline"></div>
                 <div class="grain"></div>
+				<div id="imagePopup">
+					<img src="your_image.png" alt="Popup Image"> 
+						
+</div>
                 <div class="terminal-content">
+				
                     <div id="terminal-output"></div>
+					
                     <div id="terminal-input-wrapper">
+					
                         <span id="input-prefix">$ / > </span>
                         <div id="terminal-input" contenteditable="true"></div>
                     </div>
+					
                 </div>
+				
             </div>
         </div>               
+		
     </div>
 </body>
 </html>

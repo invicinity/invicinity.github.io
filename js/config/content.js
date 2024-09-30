@@ -64,9 +64,7 @@ export const contact = `
 `
 
 export const demo = `
-    * Technical Skills:
-        - Python, JavaScript,
-        - Vue.js, Quasar Framework
+    * 
     .......................................................................................
 `
 

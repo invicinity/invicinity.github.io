@@ -22,6 +22,27 @@ export async function showWelcomeMessage() {
 	
 	scrollToBottom();
 }
+let count = 0;
+
+function showImage() {
+    const imagePopup = document.getElementById('imagePopup');
+    
+    console.log("Showing image...");
+    
+    imagePopup.style.display = 'flex'; // Show the image popup
+
+    const intervalId = setInterval(() => {
+        count += 1;
+        if (count >= 5) {
+            console.log("Hiding image...");
+            imagePopup.style.display = 'none'; // Hide the image popup
+            console.log("Image is now hidden.");
+            clearInterval(intervalId); // Stop the interval
+        }
+    }, 2500); // Check every second
+}
+
+
 
 export function processCommand(inputText) {
 	const inputPrefix = document.getElementById("input-prefix");
@@ -42,6 +63,7 @@ export function processCommand(inputText) {
 	  case "demo":
 		return userCommand + "\n" + demo;
 	  case "experience":
+		showImage()
 		return userCommand + "\n" + demo;
 	  case "rules":
 		return userCommand + "\n" + rules;
