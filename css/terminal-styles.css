@@ -1,6 +1,6 @@
-/* color: #FFA128; */
-/* background: hsla(30, 57%, 14%, 1); */
-/* background: radial-gradient(circle, hsla(30, 57%, 14%, 1) 0%, hsla(30, 67%, 5%, 1) 100%); */
+color: #000000;
+background: hsla(0, 0%, 14%, 1);
+background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
 
 .terminal-wrapper {
   position: relative;

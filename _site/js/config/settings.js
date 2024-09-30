@@ -90,7 +90,7 @@ function addFontFamilyOption(container) {
   const optionGroup = createOptionGroup(container, 'Font Family: ');
 
   const select = document.createElement('select');
-  const fontFamilies = ['Courier New', 'Consolas', 'Roboto Mono', 'Fira Code'];
+  const fontFamilies = ['Courier New', 'Consolas', 'Roboto Mono', 'Fira Code', 'VT343'];
   fontFamilies.forEach((fontFamily) => {
     const option = document.createElement('option');
     option.textContent = fontFamily;
@@ -153,13 +153,13 @@ export function applyTheme(theme) {
     terminalInput.style.color = 'rgb(62, 209, 46)';
     terminalOutput.style.color = 'rgb(62, 209, 46)';
     inputPrefix.style.color = 'rgb(62, 209, 46)';
-    document.documentElement.style.setProperty('--cursor-color', 'rgb(62, 209, 46)');
+    document.documentElement.style.setProperty('--cursor-color', 'rgb(0, 0, 46)');
   } else if (theme === 'Black') {
     terminal.style.background = 'hsla(0, 0%, 0%, 1)';
     terminal.style.backgroundImage = 'radial-gradient(circle, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 0%, 1) 100%)';
     terminalInput.style.color = '#FFFFFF';
     terminalOutput.style.color = '#FFFFFF';
     inputPrefix.style.color = '#FFFFFF';
-    document.documentElement.style.setProperty('--cursor-color', '#FFFFFF');
+    document.documentElement.style.setProperty('--cursor-color', 'rgb(0, 0, 46)');
   }
 }
