@@ -2,14 +2,16 @@ color: #000000;
 background: hsla(0, 0%, 14%, 1);
 background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
 
+
 .terminal-wrapper {
   position: relative;
-  overflow: hidden;
+  overflow: pre-wrap;
 }
-
 .terminal {
+  margin-top: 3em;
   background-color: rgba(0, 0, 0, 0.75);
   padding: 1em;
+  padding-left: 1
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   width: calc(100vw);
@@ -41,13 +43,13 @@ background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 1
   scrollbar-width: none;
 }
 
-  
 @media (min-width: 768px) {
   .terminal {
     width: 100vw;
     height: 100vh;
 
   }
+
 }
     
 .terminal #terminal-input-wrapper {
