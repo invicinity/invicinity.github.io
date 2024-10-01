@@ -15,9 +15,7 @@ export async function showWelcomeMessage() {
 
 
 	await animateText(newOutputLine, welcome1);
-	 if (!isMobile) {
-        await animateText(newOutputLine, welcome2); // Only animate bannerPart2 if not mobile
-    }
+    await animateText(newOutputLine, welcome2); // Only animate bannerPart2 if not mobile
 	await animateText(newOutputLine, welcomeMessage);
 	
 	scrollToBottom();
