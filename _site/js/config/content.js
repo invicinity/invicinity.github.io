@@ -6,46 +6,40 @@ export const githubURL = "https://github.com/ogulkokan";
 
 export const intro1 = `
 
-Invicinity Technologies BIOS v1.24
-(C) 1999-2004 Invicinity Technologies Inc.
-________________________________________________________________________________
+Invicinity Terminal v4.1.9 - Secure Terminal Access
 
-Processor:  x86-Processor 3.06GHz
-Memory: 1048576 KB OK
+System Check: 384400 KB ..................................................................... [ OK ]
 
-Auto-Detecting Primary Master: IDE Hard Disk ............................................... [ OK ]
-Auto-Detecting Primary Slave: CD-ROM Drive ................................................. [ OK ]
-Primary Master: HTD340014A 40.0GB
-Primary Slave: ATAPI CD-ROM 52X
-Secondary Master: None
-Secondary Slave: None
+Initializing diagnostics...
 
-Detecting IDE Drives ....................................................................... [ OK ]
-Memory Test ................................................................................ [ OK ]
+Checking Terminal Core Services:
+  - Display Driver Loaded ................................................................... [ OK ]
+  - Secure Input Channel Active ............................................................. [ OK ]
+  - Network Adapter: EthernetyLink 10/100 Detected .......................................... [ OK ]
 
-Checking file system on C: ................................................................. [ OK ]
-Volume Serial Number is A1B2-C3D4
-File System Check Passed ................................................................... [ OK ]
+Running Post-Launch Diagnostics:
+  - Kernel Self-Check: PASSED ............................................................... [ OK ]
+  - Device Status Check:
+        - Keyboard: Detected ................................................................ [ OK ]
+        - Mouse: Not Detected ............................................................... [ ERROR ]
+        - CD Drive: Not Functioning ......................................................... [ ERROR ]
+        - Floppy Drive: Detected ............................................................ [ OK ]
+        - Speakers: Detected ................................................................ [ OK ]
+        - Camera: Missing ................................................................... [ ERROR ]
 
-Loading Core Kernel v4.1.9 ................................................................. [ OK ]
+Diagnostics complete.
 
-Initializing Device Drivers...
-Video Driver Initialized ................................................................... [ OK ]
-Audio Driver Initialized ................................................................... [ OK ]
-Network Adapter: EtherNetLink 10/100 ....................................................... [ OK ]
-Floppy Disk Controller Initialized ......................................................... [ OK ]
-PS/2 Keyboard and Mouse Detected ........................................................... [ OK ]
+Initializing System Modules:
+  - Secure Comm Protocol Stack .............................................................. [ OK ]
+  - Daemon: SentryGuard Security Active ..................................................... [ OK ]
+  - Terminal Access Logger: [BOOTING] ....................................................... [ OK ]
 
-Starting Services:
-Modem Connection Initialized ............................................................... [ OK ]
-Network Protocol Stack Loaded .............................................................. [ OK ]
-Security Daemon Started .................................................................... [ OK ]
-Printer Queue Service Initialized .......................................................... [ OK ]
+Logging in...
+Access Code: 50RR0W
 
-Invicinity OS v4.1 is now starting...
-Please wait...
+Authentication Successful!
 
-WELCOME TO INVICINITY TECHNOLOGIES CORE OS v4.1
+> Booting up terminal... [ ACCESS LEVEL: FULL ]
 `;
 
 export const bannerPart1 = `
@@ -64,6 +58,8 @@ export const bannerPart2 = `
                ░ ▐░     ░▓     ░ ░▒ ▒  ░░▓  ░ ▒░   ▒ ▒ ░▓       ▒ ░░         ██▒▒▒ 
                ░ ░░      ▒ ░     ░  ▒    ▒ ░░ ░░   ░ ▒░ ▒ ░       ░        ▓██ ░▒░ 
                  ░░      ▒ ░             ▒ ░   ░   ░ ░  ▒ ░     ░          ▒ ▒ ░░  
+                                            
+
 
 				 
 `;
@@ -118,14 +114,14 @@ export const demo = `
 export const help = `
     * Available Commands:
       - help: Display a list of available commands.
-      - date: Show the current date and time, because time still matters in this endless void."
-      - clear: Clears the terminal output, though sadly not your conscience.
-      - theme green: Changes the terminal theme to green. A nice choice if you enjoy pretending you're in control.
-      - theme black: Turns the terminal black, just like your soul.
+      - date: Show the current date and time.
+      - clear: Clears the terminal output.
+      - theme green: Changes the terminal theme to green.
+      - theme black: Changes the terminal theme to black.
       - contact: Show my contact information.
       - about: Learn more about me.
       - demo: Information about the demo.
-      - rules: A set of rules to keep you in check.
+      - rules: A set of rules...
     .......................................................................................
 `
 
