@@ -1,12 +1,13 @@
 export const email = "invicinityofsorrow@gmail.com";
-export const linkedinURL = "https://www.linkedin.com/in/onurgulkokan/";
-export const githubURL = "https://github.com/ogulkokan";
+export const linkedinURL = "https://www.linkedin.com/in/nemaniaon/";
+export const githubURL = "https://github.com/invicinity/invicinity.github.io";
 
 // Banner text ascii art
 
 export const intro1 = `
 
 Invicinity Terminal v4.1.9 - Secure Terminal Access
+____________________________________________________________________________________________________
 
 System Check: 384400 KB ..................................................................... [ OK ]
 
@@ -34,12 +35,15 @@ Initializing System Modules:
   - Daemon: SentryGuard Security Active ..................................................... [ OK ]
   - Terminal Access Logger: [BOOTING] ....................................................... [ OK ]
 
+____________________________________________________________________________________________________
+
 Logging in...
 Access Code: 50RR0W
 
 Authentication Successful!
 
 > Booting up terminal... [ ACCESS LEVEL: FULL ]
+____________________________________________________________________________________________________
 `;
 
 export const bannerPart1 = `
@@ -57,11 +61,7 @@ export const bannerPart2 = `
                ▒▀█░     ░██░   ▒ ▓███▀ ░░██░▒██░   ▓██░░██░     ▒██▒ ░      ░ ██▒▓░
                ░ ▐░     ░▓     ░ ░▒ ▒  ░░▓  ░ ▒░   ▒ ▒ ░▓       ▒ ░░         ██▒▒▒ 
                ░ ░░      ▒ ░     ░  ▒    ▒ ░░ ░░   ░ ▒░ ▒ ░       ░        ▓██ ░▒░ 
-                 ░░      ▒ ░             ▒ ░   ░   ░ ░  ▒ ░     ░          ▒ ▒ ░░  
-                                            
-
-
-				 
+                 ░░      ▒ ░             ▒ ░   ░   ░ ░  ▒ ░     ░          ▒ ▒ ░░   
 `;
 
 
@@ -74,12 +74,34 @@ Type 'help' for a list of available commands.
 ....................................................................................................
 `;
 
-export const about = `
-
-    Those who wander here often find themselves lost, tangled in memories not their own. 
-	Time is fragile, and what’s familiar might not always be safe.
+export const about = () => `
+    ${getRandomSentence()}
     .......................................................................................
 `;
+let lastIndex = null; // Store the previous index to avoid immediate repetition
+
+// Function to get a random sentence
+function getRandomSentence() {
+    const cases = [
+        "Those who wander here often find themselves lost, tangled in memories not their own.",
+        "Time is fragile, and what’s familiar might not always be safe.",
+        "In this realm, the echoes of the past intertwine with the shadows of the present.",
+        "Travelers often encounter reflections of themselves, caught in a web of forgotten dreams.",
+        "Beware the path ahead; it twists through memories that can ensnare the unprepared."
+    ];
+
+    let randomIndex;
+
+    // Ensure the new random index is not the same as the previous one
+    do {
+        randomIndex = Math.floor(Math.random() * cases.length);
+    } while (randomIndex === lastIndex);
+
+    // Store the current index as the last index
+    lastIndex = randomIndex;
+
+    return cases[randomIndex]; // Return the selected case
+}
 
 export const rules = `
     - Rule 1:

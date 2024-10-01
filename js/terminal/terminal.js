@@ -22,22 +22,35 @@ export async function showWelcomeMessage() {
 }
 let count = 0;
 
+let imageShownTime; // Track when the image was shown
+
 function showImage() {
     const imagePopup = document.getElementById('imagePopup');
     
     console.log("Showing image...");
-    
+	imageShownTime = Date.now();
+
     imagePopup.style.display = 'flex'; // Show the image popup
 
+
+	
     const intervalId = setInterval(() => {
-        count += 1;
-        if (count >= 5) {
-            console.log("Hiding image...");
+		const count = Math.floor((Date.now() - imageShownTime) / 1000); // Calculate seconds since shown
+
+        
+    }, 1000); // Check every second
+
+
+	document.addEventListener('keydown', function keyHandler() {
+        const elapsed = (Date.now() - imageShownTime) / 500; // Time since image was shown
+        if (elapsed >= 1) {
+            console.log("Hiding image due to key press...");
             imagePopup.style.display = 'none'; // Hide the image popup
             console.log("Image is now hidden.");
             clearInterval(intervalId); // Stop the interval
+            document.removeEventListener('keydown', keyHandler); // Remove the event listener
         }
-    }, 1000); // Check every second
+    });
 }
 
 
@@ -57,7 +70,7 @@ export function processCommand(inputText) {
 		document.getElementById("terminal-output").innerHTML = "";
 		return "";
 	  case "about":
-		return userCommand + "\n" + about;
+		return userCommand + "\n" + about();
 	  case "demo":
 		return userCommand + "\n" + demo;
 	  case "experience":
@@ -92,11 +105,16 @@ export function processCommand(inputText) {
 }
 
 let userInteracted = false;
-document.addEventListener("click", () => {
+document.addEventListener('keydown', () => {
 	userInteracted = true;
 });
+
+let userInteractedClick = false;
+document.addEventListener('click', () => {
+	userInteractedClick = true;
+});
   
-export async function animateText(element, text, delay = 10, terminalInput, inputPrefix) {
+export async function animateText(element, text, delay = 1, terminalInput, inputPrefix) {
 	if (terminalInput) {
 		terminalInput.contentEditable = "false";
 		if (inputPrefix) inputPrefix.style.display = "none";
@@ -109,6 +127,16 @@ export async function animateText(element, text, delay = 10, terminalInput, inpu
 	const adjustedDelay = delay / speedFactor;
 
 	for (const char of text) {
+		if (userInteracted) {
+			// Show the full remaining text immediately
+			element.textContent += text.slice(element.textContent.length);
+			await new Promise((resolve) => setTimeout(resolve, 75));
+
+			element.textContent += text.slice(1);
+			scrollToBottom();
+			break; // Exit the loop once text is displayed
+		}
+		
 		element.textContent += char;
 		scrollToBottom();
 
@@ -128,4 +156,5 @@ export async function animateText(element, text, delay = 10, terminalInput, inpu
 		terminalInput.contentEditable = "true";
 		if (inputPrefix) inputPrefix.style.display = "inline";
 	}
+	
 }
