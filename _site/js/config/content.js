@@ -11,6 +11,7 @@ export const bannerPart1 = `
 `;
 
 export const bannerPart2 = `
+
              ██▒   █▓    ██▓    ▄████▄   ██▓ ███▄    █  ██▓   ▄▄▄█████▓   ▓██   ██▓
             ▓██░   █▒   ▓██▒   ▒██▀ ▀█  ▓██▒ ██ ▀█   █ ▓██▒   ▓  ██▒ ▓▒    ▒██  ██▒
              ▓██  █▒░   ▒██▒   ▒▓█    ▄ ▒██▒▓██  ▀█ ██▒▒██▒   ▒ ▓██░ ▒░     ▒██ ██░
@@ -18,7 +19,9 @@ export const bannerPart2 = `
                ▒▀█░     ░██░   ▒ ▓███▀ ░░██░▒██░   ▓██░░██░     ▒██▒ ░      ░ ██▒▓░
                ░ ▐░     ░▓     ░ ░▒ ▒  ░░▓  ░ ▒░   ▒ ▒ ░▓       ▒ ░░         ██▒▒▒ 
                ░ ░░      ▒ ░     ░  ▒    ▒ ░░ ░░   ░ ▒░ ▒ ░       ░        ▓██ ░▒░ 
-                 ░░      ▒ ░             ▒ ░   ░   ░ ░  ▒ ░     ░          ▒ ▒ ░░                                                             
+                 ░░      ▒ ░             ▒ ░   ░   ░ ░  ▒ ░     ░          ▒ ▒ ░░  
+
+				 
 `;
 
 
@@ -71,10 +74,10 @@ export const demo = `
 export const help = `
     * Available Commands:
       - help: Display a list of available commands.
-      - date: Show the current date and time.
-      - clear: Clear the terminal output.
-      - theme green: Change the terminal theme to green.
-      - theme black: Change the terminal theme to black.
+      - date: Show the current date and time, because time still matters in this endless void."
+      - clear: Clears the terminal output, though sadly not your conscience.
+      - theme green: Changes the terminal theme to green. A nice choice if you enjoy pretending you're in control.
+      - theme black: Turns the terminal black, just like your soul.
       - contact: Show my contact information.
       - about: Learn more about me.
       - demo: Information about the demo.

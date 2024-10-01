@@ -39,7 +39,7 @@ function showImage() {
             console.log("Image is now hidden.");
             clearInterval(intervalId); // Stop the interval
         }
-    }, 2500); // Check every second
+    }, 1000); // Check every second
 }
 
 
@@ -54,7 +54,7 @@ export function processCommand(inputText) {
 	  case "help":
 		return userCommand + "\n" + help;
 	  case "date":
-		return userCommand + "\n" + new Date().toLocaleString();
+		return userCommand + "\n" + "Current date and time: " + new Date().toLocaleString();
 	  case "clear":
 		document.getElementById("terminal-output").innerHTML = "";
 		return "";
