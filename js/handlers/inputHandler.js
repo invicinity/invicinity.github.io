@@ -43,6 +43,7 @@ async function handleEnterKey(terminalOutput, terminalInput) {
 
       const inputPrefix = document.getElementById("input-prefix");
       await animateText(newOutputLine, inputPrefix.textContent, 10, terminalInput, inputPrefix);
+      //inputPrefix.textContent
     }
     await animateText(newOutputLine, outputText, 10, terminalInput);
     scrollToBottom();
@@ -77,13 +78,7 @@ function handleEscape(terminalInput) {
 
 function handleTab(terminalInput) {
   const inputText = terminalInput.innerText.trim();
-  const suggestions = getAutocompleteSuggestions(inputText);
-
-  if (suggestions.length === 1) {
-    terminalInput.innerText = suggestions[0];
-  } else if (suggestions.length > 1) {
-    console.log("Suggestions:", suggestions.join(", "));
-  }
+  
 }
 
 function getAutocompleteSuggestions(inputText) {

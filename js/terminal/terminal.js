@@ -3,6 +3,7 @@ import { banner, intro1, bannerPart1, bannerPart2, about, rules, contact, demo, 
 import { scrollToBottom } from '../handlers/utils.js';
 
 export async function showWelcomeMessage() {
+	
 	const terminalOutput = document.getElementById("terminal-output");
 	const welcomeMessage = banner;
 	const welcome1 = bannerPart1;
@@ -13,10 +14,10 @@ export async function showWelcomeMessage() {
 
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-	await animateText(newOutputLine, intro1);
-	await animateText(newOutputLine, welcome1);
-    await animateText(newOutputLine, welcome2); // Only animate bannerPart2 if not mobile
-	await animateText(newOutputLine, welcomeMessage);
+	await animateText1(newOutputLine, intro1);
+	await animateText1(newOutputLine, welcome1);
+    await animateText1(newOutputLine, welcome2); // Only animate bannerPart2 if not mobile
+	await animateText1(newOutputLine, welcomeMessage);
 	
 	scrollToBottom();
 }
@@ -99,7 +100,7 @@ export function processCommand(inputText) {
 	  case "test":
 		return userCommand + "\n" + test;
 	  default:
-		return userCommand + "\n" + `Unknown command: ${inputText}`;
+		return userCommand + "\n"+ "Unknown command: " + userCommand;
 	}
 	return response;
 }
@@ -127,15 +128,7 @@ export async function animateText(element, text, delay = 1, terminalInput, input
 	const adjustedDelay = delay / speedFactor;
 
 	for (const char of text) {
-		if (userInteracted) {
-			// Show the full remaining text immediately
-			element.textContent += text.slice(element.textContent.length);
-			await new Promise((resolve) => setTimeout(resolve, 75));
-
-			element.textContent += text.slice(1);
-			scrollToBottom();
-			break; // Exit the loop once text is displayed
-		}
+		
 		
 		element.textContent += char;
 		scrollToBottom();
@@ -156,5 +149,48 @@ export async function animateText(element, text, delay = 1, terminalInput, input
 		terminalInput.contentEditable = "true";
 		if (inputPrefix) inputPrefix.style.display = "inline";
 	}
+}
 	
+	export async function animateText1(element, text, delay = 1, terminalInput, inputPrefix) {
+		if (terminalInput) {
+			terminalInput.contentEditable = "false";
+			if (inputPrefix) inputPrefix.style.display = "none";
+		}
+	
+		// const typingSound = new Audio("sounds/typing.mp3");
+	
+		// Calculate speed factor based on character count
+		const speedFactor = text.length <= 50 ? 1 : text.length <= 100 ? 10 : 20;
+		const adjustedDelay = delay / speedFactor;
+	
+		for (const char of text) {
+			if (userInteracted) {
+				// Show the full remaining text immediately
+				element.textContent += text.slice(element.textContent.length);
+				await new Promise((resolve) => setTimeout(resolve, 75));
+	
+				element.textContent += text.slice(1);
+				scrollToBottom();
+				break; // Exit the loop once text is displayed
+			}
+			
+			element.textContent += char;
+			scrollToBottom();
+	
+			if (userInteracted) {
+			// Play typing sound
+			// typingSound.currentTime = 0;
+			// typingSound.play().catch((error) => {
+			//   console.error("Error playing typing sound:", error);
+			// });
+	
+			}
+	
+			await new Promise((resolve) => setTimeout(resolve, adjustedDelay));
+		}
+	
+		if (terminalInput) {
+			terminalInput.contentEditable = "true";
+			if (inputPrefix) inputPrefix.style.display = "inline";
+		}
 }
