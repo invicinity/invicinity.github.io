@@ -1,5 +1,5 @@
 import { applyTheme } from "../config/settings.js";
-import { banner, bannerPart1, bannerPart2, about, rules, contact, demo, help, test, linkedinURL, githubURL, email } from "../config/content.js";
+import { banner, intro1, bannerPart1, bannerPart2, about, rules, contact, demo, help, test, linkedinURL, githubURL, email } from "../config/content.js";
 import { scrollToBottom } from '../handlers/utils.js';
 
 export async function showWelcomeMessage() {
@@ -13,7 +13,7 @@ export async function showWelcomeMessage() {
 
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-
+	await animateText(newOutputLine, intro1);
 	await animateText(newOutputLine, welcome1);
     await animateText(newOutputLine, welcome2); // Only animate bannerPart2 if not mobile
 	await animateText(newOutputLine, welcomeMessage);

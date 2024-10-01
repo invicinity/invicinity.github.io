@@ -10,6 +10,7 @@ showWelcomeMessage();
 initSettings();
 
 
+
 // Define some stuff on the window so we can use it directly from the HTML
 Object.assign(window, {
   theme,

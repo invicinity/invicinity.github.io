@@ -18,7 +18,7 @@ background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 1
   width: calc(100vw);
   max-width: 93.5vw;
   height: calc(80vh - 2em);
-  max-height: calc(75vh);
+  max-height: calc(85vh);
   background: radial-gradient(circle, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
   animation: txt-shadow 1.6s infinite;
   font-size: calc(20px + (16 - 10) * ((100vw - 300px) / (1600 - 300)));
