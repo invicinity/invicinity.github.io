@@ -13,7 +13,49 @@
 </head>
 <body>
 
+    <title>Disable Right Click, Selection, and Mouse Buttons</title>
+    <style>
+        /* Disable text selection */
+        body {
+            user-select: none;
+            -webkit-user-select: none; /* Chrome, Safari, Edge */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE 10+ */
+        }
 
+        /* Prevent text highlight with double-click or dragging */
+        body::selection {
+            background: none;
+        }
+    </style>
+    <script>
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        // Disable mouse button navigation (back/forward etc.)
+        document.addEventListener('mousedown', function (e) {
+            if (e.button === 3 || e.button === 4 || e.button === 5 || e.button === 6) {
+                e.preventDefault();
+            }
+        });
+
+        // Disable forward/backward mouse navigation using history API
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, null, window.location.href);
+        });
+
+        // On page load, push the state to prevent initial back/forward navigation
+        window.onload = function () {
+            history.pushState(null, null, window.location.href);
+        };
+
+        // Disable text selection via JavaScript as well (optional extra security)
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+    </script>
     <!-- the overlay and horizontal pattern -->
     <div id="crt" class="off" onClick="handleClick(event)"> 
         <div class="terminal-wrapper">
@@ -41,5 +83,6 @@
         </div>               
 		
     </div>
+    
 </body>
 </html>
