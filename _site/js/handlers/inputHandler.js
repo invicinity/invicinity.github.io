@@ -1,5 +1,5 @@
-import { processCommand, animateText } from '../terminal/terminal.js';
-import { scrollToBottom } from './utils.js';
+import { processCommand, animateText } from "../terminal/terminal.js";
+import { scrollToBottom } from "./utils.js";
 
 let commandHistory = [];
 let commandIndex = -1;
@@ -42,7 +42,13 @@ async function handleEnterKey(terminalOutput, terminalInput) {
       terminalOutput.appendChild(newOutputLine);
 
       const inputPrefix = document.getElementById("input-prefix");
-      await animateText(newOutputLine, inputPrefix.textContent, 10, terminalInput, inputPrefix);
+      await animateText(
+        newOutputLine,
+        inputPrefix.textContent,
+        10,
+        terminalInput,
+        inputPrefix
+      );
       //inputPrefix.textContent
     }
     await animateText(newOutputLine, outputText, 10, terminalInput);
@@ -78,7 +84,6 @@ function handleEscape(terminalInput) {
 
 function handleTab(terminalInput) {
   const inputText = terminalInput.innerText.trim();
-  
 }
 
 function getAutocompleteSuggestions(inputText) {
@@ -89,7 +94,7 @@ function getAutocompleteSuggestions(inputText) {
     "about",
     "projects",
     "demo",
-    "experience",
+    "randomFact",
     "rules",
     "contact",
   ];
