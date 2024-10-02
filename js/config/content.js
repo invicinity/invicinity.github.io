@@ -64,7 +64,6 @@ export const bannerPart2 = `
                  ░░      ▒ ░             ▒ ░   ░   ░ ░  ▒ ░     ░          ▒ ▒ ░░   
 `;
 
-
 export const banner = `
 ....................................................................................................
     
@@ -82,25 +81,25 @@ let lastIndex = null; // Store the previous index to avoid immediate repetition
 
 // Function to get a random sentence
 function getRandomSentence() {
-    const cases = [
-        "Those who wander here often find themselves lost, tangled in memories not their own.",
-        "Time is fragile, and what’s familiar might not always be safe.",
-        "In this realm, the echoes of the past intertwine with the shadows of the present.",
-        "Travelers often encounter reflections of themselves, caught in a web of forgotten dreams.",
-        "Beware the path ahead; it twists through memories that can ensnare the unprepared."
-    ];
+  const cases = [
+    "Those who wander here often find themselves lost, tangled in memories not their own.",
+    "Time is fragile, and what’s familiar might not always be safe.",
+    "In this realm, the echoes of the past intertwine with the shadows of the present.",
+    "Travelers often encounter reflections of themselves, caught in a web of forgotten dreams.",
+    "Beware the path ahead; it twists through memories that can ensnare the unprepared.",
+  ];
 
-    let randomIndex;
+  let randomIndex;
 
-    // Ensure the new random index is not the same as the previous one
-    do {
-        randomIndex = Math.floor(Math.random() * cases.length);
-    } while (randomIndex === lastIndex);
+  // Ensure the new random index is not the same as the previous one
+  do {
+    randomIndex = Math.floor(Math.random() * cases.length);
+  } while (randomIndex === lastIndex);
 
-    // Store the current index as the last index
-    lastIndex = randomIndex;
+  // Store the current index as the last index
+  lastIndex = randomIndex;
 
-    return cases[randomIndex]; // Return the selected case
+  return cases[randomIndex]; // Return the selected case
 }
 
 export const rules = `
@@ -126,27 +125,28 @@ export const contact = `
     * Contact Information:
         - Email: ${email}
     .......................................................................................
-`
+`;
 
 export const demo = `
     * 
     .......................................................................................
-`
+`;
 
 export const help = `
     * Available Commands:
       - help: Display a list of available commands.
       - date: Show the current date and time.
+      - weather: Show the current weather
       - clear: Clears the terminal output.
-      - theme green: Changes the terminal theme to green.
-      - theme black: Changes the terminal theme to black.
+      - random fact: Get a random fact.
       - contact: Show my contact information.
       - about: Learn more about me.
       - demo: Information about the demo.
       - rules: A set of rules...
+      - theme green: Changes the terminal theme to green.
+      - theme black: Changes the terminal theme to black.
     .......................................................................................
-`
-
+`;
 
 export const test = `
 -------------------------------------------
@@ -167,4 +167,4 @@ export const test = `
             ....         ....       
 
 -------------------------------------------
-`
+`;

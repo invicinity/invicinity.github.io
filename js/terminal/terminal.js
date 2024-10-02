@@ -38,6 +38,29 @@ let count = 0;
 
 let imageShownTime; // Track when the image was shown
 
+function checkWeather() {
+  const currentTime = new Date();
+  const hours = currentTime.getHours(); // Get the current hour (0-23)
+
+  let weather = "rainy";
+  let timeOfDay = "night";
+
+  // Check if it's after 7 PM or before 6 AM
+  if (hours >= 19) {
+    weather = "snowy"; // After 7 PM, it's snowy
+    timeOfDay = "night";
+  } else if (hours >= 6) {
+    weather = "rainy"; // After 6 AM but before 7 PM, it's rainy
+    timeOfDay = "day"; // After 6 AM, it's considered daytime
+  }
+
+  // Return both the weather and time of day
+  return { weather, timeOfDay };
+}
+
+// Example usage:
+const { weather, timeOfDay } = checkWeather();
+
 function showImage() {
   const imagePopup = document.getElementById("imagePopup");
 
@@ -82,23 +105,28 @@ export function processCommand(inputText) {
       document.getElementById("terminal-output").innerHTML = "";
       return "";
     case "about":
-      return userCommand + "\n" + about();
+      return (
+        userCommand +
+        "\n" +
+        "Vicinity Terminal" +
+        "\n" +
+        "System status: operational."
+      );
     case "demo":
       return userCommand + "\n" + demo;
-
-    case "experience":
+    case "random fact":
       showImage();
-      return userCommand + "\n" + demo;
+      return userCommand + "\n" + about();
     case "rules":
       return userCommand + "\n" + rules;
     case "contact":
       return userCommand + "\n" + contact;
-    case "contact linkedin":
-      window.open(linkedinURL, "_blank");
-      break;
-    case "contact github":
-      window.open(githubURL, "_blank");
-      break;
+    case "weather":
+      return (
+        userCommand +
+        "\n" +
+        `It's currently ${timeOfDay} and the weather is ${weather}.`
+      );
     case "contact email":
       window.open(`mailto:${email}`, "_blank");
       response = userCommand + "\n" + "Opening email client to send an email.";
