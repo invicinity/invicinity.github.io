@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>3D Pinball for Windows - Space Cadet</title>
+    <title>invicinity_terminal: Pinball</title>
     <style>
       :root {
         --ActiveBorder: rgb(212, 208, 200);
@@ -120,11 +120,7 @@
     </div>
     
     <!-- Button container -->
-    <div class="button-container">
-      <button id="leftClick">Left Click</button>
-      <button id="rightClick">Right Click</button>
-      <button id="spaceBar">Space</button>
-    </div>
+   
 
     <script>
       var statusElement = document.getElementById("status"),
@@ -215,7 +211,7 @@
             });
         });
 
-      // Button state management
+     /* // Button state management
 // Button state management
 var leftClickPressed = false;
         var rightClickPressed = false;
@@ -346,7 +342,7 @@ spaceBarButton.addEventListener("mouseleave", function () {
         }));
         spaceBarPressed = false;
     }
-});
+});*/
 
     </script>
     <script async="" src="/pinball/SpaceCadetPinball.js"></script>
