@@ -1,4 +1,3 @@
-
 <html lang="en-us">
   <head>
     <meta charset="utf-8" />
@@ -43,158 +42,57 @@
         font-family: Tahoma, Geneva, Verdana, sans-serif;
         background-color: var(--Background);
         text-align: center;
-      }
-
-      textarea.emscripten {
-        font-family: monospace;
-        width: 80%;
-      }
-
-      canvas.emscripten {
-        border: 0 none;
-        background-color: #000;
-      }
-
-      .titlebar {
-        text-align: start;
-        margin: 0;
-        padding: 1px;
-        position: relative;
-        overflow: hidden;
         display: flex;
-        user-select: none;
+        flex-direction: column; /* Stack children vertically */
+        align-items: center;     /* Center horizontally */
+        justify-content: center; /* Center vertically */
+        height: 100vh;          /* Full height of the viewport */
+        margin: 0;              /* Remove default margin */
+        overflow: hidden;       /* Prevent scrollbars */
       }
 
-      .titlebar .titlebar-icon {
-        width: 16px;
-        height: 16px;
-        padding: 1px;
-      }
-
-      .titlebar .titlebar-title {
-        display: flex;
-        padding: 0 2px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        flex-grow: 1;
-        font-weight: 700;
-        align-items: center;
-      }
-
-      .titlebar .titlebar-wincontrols {
-        display: inline-block;
-        margin: 0;
-        padding: 1px;
-        min-width: fit-content;
-      }
-
-      .titlebar-wincontrols .buttons-wrapper {
-        display: inline-block;
-        width: auto;
-        margin: 0;
-        padding: 1px;
-      }
-
-      .titlebar-wincontrols .spacer {
-        display: inline-block;
-        margin: 0;
-        padding: 0;
-        width: 2px;
-      }
-
-      .titlebar-wincontrols .button {
-        display: inline-block;
-        min-width: 12px;
-        min-height: 10px;
-        width: 12px;
-        height: 10px;
-        text-align: center;
-        vertical-align: middle;
-        line-height: 10px;
-      }
-
-      .window {
-        font-size: 8pt;
-        color: var(--WindowText);
+      .active.window {
+        width: 900px;          /* Set the width for 150% scale */
+        height: 660px;         /* Set the height for 150% scale */
         background-color: var(--ButtonFace);
         border: 1px solid var(--ActiveBorder);
         box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
           0 0 0 1px var(--ButtonShadow),
           -0.5px -0.5px 0 1.5px var(--ButtonLight),
           0 0 0 2px var(--ButtonDkShadow);
-        padding-right: 0;
-        margin-left: auto;
-        margin-right: auto;
-        display: inline-block;
       }
 
-      .window.active {
-        border: 1px solid var(--ActiveBorder);
+      canvas.emscripten {
+        border: 0 none;
+        background-color: #000;
+        width: 900px;          /* Set width for 150% zoom */
+        height: 660px;         /* Set height for 150% zoom */
       }
 
-      .window.active .titlebar .titlebar-icon {
-        background-color: var(--ActiveTitle);
-        color: var(--TitleText);
+      .button-container {
+        margin-top: 20px;      /* Space between canvas and buttons */
       }
 
-      .window.active .titlebar .titlebar-title {
-        background-color: var(--ActiveTitle);
-        background-image: linear-gradient(
-          to right,
-          var(--ActiveTitle),
-          var(--GradientActiveTitle)
-        );
-        color: var(--TitleText);
-      }
-
-      .window.active .titlebar .titlebar-wincontrols,
-      .window.active .titlebar .titlebar-wincontrols .buttons-wrapper {
-        background-color: var(--GradientActiveTitle);
-        font-size: 8pt;
-        font-weight: 700;
-      }
-
-      .button {
-        margin: 2px;
-      }
-
-      .button span.button-content {
-        display: inline-block;
-      }
-
-      .button:active .button-content {
-        transform: translate(1px, 1px);
-      }
-
-      .button {
+      button {
+        margin: 0 10px;        /* Space between buttons */
+        padding: 10px 20px;    /* Padding for buttons */
+        font-size: 16px;        /* Font size for button text */
+        cursor: pointer;        /* Pointer cursor on hover */
         background-color: var(--ButtonFace);
         color: var(--ButtonText);
-        box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonLight),
+        border: 1px solid var(--ActiveBorder);
+        border-radius: 5px;    /* Rounded corners for buttons */
+        box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
           0 0 0 1px var(--ButtonShadow),
-          -0.5px -0.5px 0 1.5px var(--ButtonHilight),
+          -0.5px -0.5px 0 1.5px var(--ButtonLight),
           0 0 0 2px var(--ButtonDkShadow);
       }
 
-      .button:active {
+      button:active {
         box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonShadow),
           0 0 0 1px var(--ButtonShadow),
-          -0.5px -0.5px 0 1.5px var(--WindowFrame), 0 0 0 2px var(--WindowFrame);
-      }
-
-      .button svg path {
-        fill: var(--ButtonText);
-      }
-
-      .titlebar .button:active {
-        box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonShadow),
-          0 0 0 1px var(--ButtonLight),
-          -0.5px -0.5px 0 1.5px var(--ButtonDkShadow),
-          0 0 0 2px var(--ButtonHilight);
-      }
-
-      #status {
-        margin: 40px 32px;
+          -0.5px -0.5px 0 1.5px var(--WindowFrame),
+          0 0 0 2px var(--WindowFrame);
       }
     </style>
   </head>
@@ -216,10 +114,18 @@
         oncontextmenu="event.preventDefault()"
         style="cursor: default"
         tabindex="-1"
-        width="1024"
-        height="768"
+        width="600"
+        height="440"
       ></canvas>
     </div>
+    
+    <!-- Button container -->
+    <div class="button-container">
+      <button id="leftClick">Left Click</button>
+      <button id="rightClick">Right Click</button>
+      <button id="spaceBar">Space</button>
+    </div>
+
     <script>
       var statusElement = document.getElementById("status"),
         progressElement = document.getElementById("progress"),
@@ -260,7 +166,7 @@
                 (Module.setStatus.last = { time: Date.now(), text: "" }),
               e !== Module.setStatus.last.text)
             ) {
-              var t = e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/),
+              var t = e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)/),
                 n = Date.now();
               if (!(t && n - Module.setStatus.last.time < 30)) {
                 if (
@@ -300,6 +206,7 @@
             );
           },
         };
+
       Module.setStatus("Downloading..."),
         (window.onerror = function () {
           Module.setStatus("Exception thrown, see JavaScript console"),
@@ -307,6 +214,28 @@
               e && Module.printErr("[post-exception status] " + e);
             });
         });
+
+      // Button event listeners
+      document.getElementById("leftClick").onclick = function () {
+        console.log("Left Click Button Pressed");
+        // Trigger left click action
+        Module.canvas.dispatchEvent(new MouseEvent('mousedown', {button: 0}));
+        Module.canvas.dispatchEvent(new MouseEvent('mouseup', {button: 0}));
+      };
+
+      document.getElementById("rightClick").onclick = function () {
+        console.log("Right Click Button Pressed");
+        // Trigger right click action
+        Module.canvas.dispatchEvent(new MouseEvent('mousedown', {button: 2}));
+        Module.canvas.dispatchEvent(new MouseEvent('mouseup', {button: 2}));
+      };
+
+      document.getElementById("spaceBar").onclick = function () {
+        console.log("Space Bar Button Pressed");
+        // Trigger space action
+        document.dispatchEvent(new KeyboardEvent('keydown', {key: ' '}));
+        document.dispatchEvent(new KeyboardEvent('keyup', {key: ' '}));
+      };
     </script>
     <script async="" src="/pinball/SpaceCadetPinball.js"></script>
   </body>
