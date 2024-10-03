@@ -216,8 +216,8 @@
         oncontextmenu="event.preventDefault()"
         style="cursor: default"
         tabindex="-1"
-        width="600"
-        height="440"
+        width="1024"
+        height="768"
       ></canvas>
     </div>
     <script>
