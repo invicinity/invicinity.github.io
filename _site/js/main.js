@@ -7,6 +7,8 @@ import { initSettings } from "./config/settings.js";
 document.addEventListener("DOMContentLoaded", init);
 initCursor();
 showWelcomeMessage();
+
+
 initSettings();
 
 

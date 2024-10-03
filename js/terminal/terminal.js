@@ -94,13 +94,11 @@ export function processCommand(inputText) {
   switch (inputText.toLowerCase()) {
     case "help":
       return userCommand + "\n" + help;
-    case "date":
-      return (
-        userCommand +
-        "\n" +
-        "Current date and time: " +
-        new Date().toLocaleString()
-      );
+      case "date":
+        case "date":
+        let specificDate = '30-Dec-1999'; // Just a string, no Date object needed
+        let timeOnly = new Date().toLocaleTimeString(); // Get current time
+        return userCommand + "\n" + "Date: " + specificDate + "\nTime: " + timeOnly;
     case "clear":
       document.getElementById("terminal-output").innerHTML = "";
       return "";
@@ -127,6 +125,8 @@ export function processCommand(inputText) {
         "\n" +
         `It's currently ${timeOfDay} and the weather is ${weather}.`
       );
+    case "pinball":
+      return window.location.href = 'https:invicinity.github.io/pinball';
     case "contact email":
       window.open(`mailto:${email}`, "_blank");
       response = userCommand + "\n" + "Opening email client to send an email.";
