@@ -1481,14 +1481,14 @@ var ASM_CONSTS = {
         SDL2.audioContext = new webkitAudioContext();
       }
       if (SDL2.audioContext) {
-        autoResumeAudioContext(SDL2.audioContext);
+       // autoResumeAudioContext(SDL2.audioContext);
       }
     }
     return SDL2.audioContext === undefined ? -1 : 0;
   },
   3406137: function () {
     var SDL2 = Module["SDL2"];
-    return SDL2.audioContext.sampleRate; /// TURN OFF ALL AUDIO
+    return SDL2.audioContext.sampleRate;
   },
   3406205: function ($0, $1, $2, $3) {
     var SDL2 = Module["SDL2"];
@@ -1516,7 +1516,11 @@ var ASM_CONSTS = {
       SDL2.capture.stream = stream;
     };
     var no_microphone = function (error) {};
-    
+    SDL2.capture.silenceBuffer = SDL2.audioContext.createBuffer(
+      $0,
+      $1,
+      SDL2.audioContext.sampleRate
+    );
     SDL2.capture.silenceBuffer.getChannelData(0).fill(0);
     var silence_callback = function () {
       SDL2.capture.currentCaptureBuffer = SDL2.capture.silenceBuffer;
