@@ -5,5 +5,7 @@ export function initCursor() {
   terminalInput.parentElement.appendChild(cursor);
 
   terminalInput.addEventListener("focus", () => cursor.classList.add("cursor"));
-  terminalInput.addEventListener("blur", () => cursor.classList.remove("cursor"));
+  terminalInput.addEventListener("blur", () =>
+    cursor.classList.remove("cursor")
+  );
 }
