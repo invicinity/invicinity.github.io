@@ -9,31 +9,31 @@ export const intro1 = `
 Invicinity Terminal v4.1.9 - Secure Terminal Access
 ____________________________________________________________________________________________________
 
-System Check: 384400 KB ..................................................................... [ OK ]
+System Check: 384400 KB ........................................................... [ OK ]
 
 Initializing diagnostics...
 
 Checking Terminal Core Services:
-  - Display Driver Loaded ................................................................... [ OK ]
-  - Secure Input Channel Active ............................................................. [ OK ]
-  - Network Adapter: EthernetyLink 10/100 Detected .......................................... [ OK ]
+  - Display Driver Loaded ......................................................... [ OK ]
+  - Secure Input Channel Active ................................................... [ OK ]
+  - Network Adapter: EthernetyLink 10/100 Detected ................................ [ OK ]
 
 Running Post-Launch Diagnostics:
-  - Kernel Self-Check: PASSED ............................................................... [ OK ]
+  - Kernel Self-Check: ............................................................ [ PASSED ]
   - Device Status Check:
-        - Keyboard: Detected ................................................................ [ OK ]
-        - Mouse: Not Detected ............................................................... [ ERROR ]
-        - CD Drive: Not Functioning ......................................................... [ ERROR ]
-        - Floppy Drive: Detected ............................................................ [ OK ]
-        - Speakers: Detected ................................................................ [ OK ]
-        - Camera: Missing ................................................................... [ ERROR ]
+        - Keyboard: Detected ...................................................... [ OK ]
+        - Mouse: Not Detected ..................................................... [ ERROR ]
+        - CD Drive: Not Functioning ............................................... [ ERROR ]
+        - Floppy Drive: Detected .................................................. [ OK ]
+        - Speakers: Detected ...................................................... [ OK ]
+        - Camera: Missing ......................................................... [ ERROR ]
 
 Diagnostics complete.
 
 Initializing System Modules:
-  - Secure Comm Protocol Stack .............................................................. [ OK ]
-  - Daemon: SentryGuard Security Active ..................................................... [ OK ]
-  - Terminal Access Logger: [BOOTING] ....................................................... [ OK ]
+  - Secure Comm Protocol Stack .................................................... [ OK ]
+  - Daemon: SentryGuard Security Active ........................................... [ OK ]
+  - Terminal Access Logger: [BOOTING] ............................................. [ OK ]
 
 ____________________________________________________________________________________________________
 
