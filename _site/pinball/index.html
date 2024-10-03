@@ -215,26 +215,31 @@
             });
         });
 
+      // Button state management
+      var leftClickPressed = false;
+      var rightClickPressed = false;
+      var spaceBarPressed = false;
+
       // Button event listeners
       document.getElementById("leftClick").onclick = function () {
         console.log("Left Click Button Pressed");
         // Trigger left click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', {button: 0}));
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', {button: 0}));
+        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
+        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
       };
 
       document.getElementById("rightClick").onclick = function () {
         console.log("Right Click Button Pressed");
         // Trigger right click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', {button: 2}));
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', {button: 2}));
+        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
+        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
       };
 
       document.getElementById("spaceBar").onclick = function () {
         console.log("Space Bar Button Pressed");
         // Trigger space action
-        document.dispatchEvent(new KeyboardEvent('keydown', {key: ' '}));
-        document.dispatchEvent(new KeyboardEvent('keyup', {key: ' '}));
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+        document.dispatchEvent(new KeyboardEvent('keyup', { key: ' ' }));
       };
     </script>
     <script async="" src="/pinball/SpaceCadetPinball.js"></script>

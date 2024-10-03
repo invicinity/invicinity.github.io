@@ -287,7 +287,7 @@ Module.expectedDataFileDownloads++;
         audio: 0,
       },
       {
-        filename: "/game_resources/PINBALL.MID",
+        filename: "/game_resources/PINBALL.MIDd", // revert to PINBALL.MID to enable MUSIC back
         start: 499996,
         end: 608603,
         audio: 0,
@@ -365,7 +365,7 @@ Module.expectedDataFileDownloads++;
         audio: 0,
       },
       {
-        filename: "/game_resources/PINBALL2.MID",
+        filename: "/game_resources/PINBALL2.MIDd", // revert to .MID for MUSIC
         start: 740383,
         end: 769271,
         audio: 0,
@@ -1481,7 +1481,7 @@ var ASM_CONSTS = {
         SDL2.audioContext = new webkitAudioContext();
       }
       if (SDL2.audioContext) {
-       // autoResumeAudioContext(SDL2.audioContext);
+        autoResumeAudioContext(SDL2.audioContext);
       }
     }
     return SDL2.audioContext === undefined ? -1 : 0;
@@ -1663,6 +1663,7 @@ function autoResumeAudioContext(ctx, elements) {
       if (element) {
         listenOnce(element, event, function () {
           if (ctx.state === "suspended") ctx.resume();
+          console.log(ctx.state);
         });
       }
     });
