@@ -49,7 +49,7 @@
       display: flex;
       flex-direction: column; /* Stack children vertically */
       align-items: center;     /* Center horizontally */
-      justify-content: center; /* Center vertically */
+      justify-content: flex-start; /* Align to top */
       height: 100vh;          /* Full height of the viewport */
       margin: 0;              /* Remove default margin */
       overflow: hidden;       /* Prevent scrollbars */
@@ -64,6 +64,7 @@
         0 0 0 1px var(--ButtonShadow),
         -0.5px -0.5px 0 1.5px var(--ButtonLight),
         0 0 0 2px var(--ButtonDkShadow);
+      margin-top: 20px;      /* Add space at the top */
     }
 
     canvas.emscripten {
@@ -74,29 +75,7 @@
     }
 
     .button-container {
-      margin-top: 20px;      /* Space between canvas and buttons */
-    }
-
-    button {
-      margin: 0 10px;        /* Space between buttons */
-      padding: 10px 20px;    /* Padding for buttons */
-      font-size: 16px;        /* Font size for button text */
-      cursor: pointer;        /* Pointer cursor on hover */
-      background-color: var(--ButtonFace);
-      color: var(--ButtonText);
-      border: 1px solid var(--ActiveBorder);
-      border-radius: 5px;    /* Rounded corners for buttons */
-      box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
-        0 0 0 1px var(--ButtonShadow),
-        -0.5px -0.5px 0 1.5px var(--ButtonLight),
-        0 0 0 2px var(--ButtonDkShadow);
-    }
-
-    button:active {
-      box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonShadow),
-        0 0 0 1px var(--ButtonShadow),
-        -0.5px -0.5px 0 1.5px var(--WindowFrame),
-        0 0 0 2px var(--WindowFrame);
+      margin-top: 20px;      /* Space between canvas and button */
     }
 
     .cmd-button {
@@ -127,11 +106,11 @@
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default" tabindex="-1" width="600" height="440"></canvas>
   </div>
 
-  <!-- Button container -->
+  <!-- Button container with a single button -->
   <div class="button-container">
-    <button class="cmd-button">Start Game</button>
-    <button class="cmd-button">Pause</button>
-    <button class="cmd-button">Quit</button>
+    <a href="https://invicinity.github.io">
+      <button class="cmd-button">Go Back</button>
+    </a>
   </div>
 
   <script>
