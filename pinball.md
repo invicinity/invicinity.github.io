@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
   <meta charset="utf-8" />
@@ -64,7 +65,8 @@
         0 0 0 1px var(--ButtonShadow),
         -0.5px -0.5px 0 1.5px var(--ButtonLight),
         0 0 0 2px var(--ButtonDkShadow);
-      margin-top: 20px;      /* Add space at the top */
+      margin-top: 2px;      /* Add space at the top */
+      position: relative;    /* For absolute positioning of iframe */
     }
 
     canvas.emscripten {
@@ -72,6 +74,16 @@
       background-color: #000;
       width: 900px;          /* Set width for 150% zoom */
       height: 660px;         /* Set height for 150% zoom */
+    }
+
+    .iframe-container {
+      display: none;         /* Initially hidden */
+      width: 900px;         /* Match the window width */
+      height: 660px;        /* Match the window height */
+      border: none;         /* No border for iframe */
+      position: absolute;    /* Overlay on top of the canvas */
+      top: 0;               /* Align to top */
+      left: 0;              /* Align to left */
     }
 
     .button-container {
@@ -104,103 +116,123 @@
       <progress id="progress" max="1" value="0" hidden style="display: none"></progress>
     </div>
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default" tabindex="-1" width="600" height="440"></canvas>
+    <iframe id="iframe" class="iframe-container" src="https://archive.org/embed/invicinity_prince"></iframe>
   </div>
 
   <!-- Button container with a single button -->
   <div class="button-container">
-    <a href="https://invicinity.github.io">
-      <button class="cmd-button">Go Back</button>
-    </a>
+    <button class="cmd-button" id="toggleButton">Toggle View</button>
   </div>
 
   <script>
     var statusElement = document.getElementById("status"),
       progressElement = document.getElementById("progress"),
-      Module = {
-        preRun: [],
-        postRun: [],
-        print: (function () {
-          var e = document.getElementById("output");
-          return (
-            e && (e.value = ""),
-            function (e) {
-              arguments.length > 1 &&
-                (e = Array.prototype.slice.call(arguments).join(" "));
-              console.log(e);
-            }
-          );
-        })(),
-        printErr: function (e) {
-          arguments.length > 1 &&
-            (e = Array.prototype.slice.call(arguments).join(" "));
-          console.error(e);
-        },
-        canvas: (function () {
-          var e = document.getElementById("canvas");
-          e.addEventListener(
-            "webglcontextlost",
-            function (e) {
-              alert("WebGL context lost. You will need to reload the page."),
-                e.preventDefault();
-            },
-            !1
-          );
-          return e;
-        })(),
-        setStatus: function (e) {
-          if (
-            (Module.setStatus.last ||
-              (Module.setStatus.last = { time: Date.now(), text: "" }),
-            e !== Module.setStatus.last.text)
-          ) {
-            var t = e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)/),
-              n = Date.now();
-            if (!(t && n - Module.setStatus.last.time < 30)) {
-              if (
-                ((Module.setStatus.last.time = n),
-                (Module.setStatus.last.text = e),
-                t)
-              )
-                (e = t[1]),
-                  (progressElement.value = 100 * parseInt(t[2])),
-                  (progressElement.max = 100 * parseInt(t[4])),
-                  (progressElement.hidden = !1);
-              else
-                (progressElement.value = null),
-                  (progressElement.max = null),
-                  (progressElement.hidden = !0),
-                  (document.getElementById("canvas").style.display = "");
-              statusElement.innerHTML = e;
-              "" === e
-                ? ((statusElement.style.display = "none"),
-                  (progressElement.style.display = "none"))
-                : ((statusElement.style.display = ""),
-                  (progressElement.style.display = ""));
-            }
+      canvasElement = document.getElementById("canvas"),
+      iframeElement = document.getElementById("iframe"),
+      toggleButton = document.getElementById("toggleButton"),
+      isPinballActive = true; // State variable to track the current view
+
+    toggleButton.onclick = function() {
+      isPinballActive = !isPinballActive; // Toggle the view state
+
+      // Show/hide the canvas and iframe based on the current view
+      if (isPinballActive) {
+        canvasElement.style.display = "block"; // Show canvas
+        iframeElement.style.display = "none"; // Hide iframe
+        Module.setStatus("Downloading..."); // Reset status for pinball
+      } else {
+        canvasElement.style.display = "none"; // Hide canvas
+        iframeElement.style.display = "block"; // Show iframe
+      }
+    };
+
+    // Rest of your existing JavaScript code...
+
+    var Module = {
+      preRun: [],
+      postRun: [],
+      print: (function () {
+        var e = document.getElementById("output");
+        return (
+          e && (e.value = ""),
+          function (e) {
+            arguments.length > 1 &&
+              (e = Array.prototype.slice.call(arguments).join(" "));
+            console.log(e);
           }
-        },
-        totalDependencies: 0,
-        monitorRunDependencies: function (e) {
-          this.totalDependencies = Math.max(this.totalDependencies, e);
-          Module.setStatus(
-            e
-              ? "Preparing... (" +
-                (this.totalDependencies - e) +
-                "/" +
-                this.totalDependencies +
-                ")"
-              : "All downloads complete."
-          );
-        },
-      };
+        );
+      })(),
+      printErr: function (e) {
+        arguments.length > 1 &&
+          (e = Array.prototype.slice.call(arguments).join(" "));
+        console.error(e);
+      },
+      canvas: (function () {
+        var e = document.getElementById("canvas");
+        e.addEventListener(
+          "webglcontextlost",
+          function (e) {
+            alert("WebGL context lost. You will need to reload the page."),
+              e.preventDefault();
+          },
+          !1
+        );
+        return e;
+      })(),
+      setStatus: function (e) {
+        if (
+          (Module.setStatus.last ||
+            (Module.setStatus.last = { time: Date.now(), text: "" }),
+          e !== Module.setStatus.last.text)
+        ) {
+          var t = e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)/),
+            n = Date.now();
+          if (!(t && n - Module.setStatus.last.time < 30)) {
+            if (
+              ((Module.setStatus.last.time = n),
+              (Module.setStatus.last.text = e),
+              t)
+            )
+              (e = t[1]),
+              (progressElement.value = 100 * parseInt(t[2])),
+              (progressElement.max = 100 * parseInt(t[4])),
+              (progressElement.hidden = !1);
+            else
+              (progressElement.value = null),
+              (progressElement.max = null),
+              (progressElement.hidden = !0),
+              (document.getElementById("canvas").style.display = "");
+            statusElement.innerHTML = e;
+            "" === e
+              ? ((statusElement.style.display = "none"),
+                (progressElement.style.display = "none"))
+              : ((statusElement.style.display = ""),
+                (progressElement.style.display = ""));
+          }
+        }
+      },
+      totalDependencies: 0,
+      monitorRunDependencies: function (e) {
+        this.totalDependencies = Math.max(this.totalDependencies, e);
+        Module.setStatus(
+          e
+            ? "Preparing... (" +
+              (this.totalDependencies - e) +
+              "/" +
+              this.totalDependencies +
+              ")"
+            : "All downloads complete."
+        );
+      },
+    };
 
     Module.setStatus("Downloading..."),
-      (window.onerror = function () {
-        Module.setStatus("Exception thrown, see JavaScript console"),
-          (Module.setStatus = function (e) {
-            e && Module.printErr("[post-exception status] " + e);
-          });
+    (window.onerror = function () {
+      Module.setStatus("Exception thrown, see JavaScript console"),
+      (Module.setStatus = function (e) {
+        e && Module.printErr("[post-exception status] " + e);
       });
+    });
   </script>
 
   <script async src="/pinball/SpaceCadetPinball.js"></script>
