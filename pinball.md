@@ -5,6 +5,8 @@
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
   <title>invicinity</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
+<script src="script.js"></script>
 </head>
 <body>
   <div class="background-decorator"></div> <!-- Background decorations -->
