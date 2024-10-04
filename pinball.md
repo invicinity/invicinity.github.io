@@ -38,6 +38,10 @@
         --WindowText: rgb(0, 0, 0);
       }
 
+h1 {
+    display: none; /* Hides all <h1> elements */
+}
+
       body {
         font-family: Tahoma, Geneva, Verdana, sans-serif;
         background-color: var(--Background);
