@@ -74,11 +74,13 @@
       background-color: var(--ButtonFace);
       color: var(--WindowText);
       transition: background-color 0.3s; /* Smooth background transition */
+      border: 1px solid transparent; /* Transparent border for layout consistency */
     }
 
     .game-list li:hover {
       background-color: var(--Hilight); /* Highlight on hover */
       color: var(--HilightText); /* Change text color */
+      border: 1px solid var(--ActiveBorder); /* Highlight border on hover */
     }
 
     .main-content {
@@ -191,17 +193,19 @@
     };
 
     function selectGame(game) {
+      // Cleanup: hide canvas and iframe to close the currently active game
+      canvasElement.style.display = "none"; // Hide canvas
+      iframeElement.style.display = "none"; // Hide iframe
+      Module.setStatus(""); // Reset status
+
       if (game === 'pinball') {
         canvasElement.style.display = "block"; // Show the canvas for Pinball
-        iframeElement.style.display = "none"; // Hide iframe
         Module.setStatus("Downloading..."); // Reset status for pinball
         isPinballActive = true; // Update the state
       } else if (game === 'princeOfPersia') {
-        canvasElement.style.display = "none"; // Hide canvas
         iframeElement.style.display = "block"; // Show the iframe for Prince of Persia
         iframeElement.src = "https://archive.org/embed/invicinity_prince"; // Set iframe source
       } else {
-        canvasElement.style.display = "none"; // Hide canvas
         iframeElement.style.display = "block"; // Show iframe for placeholder DOS game
         iframeElement.src = "https://example.com/your_placeholder_url"; // Replace with actual URL
       }
