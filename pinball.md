@@ -1,7 +1,7 @@
 <html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <title>3D Pinball for Windows - Space Cadet</title>
     <style>
       :root {
@@ -37,82 +37,311 @@
         --WindowFrame: rgb(0, 0, 0);
         --WindowText: rgb(0, 0, 0);
       }
-}
+
       body {
         font-family: Tahoma, Geneva, Verdana, sans-serif;
         background-color: var(--Background);
         text-align: center;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        height: 100vh;
-        margin: 0;
-        overflow: hidden;
+        flex-direction: column; /* Stack children vertically */
+        align-items: center;     /* Center horizontally */
+        justify-content: center; /* Center vertically */
+        height: 100vh;          /* Full height of the viewport */
+        margin: 0;              /* Remove default margin */
+        overflow: hidden;       /* Prevent scrollbars */
       }
 
-      .window {
-        width: 900px;
-        height: 660px;
+      .active.window {
+        width: 900px;          /* Set the width for 150% scale */
+        height: 660px;         /* Set the height for 150% scale */
         background-color: var(--ButtonFace);
         border: 1px solid var(--ActiveBorder);
         box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
           0 0 0 1px var(--ButtonShadow),
           -0.5px -0.5px 0 1.5px var(--ButtonLight),
           0 0 0 2px var(--ButtonDkShadow);
-        position: relative;
       }
 
       canvas.emscripten {
         border: 0 none;
         background-color: #000;
-        width: 900px;
-        height: 660px;
-        display: block;
-        margin: 0 auto;
+        width: 900px;          /* Set width for 150% zoom */
+        height: 660px;         /* Set height for 150% zoom */
       }
 
-      /* CMD Style Button */
-      .cmd-button {
-        background-color: black;
-        color: white;
-        font-size: 14px;
-        font-family: 'Courier New', Courier, monospace; /* Terminal-like font */
-        padding: 5px 20px;
-        border: 2px solid white; /* CMD-like white border */
-        cursor: pointer;
-        text-transform: uppercase;
-        display: inline-block;
-        margin-top: 15px; /* Space between canvas and button */
+      .button-container {
+        margin-top: 20px;      /* Space between canvas and buttons */
       }
 
-      .cmd-button:active {
-        background-color: white;
-        color: black;
+      button {
+        margin: 0 10px;        /* Space between buttons */
+        padding: 10px 20px;    /* Padding for buttons */
+        font-size: 16px;        /* Font size for button text */
+        cursor: pointer;        /* Pointer cursor on hover */
+        background-color: var(--ButtonFace);
+        color: var(--ButtonText);
+        border: 1px solid var(--ActiveBorder);
+        border-radius: 5px;    /* Rounded corners for buttons */
+        box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
+          0 0 0 1px var(--ButtonShadow),
+          -0.5px -0.5px 0 1.5px var(--ButtonLight),
+          0 0 0 2px var(--ButtonDkShadow);
+      }
+
+      button:active {
+        box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonShadow),
+          0 0 0 1px var(--ButtonShadow),
+          -0.5px -0.5px 0 1.5px var(--WindowFrame),
+          0 0 0 2px var(--WindowFrame);
       }
     </style>
-</head>
-<body>
-
-    <div class="window">
-      <div class="emscripten" id="status" style="display: none;"></div>
+  </head>
+  <body>
+    <div class="active window">
+      <div class="emscripten" id="status" style="display: none"></div>
       <div class="emscripten">
-        <progress id="progress" max="1" value="0" hidden="" style="display: none;"></progress>
+        <progress
+          id="progress"
+          max="1"
+          value="0"
+          hidden=""
+          style="display: none"
+        ></progress>
       </div>
-      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default" tabindex="-1" width="900" height="660"></canvas>
+      <canvas
+        class="emscripten"
+        id="canvas"
+        oncontextmenu="event.preventDefault()"
+        style="cursor: default"
+        tabindex="-1"
+        width="600"
+        height="440"
+      ></canvas>
     </div>
+   
+  <script>
+      var statusElement = document.getElementById("status"),
+        progressElement = document.getElementById("progress"),
+        Module = {
+          preRun: [],
+          postRun: [],
+          print: (function () {
+            var e = document.getElementById("output");
+            return (
+              e && (e.value = ""),
+              function (e) {
+                arguments.length > 1 &&
+                  (e = Array.prototype.slice.call(arguments).join(" "));
+                console.log(e);
+              }
+            );
+          })(),
 
-    <!-- Back Button -->
-    <button class="cmd-button" id="backButton" onclick="goBack()">Back to Root</button>
+          printErr: function (e) {
+            arguments.length > 1 &&
+              (e = Array.prototype.slice.call(arguments).join(" "));
+            console.error(e);
+          },
+          canvas: (function () {
+            var e = document.getElementById("canvas");
+            e.addEventListener(
+              "webglcontextlost",
+              function (e) {
+                alert("WebGL context lost. You will need to reload the page."),
+                  e.preventDefault();
+              },
+              !1
+            );
+            return e;
+          })(),
+          setStatus: function (e) {
+            if (
+              (Module.setStatus.last ||
+                (Module.setStatus.last = { time: Date.now(), text: "" }),
+              e !== Module.setStatus.last.text)
+            ) {
+              var t = e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)/),
+                n = Date.now();
+              if (!(t && n - Module.setStatus.last.time < 30)) {
+                if (
+                  ((Module.setStatus.last.time = n),
+                  (Module.setStatus.last.text = e),
+                  t)
+                )
+                  (e = t[1]),
+                    (progressElement.value = 100 * parseInt(t[2])),
+                    (progressElement.max = 100 * parseInt(t[4])),
+                    (progressElement.hidden = !1);
+                else
+                  (progressElement.value = null),
+                    (progressElement.max = null),
+                    (progressElement.hidden = !0),
+                    (document.getElementById("canvas").style.display = "");
+                statusElement.innerHTML = e;
+                "" === e
+                  ? ((statusElement.style.display = "none"),
+                    (progressElement.style.display = "none"))
+                  : ((statusElement.style.display = ""),
+                    (progressElement.style.display = ""));
+              }
+            }
+          },
+          totalDependencies: 0,
+          monitorRunDependencies: function (e) {
+            this.totalDependencies = Math.max(this.totalDependencies, e);
+            Module.setStatus(
+              e
+                ? "Preparing... (" +
+                    (this.totalDependencies - e) +
+                    "/" +
+                    this.totalDependencies +
+                    ")"
+                : "All downloads complete."
+            );
+          },
+        };
 
-    <script>
-      // Function to navigate to root directory
-      function goBack() {
-        // Navigate to root URL
-        window.location.href = '/';  // Assuming root directory is the homepage "/"
-      }
-    </script>
+      Module.setStatus("Downloading..."),
+        (window.onerror = function () {
+          Module.setStatus("Exception thrown, see JavaScript console"),
+            (Module.setStatus = function (e) {
+              e && Module.printErr("[post-exception status] " + e);
+            });
+        });
 
-    <script async="" src="/pinball/SpaceCadetPinball.js"></script>
-</body>
+     /* // Button state management
+// Button state management
+var leftClickPressed = false;
+        var rightClickPressed = false;
+        var spaceBarPressed = false;
+
+        // Button state management
+var leftClickPressed = false;
+var rightClickPressed = false;
+
+// Left Click Button Event Listeners
+document.getElementById("leftClick").addEventListener("mousedown", function () {
+    if (!leftClickPressed) {
+        leftClickPressed = true; // Set to true on mouse down
+        console.log("Left Click Button Pressed");
+        // Trigger left click action
+        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
+    }
+});
+
+document.getElementById("leftClick").addEventListener("mouseup", function () {
+    if (leftClickPressed) {
+        leftClickPressed = false; // Reset to false on mouse up
+        console.log("Left Click Button Released");
+        // Trigger left click release action
+        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
+    }
+});
+
+// Touch Events for Left Click Button
+document.getElementById("leftClick").addEventListener("touchstart", function (event) {
+    event.preventDefault(); // Prevent default touch behavior
+    if (!leftClickPressed) {
+        leftClickPressed = true; // Set to true on touch start
+        console.log("Left Click Button Pressed (Touch)");
+        // Trigger left click action
+        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
+    }
+});
+
+document.getElementById("leftClick").addEventListener("touchend", function () {
+    if (leftClickPressed) {
+        leftClickPressed = false; // Reset to false on touch end
+        console.log("Left Click Button Released (Touch)");
+        // Trigger left click release action
+        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
+    }
+});
+
+// Right Click Button Event Listeners
+document.getElementById("rightClick").addEventListener("mousedown", function () {
+    if (!rightClickPressed) {
+        rightClickPressed = true; // Set to true on mouse down
+        console.log("Right Click Button Pressed");
+        // Trigger right click action
+        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
+    }
+});
+
+document.getElementById("rightClick").addEventListener("mouseup", function () {
+    if (rightClickPressed) {
+        rightClickPressed = false; // Reset to false on mouse up
+        console.log("Right Click Button Released");
+        // Trigger right click release action
+        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
+    }
+});
+
+// Touch Events for Right Click Button
+document.getElementById("rightClick").addEventListener("touchstart", function (event) {
+    event.preventDefault(); // Prevent default touch behavior
+    if (!rightClickPressed) {
+        rightClickPressed = true; // Set to true on touch start
+        console.log("Right Click Button Pressed (Touch)");
+        // Trigger right click action
+        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
+    }
+});
+
+document.getElementById("rightClick").addEventListener("touchend", function () {
+    if (rightClickPressed) {
+        rightClickPressed = false; // Reset to false on touch end
+        console.log("Right Click Button Released (Touch)");
+        // Trigger right click release action
+        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
+    }
+});
+
+      // Space Bar Event Listeners
+var spaceBarButton = document.getElementById("spaceBar");
+spaceBarButton.addEventListener("mousedown", function () {
+    if (!spaceBarPressed) {
+        spaceBarPressed = true;
+        console.log("Space Bar Button Pressed");
+        document.dispatchEvent(new KeyboardEvent('keydown', {
+            key: ' ',
+            code: 'Space',
+            keyCode: 32,
+            charCode: 32,
+            which: 32,
+            bubbles: true // Allow the event to bubble
+        }));
+    }
+});
+spaceBarButton.addEventListener("mouseup", function () {
+    if (spaceBarPressed) {
+        console.log("Space Bar Button Released");
+        document.dispatchEvent(new KeyboardEvent('keyup', {
+            key: ' ',
+            code: 'Space',
+            keyCode: 32,
+            charCode: 32,
+            which: 32,
+            bubbles: true // Allow the event to bubble
+        }));
+        spaceBarPressed = false;
+    }
+});
+spaceBarButton.addEventListener("mouseleave", function () {
+    if (spaceBarPressed) {
+        console.log("Mouse left the Space Bar Button");
+        document.dispatchEvent(new KeyboardEvent('keyup', {
+            key: ' ',
+            code: 'Space',
+            keyCode: 32,
+            charCode: 32,
+            which: 32,
+            bubbles: true // Allow the event to bubble
+        }));
+        spaceBarPressed = false;
+    }
+});*/
+ <script async="" src="/pinball/SpaceCadetPinball.js"></script>
+    
+  </body>
 </html>
