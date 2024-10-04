@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>invicinity_terminal: Pinball</title>
+    <title>invicinity_terminal_terminal</title>
     <style>
       :root {
         --ActiveBorder: rgb(212, 208, 200);

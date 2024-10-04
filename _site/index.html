@@ -30,6 +30,28 @@
             background: none;
         }
     </style>
+
+    <title>Original Title</title>
+    <script>
+        let titles = ["Title One", "Title Two"]; // Titles to switch between
+        let currentIndex = 0; // Index to track the current title
+
+        function changeTitle() {
+            // Update the document title with the current title
+            document.title = titles[currentIndex];
+            // Toggle the index between 0 and 1
+            currentIndex = (currentIndex + 1) % titles.length; 
+        }
+
+        // Change title every 10 seconds (10000 milliseconds)
+        setInterval(changeTitle, 10000);
+
+        // Set the initial title
+        window.onload = function() {
+            changeTitle(); // Set the title immediately on load
+        }
+    </script>
+
     <script>
         // Disable right-click context menu
         document.addEventListener('contextmenu', function (e) {

@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>invicinity_terminal: Pinball</title>
+<head>
+    <meta charset="utf-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>3D Pinball for Windows - Space Cadet</title>
     <style>
       :root {
         --ActiveBorder: rgb(212, 208, 200);
@@ -45,82 +46,42 @@
         display: flex;
         flex-direction: column; /* Stack children vertically */
         align-items: center;     /* Center horizontally */
-        justify-content: center; /* Center vertically */
+        justify-content: flex-start; /* Align items at the start (top) */
         height: 100vh;          /* Full height of the viewport */
         margin: 0;              /* Remove default margin */
         overflow: hidden;       /* Prevent scrollbars */
       }
 
       .active.window {
-        width: 900px;          /* Set the width for 150% scale */
-        height: 660px;         /* Set the height for 150% scale */
+        width: 900px;          /* Set the width for the canvas */
+        height: 660px;         /* Set the height for the canvas */
         background-color: var(--ButtonFace);
         border: 1px solid var(--ActiveBorder);
         box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
           0 0 0 1px var(--ButtonShadow),
           -0.5px -0.5px 0 1.5px var(--ButtonLight),
           0 0 0 2px var(--ButtonDkShadow);
+        position: relative; /* Keep the window relative to its container */
       }
 
       canvas.emscripten {
         border: 0 none;
         background-color: #000;
-        width: 900px;          /* Set width for 150% zoom */
-        height: 660px;         /* Set height for 150% zoom */
-      }
-
-      .button-container {
-        margin-top: 20px;      /* Space between canvas and buttons */
-      }
-
-      button {
-        margin: 0 10px;        /* Space between buttons */
-        padding: 10px 20px;    /* Padding for buttons */
-        font-size: 16px;        /* Font size for button text */
-        cursor: pointer;        /* Pointer cursor on hover */
-        background-color: var(--ButtonFace);
-        color: var(--ButtonText);
-        border: 1px solid var(--ActiveBorder);
-        border-radius: 5px;    /* Rounded corners for buttons */
-        box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
-          0 0 0 1px var(--ButtonShadow),
-          -0.5px -0.5px 0 1.5px var(--ButtonLight),
-          0 0 0 2px var(--ButtonDkShadow);
-      }
-
-      button:active {
-        box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonShadow),
-          0 0 0 1px var(--ButtonShadow),
-          -0.5px -0.5px 0 1.5px var(--WindowFrame),
-          0 0 0 2px var(--WindowFrame);
+        width: 900px;          /* Set width for canvas */
+        height: 660px;         /* Set height for canvas */
+        display: block; /* Block display for centering */
+        margin: 0 auto; /* Center canvas horizontally */
       }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="active window">
-      <div class="emscripten" id="status" style="display: none"></div>
+      <div class="emscripten" id="status" style="display: none;"></div>
       <div class="emscripten">
-        <progress
-          id="progress"
-          max="1"
-          value="0"
-          hidden=""
-          style="display: none"
-        ></progress>
+        <progress id="progress" max="1" value="0" hidden="" style="display: none;"></progress>
       </div>
-      <canvas
-        class="emscripten"
-        id="canvas"
-        oncontextmenu="event.preventDefault()"
-        style="cursor: default"
-        tabindex="-1"
-        width="600"
-        height="440"
-      ></canvas>
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default" tabindex="-1" width="900" height="660"></canvas>
     </div>
-    
-    <!-- Button container -->
-   
 
     <script>
       var statusElement = document.getElementById("status"),
@@ -210,141 +171,7 @@
               e && Module.printErr("[post-exception status] " + e);
             });
         });
-
-     /* // Button state management
-// Button state management
-var leftClickPressed = false;
-        var rightClickPressed = false;
-        var spaceBarPressed = false;
-
-        // Button state management
-var leftClickPressed = false;
-var rightClickPressed = false;
-
-// Left Click Button Event Listeners
-document.getElementById("leftClick").addEventListener("mousedown", function () {
-    if (!leftClickPressed) {
-        leftClickPressed = true; // Set to true on mouse down
-        console.log("Left Click Button Pressed");
-        // Trigger left click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
-    }
-});
-
-document.getElementById("leftClick").addEventListener("mouseup", function () {
-    if (leftClickPressed) {
-        leftClickPressed = false; // Reset to false on mouse up
-        console.log("Left Click Button Released");
-        // Trigger left click release action
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
-    }
-});
-
-// Touch Events for Left Click Button
-document.getElementById("leftClick").addEventListener("touchstart", function (event) {
-    event.preventDefault(); // Prevent default touch behavior
-    if (!leftClickPressed) {
-        leftClickPressed = true; // Set to true on touch start
-        console.log("Left Click Button Pressed (Touch)");
-        // Trigger left click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
-    }
-});
-
-document.getElementById("leftClick").addEventListener("touchend", function () {
-    if (leftClickPressed) {
-        leftClickPressed = false; // Reset to false on touch end
-        console.log("Left Click Button Released (Touch)");
-        // Trigger left click release action
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
-    }
-});
-
-// Right Click Button Event Listeners
-document.getElementById("rightClick").addEventListener("mousedown", function () {
-    if (!rightClickPressed) {
-        rightClickPressed = true; // Set to true on mouse down
-        console.log("Right Click Button Pressed");
-        // Trigger right click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
-    }
-});
-
-document.getElementById("rightClick").addEventListener("mouseup", function () {
-    if (rightClickPressed) {
-        rightClickPressed = false; // Reset to false on mouse up
-        console.log("Right Click Button Released");
-        // Trigger right click release action
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
-    }
-});
-
-// Touch Events for Right Click Button
-document.getElementById("rightClick").addEventListener("touchstart", function (event) {
-    event.preventDefault(); // Prevent default touch behavior
-    if (!rightClickPressed) {
-        rightClickPressed = true; // Set to true on touch start
-        console.log("Right Click Button Pressed (Touch)");
-        // Trigger right click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
-    }
-});
-
-document.getElementById("rightClick").addEventListener("touchend", function () {
-    if (rightClickPressed) {
-        rightClickPressed = false; // Reset to false on touch end
-        console.log("Right Click Button Released (Touch)");
-        // Trigger right click release action
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
-    }
-});
-
-      // Space Bar Event Listeners
-var spaceBarButton = document.getElementById("spaceBar");
-spaceBarButton.addEventListener("mousedown", function () {
-    if (!spaceBarPressed) {
-        spaceBarPressed = true;
-        console.log("Space Bar Button Pressed");
-        document.dispatchEvent(new KeyboardEvent('keydown', {
-            key: ' ',
-            code: 'Space',
-            keyCode: 32,
-            charCode: 32,
-            which: 32,
-            bubbles: true // Allow the event to bubble
-        }));
-    }
-});
-spaceBarButton.addEventListener("mouseup", function () {
-    if (spaceBarPressed) {
-        console.log("Space Bar Button Released");
-        document.dispatchEvent(new KeyboardEvent('keyup', {
-            key: ' ',
-            code: 'Space',
-            keyCode: 32,
-            charCode: 32,
-            which: 32,
-            bubbles: true // Allow the event to bubble
-        }));
-        spaceBarPressed = false;
-    }
-});
-spaceBarButton.addEventListener("mouseleave", function () {
-    if (spaceBarPressed) {
-        console.log("Mouse left the Space Bar Button");
-        document.dispatchEvent(new KeyboardEvent('keyup', {
-            key: ' ',
-            code: 'Space',
-            keyCode: 32,
-            charCode: 32,
-            which: 32,
-            bubbles: true // Allow the event to bubble
-        }));
-        spaceBarPressed = false;
-    }
-});*/
-
     </script>
     <script async="" src="/pinball/SpaceCadetPinball.js"></script>
-  </body>
+</body>
 </html>
