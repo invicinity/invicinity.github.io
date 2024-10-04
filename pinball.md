@@ -37,7 +37,7 @@
         --WindowFrame: rgb(0, 0, 0);
         --WindowText: rgb(0, 0, 0);
       }
-
+}
       body {
         font-family: Tahoma, Geneva, Verdana, sans-serif;
         background-color: var(--Background);
