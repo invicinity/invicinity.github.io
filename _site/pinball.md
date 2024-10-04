@@ -1,9 +1,7 @@
-
-<html lang="en-us">
-<head>
-  <meta charset="utf-8" />
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-  <title>invicinity</title>
+<html lang="en-us"><head>
+  <meta charset="utf-8">
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>3D Pinball for Windows - Space Cadet</title>
   <style>
     :root {
       --Background: rgb(0, 0, 0); /* Complete black background */
@@ -158,9 +156,9 @@
     </div>
 
     <div class="active window">
-      <div class="emscripten" id="status" style="display: none"></div>
-      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default"></canvas>
-      <iframe id="iframe" src="" allowfullscreen></iframe>
+      <div class="emscripten" id="status" style="display: none;">Running...</div>
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default" width="741" height="927"></canvas>
+      <iframe id="iframe" src="" allowfullscreen=""></iframe>
     </div>
   </div>
 
@@ -247,6 +245,7 @@
     });
   </script>
 
-  <script async src="/pinball/SpaceCadetPinball.js"></script>
-</body>
-</html>
+  <script async="" src="/pinball/SpaceCadetPinball.js"></script>
+
+
+</body></html>
