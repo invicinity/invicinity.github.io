@@ -1,5 +1,3 @@
-# [invicinity](https://invicinity.github.io/)
-
 <style>
 :root {
     --Background: rgb(0, 0, 0); /* Complete black background */
@@ -20,29 +18,13 @@ body {
     font-family: 'Courier New', Courier, monospace; /* Terminal-like font */
     background-color: var(--Background);
     margin: 0;
-    overflow: hidden; /* Prevent scrollbars */
-    display: flex;
+    display: flex; /* Use flexbox for layout */
     height: 100vh; /* Full viewport height */
     color: var(--SidebarText); /* Default text color */
-    zoom: 200%; /* Simulate zoom at 200% */
-}
-
-/* Background Decoration with White Dots */
-.background-decorator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Allow clicks through to other elements */
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 80%),
-                      linear-gradient(to right, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-    opacity: 0.05; /* Subtle decoration */
 }
 
 /* New Container for Border */
 .container {
-    border: 2px solid var(--ActiveBorder); /* Outer white border */
     display: flex; /* Enable flexbox for positioning */
     width: 100%; /* Full width */
     height: 100%; /* Full height */
@@ -58,6 +40,9 @@ body {
     height: 100%; /* Full height of the viewport */
     overflow-y: auto; /* Allow scrolling if necessary */
     padding: 10px; /* Padding for better spacing */
+    position: fixed; /* Fix the sidebar to the left */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
 }
 
 .sidebar-item {
@@ -68,7 +53,7 @@ body {
     border-bottom: 1px solid var(--ActiveBorder); /* Separator lines between items */
     text-transform: uppercase;
     transition: background-color 0.3s; /* Smooth background transition */
-    font-size: 10px; /* Smaller font size for a more CMD-like feel */
+    font-size: 14px; /* Adjusted font size for better readability */
 }
 
 .sidebar-item:hover {
@@ -135,86 +120,3 @@ iframe {
     color: black;
 }
 </style>
-
-<div class="background-decorator"></div> <!-- Background decorations -->
-  
-<!-- Outer container to add the border -->
-<div class="container">
-    <div class="sidebar">
-        <div class="sidebar-item" onclick="selectGame('pinball')">Pinball</div>
-        <div class="sidebar-item" onclick="selectGame('princeOfPersia')">Prince of Persia</div>
-        <div class="sidebar-item" onclick="selectGame('dosGame1')">MS-DOS Game 1</div>
-        <div class="sidebar-item" onclick="selectGame('dosGame2')">MS-DOS Game 2</div>
-        <div class="sidebar-item" onclick="selectGame('dosGame3')">MS-DOS Game 3</div>
-        
-        <div class="button-container">
-            <button class="cmd-button" onclick="window.location.href='https://invicinity.github.io'">Go Back</button>
-        </div>
-    </div>
-
-    <div class="active window">
-        <div class="emscripten" id="status" style="display: none;">Running...</div>
-        <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" width="166" height="458"></canvas>
-        <iframe id="iframe" src="https://archive.org/embed/invicinity_prince" allowfullscreen="" style="display: block;"></iframe>
-    </div>
-</div>
-
-<script>
-    var statusElement = document.getElementById("status"),
-        canvasElement = document.getElementById("canvas"),
-        iframeElement = document.getElementById("iframe"),
-        isPinballActive = false;
-
-    function selectGame(game) {
-        // Cleanup: hide canvas and iframe to close the currently active game
-        if (isPinballActive) {
-            canvasElement.style.display = "none"; // Hide canvas for Pinball
-        } else {
-            iframeElement.style.display = "none"; // Hide iframe
-            iframeElement.src = ""; // Unload the iframe source to stop it
-        }
-
-        Module.setStatus(""); // Reset status
-
-        if (game === 'pinball') {
-            canvasElement.style.display = "block"; // Show canvas for Pinball
-            isPinballActive = true; // Update the state
-        } else if (game === 'princeOfPersia') {
-            iframeElement.style.display = "block"; // Show iframe for Prince of Persia
-            iframeElement.src = "https://archive.org/embed/invicinity_prince"; // Set iframe source
-            isPinballActive = false; // Update state
-        } else {
-            iframeElement.style.display = "block"; // Show iframe for other DOS games
-            iframeElement.src = "https://example.com/your_placeholder_url"; // Replace with actual URL
-            isPinballActive = false; // Update state
-        }
-    }
-
-    var Module = {
-        preRun: [],
-        postRun: [],
-        print: function (e) {
-            console.log(e);
-        },
-        printErr: function (e) {
-            console.error(e);
-        },
-        canvas: (function () {
-            var e = document.getElementById("canvas");
-            e.addEventListener(
-                "webglcontextlost",
-                function () {
-                    alert("WebGL context lost. You will need to reload the page.");
-                    e.preventDefault(); // Prevent default behavior
-                },
-                false
-            );
-            return e;
-        })(),
-        setStatus: function (e) {
-            if (e) {
-                statusElement.innerHTML = e; // Update status element
-            }
-        }
-    };
-</script>
