@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-  <title>3D Pinball for Windows - Space Cadet</title>
+  <title>Game Selector</title>
   <style>
     :root {
       --ActiveBorder: rgb(212, 208, 200);
@@ -39,55 +39,88 @@
       --WindowText: rgb(0, 0, 0);
     }
 
-    h1 {
-      display: none; /* Hides all <h1> elements */
-    }
-
     body {
       font-family: Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--Background);
       text-align: center;
       display: flex;
+      height: 100vh; /* Full height of the viewport */
+      margin: 0; /* Remove default margin */
+      overflow: hidden; /* Prevent scrollbars */
+    }
+
+    .sidebar {
+      background-color: var(--ButtonFace);
+      border-right: 1px solid var(--ActiveBorder);
+      width: 200px; /* Width of sidebar */
+      padding: 10px; /* Padding inside sidebar */
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      align-items: flex-start; /* Align items to the start */
+    }
+
+    .game-list {
+      list-style-type: none; /* Remove bullet points */
+      padding: 0; /* Remove padding */
+      margin: 0; /* Remove margin */
+      width: 100%; /* Full width */
+    }
+
+    .game-list li {
+      cursor: pointer; /* Pointer cursor on hover */
+      padding: 5px; /* Padding around list items */
+      width: 100%; /* Full width of sidebar */
+      background-color: var(--ButtonFace);
+      color: var(--WindowText);
+      transition: background-color 0.3s; /* Smooth background transition */
+    }
+
+    .game-list li:hover {
+      background-color: var(--Hilight); /* Highlight on hover */
+      color: var(--HilightText); /* Change text color */
+    }
+
+    .main-content {
+      flex-grow: 1; /* Take the remaining space */
+      display: flex;
       flex-direction: column; /* Stack children vertically */
-      align-items: center;     /* Center horizontally */
+      align-items: center; /* Center horizontally */
       justify-content: flex-start; /* Align to top */
-      height: 100vh;          /* Full height of the viewport */
-      margin: 0;              /* Remove default margin */
-      overflow: hidden;       /* Prevent scrollbars */
     }
 
     .active.window {
-      width: 900px;          /* Set the width for 150% scale */
-      height: 660px;         /* Set the height for 150% scale */
+      width: 900px; /* Set the width for 150% scale */
+      height: 660px; /* Set the height for 150% scale */
       background-color: var(--ButtonFace);
       border: 1px solid var(--ActiveBorder);
       box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
         0 0 0 1px var(--ButtonShadow),
         -0.5px -0.5px 0 1.5px var(--ButtonLight),
         0 0 0 2px var(--ButtonDkShadow);
-      margin-top: 2px;      /* Add space at the top */
-      position: relative;    /* For absolute positioning of iframe */
+      margin-top: 2px; /* Add space at the top */
+      position: relative; /* For absolute positioning of iframe */
     }
 
     canvas.emscripten {
       border: 0 none;
       background-color: #000;
-      width: 900px;          /* Set width for 150% zoom */
-      height: 660px;         /* Set height for 150% zoom */
+      width: 900px; /* Set width for 150% zoom */
+      height: 660px; /* Set height for 150% zoom */
     }
 
     .iframe-container {
-      display: none;         /* Initially hidden */
-      width: 900px;         /* Match the window width */
-      height: 660px;        /* Match the window height */
-      border: none;         /* No border for iframe */
-      position: absolute;    /* Overlay on top of the canvas */
-      top: 0;               /* Align to top */
-      left: 0;              /* Align to left */
+      display: none; /* Initially hidden */
+      width: 900px; /* Match the window width */
+      height: 660px; /* Match the window height */
+      border: none; /* No border for iframe */
+      position: absolute; /* Overlay on top of the canvas */
+      top: 0; /* Align to top */
+      left: 0; /* Align to left */
     }
 
     .button-container {
-      margin-top: 20px;      /* Space between canvas and button */
+      margin-top: 20px; /* Space between canvas and button */
     }
 
     .cmd-button {
@@ -110,18 +143,29 @@
   </style>
 </head>
 <body>
-  <div class="active window">
-    <div class="emscripten" id="status" style="display: none"></div>
-    <div class="emscripten">
-      <progress id="progress" max="1" value="0" hidden style="display: none"></progress>
-    </div>
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default" tabindex="-1" width="600" height="440"></canvas>
-    <iframe id="iframe" class="iframe-container" src="https://archive.org/embed/invicinity_prince"></iframe>
+  <div class="sidebar">
+    <ul class="game-list">
+      <li onclick="selectGame('pinball')">Pinball</li>
+      <li onclick="selectGame('princeOfPersia')">Prince of Persia</li>
+      <li onclick="selectGame('dosGame1')">MS-DOS Game 1 (Placeholder)</li>
+      <li onclick="selectGame('dosGame2')">MS-DOS Game 2 (Placeholder)</li>
+      <li onclick="selectGame('dosGame3')">MS-DOS Game 3 (Placeholder)</li>
+    </ul>
   </div>
+  <div class="main-content">
+    <div class="active window">
+      <div class="emscripten" id="status" style="display: none"></div>
+      <div class="emscripten">
+        <progress id="progress" max="1" value="0" hidden style="display: none"></progress>
+      </div>
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default" tabindex="-1" width="600" height="440"></canvas>
+      <iframe id="iframe" class="iframe-container" src="https://archive.org/embed/invicinity_prince"></iframe>
+    </div>
 
-  <!-- Button container with a single button -->
-  <div class="button-container">
-    <button class="cmd-button" id="toggleButton">Toggle View</button>
+    <!-- Button container with a single button -->
+    <div class="button-container">
+      <button class="cmd-button" id="toggleButton">Toggle View</button>
+    </div>
   </div>
 
   <script>
@@ -146,7 +190,22 @@
       }
     };
 
-    // Rest of your existing JavaScript code...
+    function selectGame(game) {
+      if (game === 'pinball') {
+        canvasElement.style.display = "block"; // Show the canvas for Pinball
+        iframeElement.style.display = "none"; // Hide iframe
+        Module.setStatus("Downloading..."); // Reset status for pinball
+        isPinballActive = true; // Update the state
+      } else if (game === 'princeOfPersia') {
+        canvasElement.style.display = "none"; // Hide canvas
+        iframeElement.style.display = "block"; // Show the iframe for Prince of Persia
+        iframeElement.src = "https://archive.org/embed/invicinity_prince"; // Set iframe source
+      } else {
+        canvasElement.style.display = "none"; // Hide canvas
+        iframeElement.style.display = "block"; // Show iframe for placeholder DOS game
+        iframeElement.src = "https://example.com/your_placeholder_url"; // Replace with actual URL
+      }
+    }
 
     var Module = {
       preRun: [],
@@ -173,7 +232,7 @@
           "webglcontextlost",
           function (e) {
             alert("WebGL context lost. You will need to reload the page."),
-              e.preventDefault();
+            e.preventDefault();
           },
           !1
         );
