@@ -37,8 +37,7 @@
         --WindowFrame: rgb(0, 0, 0);
         --WindowText: rgb(0, 0, 0);
       }
-
-      body {
+         body {
         font-family: Tahoma, Geneva, Verdana, sans-serif;
         background-color: var(--Background);
         text-align: center;
@@ -50,7 +49,6 @@
         margin: 0;              /* Remove default margin */
         overflow: hidden;       /* Prevent scrollbars */
       }
-
       .active.window {
         width: 900px;          /* Set the width for 150% scale */
         height: 660px;         /* Set the height for 150% scale */
@@ -61,18 +59,15 @@
           -0.5px -0.5px 0 1.5px var(--ButtonLight),
           0 0 0 2px var(--ButtonDkShadow);
       }
-
       canvas.emscripten {
         border: 0 none;
         background-color: #000;
         width: 900px;          /* Set width for 150% zoom */
         height: 660px;         /* Set height for 150% zoom */
       }
-
       .button-container {
         margin-top: 20px;      /* Space between canvas and buttons */
       }
-
       button {
         margin: 0 10px;        /* Space between buttons */
         padding: 10px 20px;    /* Padding for buttons */
@@ -87,7 +82,6 @@
           -0.5px -0.5px 0 1.5px var(--ButtonLight),
           0 0 0 2px var(--ButtonDkShadow);
       }
-
       button:active {
         box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonShadow),
           0 0 0 1px var(--ButtonShadow),
@@ -210,138 +204,142 @@
         });
 
      /* // Button state management
+
 // Button state management
 var leftClickPressed = false;
-        var rightClickPressed = false;
-        var spaceBarPressed = false;
+var rightClickPressed = false;
+var spaceBarPressed = false;
 
         // Button state management
+
 var leftClickPressed = false;
 var rightClickPressed = false;
 
 // Left Click Button Event Listeners
 document.getElementById("leftClick").addEventListener("mousedown", function () {
-    if (!leftClickPressed) {
-        leftClickPressed = true; // Set to true on mouse down
-        console.log("Left Click Button Pressed");
-        // Trigger left click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
-    }
+if (!leftClickPressed) {
+leftClickPressed = true; // Set to true on mouse down
+console.log("Left Click Button Pressed");
+// Trigger left click action
+Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
+}
 });
 
 document.getElementById("leftClick").addEventListener("mouseup", function () {
-    if (leftClickPressed) {
-        leftClickPressed = false; // Reset to false on mouse up
-        console.log("Left Click Button Released");
-        // Trigger left click release action
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
-    }
+if (leftClickPressed) {
+leftClickPressed = false; // Reset to false on mouse up
+console.log("Left Click Button Released");
+// Trigger left click release action
+Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
+}
 });
 
 // Touch Events for Left Click Button
 document.getElementById("leftClick").addEventListener("touchstart", function (event) {
-    event.preventDefault(); // Prevent default touch behavior
-    if (!leftClickPressed) {
-        leftClickPressed = true; // Set to true on touch start
-        console.log("Left Click Button Pressed (Touch)");
-        // Trigger left click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
-    }
+event.preventDefault(); // Prevent default touch behavior
+if (!leftClickPressed) {
+leftClickPressed = true; // Set to true on touch start
+console.log("Left Click Button Pressed (Touch)");
+// Trigger left click action
+Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
+}
 });
 
 document.getElementById("leftClick").addEventListener("touchend", function () {
-    if (leftClickPressed) {
-        leftClickPressed = false; // Reset to false on touch end
-        console.log("Left Click Button Released (Touch)");
-        // Trigger left click release action
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
-    }
+if (leftClickPressed) {
+leftClickPressed = false; // Reset to false on touch end
+console.log("Left Click Button Released (Touch)");
+// Trigger left click release action
+Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 0 }));
+}
 });
 
 // Right Click Button Event Listeners
 document.getElementById("rightClick").addEventListener("mousedown", function () {
-    if (!rightClickPressed) {
-        rightClickPressed = true; // Set to true on mouse down
-        console.log("Right Click Button Pressed");
-        // Trigger right click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
-    }
+if (!rightClickPressed) {
+rightClickPressed = true; // Set to true on mouse down
+console.log("Right Click Button Pressed");
+// Trigger right click action
+Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
+}
 });
 
 document.getElementById("rightClick").addEventListener("mouseup", function () {
-    if (rightClickPressed) {
-        rightClickPressed = false; // Reset to false on mouse up
-        console.log("Right Click Button Released");
-        // Trigger right click release action
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
-    }
+if (rightClickPressed) {
+rightClickPressed = false; // Reset to false on mouse up
+console.log("Right Click Button Released");
+// Trigger right click release action
+Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
+}
 });
 
 // Touch Events for Right Click Button
 document.getElementById("rightClick").addEventListener("touchstart", function (event) {
-    event.preventDefault(); // Prevent default touch behavior
-    if (!rightClickPressed) {
-        rightClickPressed = true; // Set to true on touch start
-        console.log("Right Click Button Pressed (Touch)");
-        // Trigger right click action
-        Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
-    }
+event.preventDefault(); // Prevent default touch behavior
+if (!rightClickPressed) {
+rightClickPressed = true; // Set to true on touch start
+console.log("Right Click Button Pressed (Touch)");
+// Trigger right click action
+Module.canvas.dispatchEvent(new MouseEvent('mousedown', { button: 2 }));
+}
 });
 
 document.getElementById("rightClick").addEventListener("touchend", function () {
-    if (rightClickPressed) {
-        rightClickPressed = false; // Reset to false on touch end
-        console.log("Right Click Button Released (Touch)");
-        // Trigger right click release action
-        Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
-    }
+if (rightClickPressed) {
+rightClickPressed = false; // Reset to false on touch end
+console.log("Right Click Button Released (Touch)");
+// Trigger right click release action
+Module.canvas.dispatchEvent(new MouseEvent('mouseup', { button: 2 }));
+}
 });
 
       // Space Bar Event Listeners
+
 var spaceBarButton = document.getElementById("spaceBar");
 spaceBarButton.addEventListener("mousedown", function () {
-    if (!spaceBarPressed) {
-        spaceBarPressed = true;
-        console.log("Space Bar Button Pressed");
-        document.dispatchEvent(new KeyboardEvent('keydown', {
-            key: ' ',
-            code: 'Space',
-            keyCode: 32,
-            charCode: 32,
-            which: 32,
-            bubbles: true // Allow the event to bubble
-        }));
-    }
+if (!spaceBarPressed) {
+spaceBarPressed = true;
+console.log("Space Bar Button Pressed");
+document.dispatchEvent(new KeyboardEvent('keydown', {
+key: ' ',
+code: 'Space',
+keyCode: 32,
+charCode: 32,
+which: 32,
+bubbles: true // Allow the event to bubble
+}));
+}
 });
 spaceBarButton.addEventListener("mouseup", function () {
-    if (spaceBarPressed) {
-        console.log("Space Bar Button Released");
-        document.dispatchEvent(new KeyboardEvent('keyup', {
-            key: ' ',
-            code: 'Space',
-            keyCode: 32,
-            charCode: 32,
-            which: 32,
-            bubbles: true // Allow the event to bubble
-        }));
-        spaceBarPressed = false;
-    }
+if (spaceBarPressed) {
+console.log("Space Bar Button Released");
+document.dispatchEvent(new KeyboardEvent('keyup', {
+key: ' ',
+code: 'Space',
+keyCode: 32,
+charCode: 32,
+which: 32,
+bubbles: true // Allow the event to bubble
+}));
+spaceBarPressed = false;
+}
 });
 spaceBarButton.addEventListener("mouseleave", function () {
-    if (spaceBarPressed) {
-        console.log("Mouse left the Space Bar Button");
-        document.dispatchEvent(new KeyboardEvent('keyup', {
-            key: ' ',
-            code: 'Space',
-            keyCode: 32,
-            charCode: 32,
-            which: 32,
-            bubbles: true // Allow the event to bubble
-        }));
-        spaceBarPressed = false;
-    }
-});*/
+if (spaceBarPressed) {
+console.log("Mouse left the Space Bar Button");
+document.dispatchEvent(new KeyboardEvent('keyup', {
+key: ' ',
+code: 'Space',
+keyCode: 32,
+charCode: 32,
+which: 32,
+bubbles: true // Allow the event to bubble
+}));
+spaceBarPressed = false;
+}
+});\*/
+
  <script async="" src="/pinball/SpaceCadetPinball.js"></script>
-    
+
   </body>
 </html>
