@@ -216,6 +216,44 @@ h1 {
         });
 
     </script>
+.window {
+        width: 900px;
+        height: 660px;
+        background-color: var(--ButtonFace);
+        border: 1px solid var(--ActiveBorder);
+        box-shadow: -0.5px -0.5px 0 0.5px var(--ButtonHilight),
+          0 0 0 1px var(--ButtonShadow),
+          -0.5px -0.5px 0 1.5px var(--ButtonLight),
+          0 0 0 2px var(--ButtonDkShadow);
+        position: relative;
+      }
+
+      canvas.emscripten {
+        border: 0 none;
+        background-color: #000;
+        width: 900px;
+        height: 660px;
+        display: block;
+        margin: 0 auto;
+      }
+.cmd-button {
+        background-color: black;
+        color: white;
+        font-size: 14px;
+        font-family: 'Courier New', Courier, monospace; /* Terminal-like font */
+        padding: 5px 20px;
+        border: 2px solid white; /* CMD-like white border */
+        cursor: pointer;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-top: 15px; /* Space between canvas and button */
+      }
+
+      .cmd-button:active {
+        background-color: white;
+        color: black;
+      }
+
     <script async="" src="/pinball/SpaceCadetPinball.js"></script>
   </body>
 </html>
