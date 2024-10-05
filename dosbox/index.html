@@ -159,13 +159,14 @@
       <div class="sidebar-item" onclick="selectGame('lionKing')">Lion King</div>
       <div class="sidebar-item" onclick="selectGame('streetFighter')">Street Fighter 2</div>
       <div class="sidebar-item" onclick="selectGame('simCity')">SimCity</div>
-      <div class="sidebar-item" onclick="selectGame('commanderKeen')">Commander Keen</div>
+      <div class="sidebar-item" onclick="selectGame('elite')">Elite - 1987</div>
       <div class="sidebar-item" onclick="selectGame('oregonTrail')">The Oregon Trail</div>
-      <div class="sidebar-item" onclick="selectGame('xCom')">X-COM: UFO Defense</div>
+      <div class="sidebar-item" onclick="selectGame('pacman')">Pac-Man</div>
       <div class="sidebar-item" onclick="selectGame('simFarm')">SimFarm</div>
       <div class="sidebar-item" onclick="selectGame('dune2')">Dune II</div>
       <div class="sidebar-item" onclick="selectGame('descent')">Descent</div>
 
+      
       <div class="button-container">
         <button class="cmd-button" onclick="window.location.href='https://invicinity.github.io'">Go Back</button>
       </div>
@@ -232,17 +233,17 @@
         iframeElement.style.display = "block"; // Show iframe for SimCity
         iframeElement.src = "https://archive.org/embed/msdos_SimCity_1989"; // Set iframe source
         isPinballActive = false; // Update state
-      } else if (game === 'commanderKeen') {
+      } else if (game === 'elite') {
         iframeElement.style.display = "block"; // Show iframe for Commander Keen
-        iframeElement.src = "https://archive.org/embed/Commander_Keen_1"; // Set iframe source
+        iframeElement.src = "https://archive.org/embed/msdos_Elite_1987"; // Set iframe source
         isPinballActive = false; // Update state
       } else if (game === 'oregonTrail') {
         iframeElement.style.display = "block"; // Show iframe for The Oregon Trail
         iframeElement.src = "https://archive.org/embed/msdos_Oregon_Trail_The_1990"; // Set iframe source
         isPinballActive = false; // Update state
-      } else if (game === 'xCom') {
+      } else if (game === 'pacman') {
         iframeElement.style.display = "block"; // Show iframe for X-COM: UFO Defense
-        iframeElement.src = "https://archive.org/embed/msdos_X_COM_UFO_Defense_1994"; // Set iframe source
+        iframeElement.src = "https://archive.org/embed/msdos_Pac-Man_1983"; // Set iframe source
         isPinballActive = false; // Update state
       } else if (game === 'simFarm') {
         iframeElement.style.display = "block"; // Show iframe for SimFarm

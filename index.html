@@ -1,58 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- <link rel="icon" type="image/png" href="favicon.png" /> -->
+
+    <!-- Include 98.css -->
+    <link rel="stylesheet" href="https://jdan.github.io/98.css/98.css">
+    
     <link rel="stylesheet" href="css/main.css">
     <title>invicinity_terminal</title>
     <script src="js/main.js" type="module"></script>
     <script async src="pinball/SpaceCadetPinball.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-</head>
-<body>
-
-    <title>Disable Right Click, Selection, and Mouse Buttons</title>
     <style>
+        /* Main container to hold title bar and terminal */
+        .container {
+            border: 5px solid white; /* White border around the entire container */
+            position: fixed; /* Fixed position */
+            top: 0; /* Align to the top */
+            left: 0; /* Align to the left */
+            right: 0; /* Align to the right */
+            bottom: 0; /* Align to the bottom */
+            z-index: 999; /* Ensure it stays above other content */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
+        }
+
+        /* Main terminal wrapper */
+        #crt {
+            margin-top: 0; /* No margin */
+            background-color: black; /* Black background for the terminal */
+            height: calc(100% - 42px); /* Adjust height to fill remaining space below title bar and separator */
+            overflow: hidden; /* Hide overflow */
+        }
+
+        /* Terminal content styling */
+        .terminal {
+            padding: 10px; /* Inner padding for terminal */
+            height: 100%; /* Full height */
+            overflow-y: auto; /* Scroll if content exceeds height */
+            color: white; /* Terminal text color */
+            font-family: 'Courier New', Courier, monospace; /* Monospace font for terminal */
+        }
+
         /* Disable text selection */
         body {
             user-select: none;
             -webkit-user-select: none; /* Chrome, Safari, Edge */
             -moz-user-select: none; /* Firefox */
             -ms-user-select: none; /* IE 10+ */
+            margin: 0; /* Remove default body margin */
         }
 
         /* Prevent text highlight with double-click or dragging */
         body::selection {
             background: none;
         }
+
+        /* Title Bar Styles */
+        .title-bar {
+            background: linear-gradient(to right, #010683, #1083cf); /* Keep original gradient */
+            border-bottom: 2px solid black; /* Keep original border */
+            padding: 2px;
+            color: white; /* Keep original text color */
+            height: 30px; /* Keep height */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: Tahoma, sans-serif; /* Keep font family */
+        }
+    
+        .title-bar-text {
+            margin-left: 10px;
+            font-size: 16px; /* Increased font size */
+            font-weight: bold; /* Keep it bold */
+            color: white; /* Ensure text color remains white */
+        }
+    
+        .title-bar-controls button {
+            width: 25px; /* Increased width */
+            height: 25px; /* Increased height */
+            margin-right: 5px;
+            background-color: #ecead8; /* Original button background */
+            border: 1px solid black; /* Original button border */
+            cursor: pointer;
+            font-size: 14px; /* Adjust font size for better visibility */
+        }
+        
+        .title-bar-controls button[aria-label="Close"] {
+            background-color: #b0b0b0; /* Original close button color */
+        }
+        
+        .title-bar-controls button[aria-label="Maximize"],
+        .title-bar-controls button[aria-label="Minimize"] {
+            background-color: #b0b0b0; /* Original minimize and maximize button colors */
+        }
+
+        /* Separator line styles */
+        .separator {
+            height: 2px; /* Height of the separator line */
+            background-color: black; /* Same color as the border */
+            margin: 0; /* Remove margin */
+        }
     </style>
 
-    <title>Original Title</title>
+</head>
+<body>
+
+    <!-- Main container for title bar and terminal -->
+    <div class="container">
+        <!-- Windows 98 Style Title Bar -->
+        <div class="title-bar">
+            <div class="title-bar-text">C:\WINDOWS\system32\cmd.exe</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+
+        <!-- Separator Line -->
+        <div class="separator"></div>
+        
+        <!-- Terminal body -->
+        <div id="crt" class="off" onClick="handleClick(event)">
+            <div class="terminal-wrapper">
+                <div class="terminal">
+                    <div class="scanline"></div>
+                    <div class="grain"></div>
+                    <div id="imagePopup">
+                        <img src="your_image.png" alt="Popup Image">
+                    </div>
+                    <div class="terminal-content">
+                        <div id="terminal-output"></div>
+                        <div id="terminal-input-wrapper">
+                            <span id="input-prefix">v.1.1.1 command:</span>
+                            <div id="terminal-input" contenteditable="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         let titles = ["Title One", "Title Two"]; // Titles to switch between
         let currentIndex = 0; // Index to track the current title
 
         function changeTitle() {
-            // Update the document title with the current title
             document.title = titles[currentIndex];
-            // Toggle the index between 0 and 1
             currentIndex = (currentIndex + 1) % titles.length; 
         }
 
-        // Change title every 10 seconds (10000 milliseconds)
+        // Change title every 10 seconds
         setInterval(changeTitle, 10000);
 
         // Set the initial title
         window.onload = function() {
             changeTitle(); // Set the title immediately on load
+            history.pushState(null, null, window.location.href); // Prevent initial back/forward navigation
         }
-    </script>
 
-    <script>
         // Disable right-click context menu
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
@@ -65,50 +173,29 @@
             }
         });
 
-        // Disable forward/backward mouse navigation using history API
+        // Prevent forward/backward navigation
         window.addEventListener('popstate', function (event) {
             history.pushState(null, null, window.location.href);
         });
-
-        // On page load, push the state to prevent initial back/forward navigation
-        window.onload = function () {
-            history.pushState(null, null, window.location.href);
-        };
 
         // Disable text selection via JavaScript as well (optional extra security)
         document.addEventListener('selectstart', function (e) {
             e.preventDefault();
         });
+
+        // Button event listeners for 98.css
+        document.querySelector('.title-bar-controls button[aria-label="Minimize"]').onclick = function() {
+            alert("Minimize clicked!"); // Placeholder for minimize action
+        };
+
+        document.querySelector('.title-bar-controls button[aria-label="Maximize"]').onclick = function() {
+            alert("Maximize clicked!"); // Placeholder for maximize action
+        };
+
+        document.querySelector('.title-bar-controls button[aria-label="Close"]').onclick = function() {
+            alert("Close clicked!"); // Placeholder for close action
+        };
     </script>
-    <!-- the overlay and horizontal pattern -->
-    <div id="crt" class="off" onClick="handleClick(event)"> 
-        <div class="terminal-wrapper">
-		
-            <div class="terminal">
-                <div class="scanline"></div>
-                <div class="grain"></div>
-				<div id="imagePopup">
-					<img src="your_image.png" alt="Popup Image"> 
-						
-</div>
-                <div class="terminal-content">
-				
-                    <div id="terminal-output"></div>
-					
-                    <div id="terminal-input-wrapper">
-					
-                        <span id="input-prefix">$ / > </span>
-                        <div id="terminal-input" contenteditable="true"></div>
-                    </div>
-					
-                </div>
-				
-            </div>
-        </div>               
-		
-    </div>
-   
-	
-	
+
 </body>
 </html>

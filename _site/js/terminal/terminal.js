@@ -157,12 +157,53 @@ let userInteracted = false;
 document.addEventListener("keydown", () => {
   userInteracted = true;
 });
+document.addEventListener("DOMContentLoaded", enableTypingSound);
 
 let userInteractedClick = false;
 document.addEventListener("click", () => {
   userInteractedClick = true;
 });
+export function enableTypingSound() {
+  const terminalInput = document.getElementById("terminal-input");
 
+  // Array of typing sound file paths for random selection
+  const typingSounds = [
+    "sounds/Wav_Keyboard_key1.WAV",
+    "sounds/Wav_Keyboard_key2.WAV",
+    "sounds/Wav_Keyboard_key3.WAV",
+    "sounds/Wav_Keyboard_key4.WAV",
+    "sounds/Wav_Keyboard_key5.WAV"
+  ];
+
+  // Paths for Enter and Spacebar sounds
+  const enterSound = "sounds/Wav_Keyboard_ENTER.WAV";
+  const spacebarSound = "sounds/SpacebarZvuk.WAV";
+
+  // Event listener for keydown events
+  terminalInput.addEventListener("keydown", (event) => {
+    let soundToPlay;
+
+    // Check if the Enter key is pressed
+    if (event.key === "Enter") {
+      soundToPlay = new Audio(enterSound);
+
+    // Check if the Spacebar is pressed
+    } else if (event.key === " ") {
+      soundToPlay = new Audio(spacebarSound);
+
+    // Otherwise, randomly pick one of the regular typing sounds
+    } else {
+      const randomSoundIndex = Math.floor(Math.random() * typingSounds.length);
+      soundToPlay = new Audio(typingSounds[randomSoundIndex]);
+    }
+
+    soundToPlay.volume = 0.4; // Set a reasonable volume
+    soundToPlay.play().catch((error) => {
+      console.error("Error playing typing sound:", error);
+    });
+  });
+
+}
 export async function animateText(
   element,
   text,
@@ -175,7 +216,7 @@ export async function animateText(
     if (inputPrefix) inputPrefix.style.display = "none";
   }
 
-  // const typingSound = new Audio("sounds/typing.mp3");
+   const typingSound = new Audio("sounds/typing.mp3");
 
   // Calculate speed factor based on character count
   const speedFactor = text.length <= 50 ? 1 : text.length <= 100 ? 10 : 20;
@@ -187,10 +228,10 @@ export async function animateText(
 
     if (userInteracted) {
       // Play typing sound
-      // typingSound.currentTime = 0;
-      // typingSound.play().catch((error) => {
-      //   console.error("Error playing typing sound:", error);
-      // });
+       typingSound.currentTime = 0;
+       typingSound.play().catch((error) => {
+         console.error("Error playing typing sound:", error);
+       });
     }
 
     await new Promise((resolve) => setTimeout(resolve, adjustedDelay));
@@ -214,39 +255,40 @@ export async function animateText1(
     if (inputPrefix) inputPrefix.style.display = "none";
   }
 
-  // const typingSound = new Audio("sounds/typing.mp3");
+  const typingSound = new Audio("sounds/typing.mp3");
 
-  // Calculate speed factor based on character count
+  // Adjust delay based on the length of the text
   const speedFactor = text.length <= 50 ? 1 : text.length <= 100 ? 10 : 20;
   const adjustedDelay = delay / speedFactor;
 
+  typingSound.volume = 0.4; // Set volume to avoid being too loud
+  typingSound.loop = true; // Loop the sound while typing
+  typingSound.play().catch((error) => {
+    console.error("Error playing typing sound:", error);
+  });
+
   for (const char of text) {
     if (userInteracted) {
-      // Show the full remaining text immediately
+      // Show the full remaining text immediately if user interacts
       element.textContent += text.slice(element.textContent.length);
-      await new Promise((resolve) => setTimeout(resolve, 75));
-
-      element.textContent += text.slice(1);
       scrollToBottom();
-      break; // Exit the loop once text is displayed
+      break; // Exit the loop once the text is displayed
     }
 
     element.textContent += char;
     scrollToBottom();
 
-    if (userInteracted) {
-      // Play typing sound
-      // typingSound.currentTime = 0;
-      // typingSound.play().catch((error) => {
-      //   console.error("Error playing typing sound:", error);
-      // });
-    }
-
     await new Promise((resolve) => setTimeout(resolve, adjustedDelay));
   }
+
+  // Stop the typing sound once text is fully animated
+  typingSound.pause();
+  typingSound.currentTime = 0; // Reset audio to the start
 
   if (terminalInput) {
     terminalInput.contentEditable = "true";
     if (inputPrefix) inputPrefix.style.display = "inline";
   }
+
+  
 }

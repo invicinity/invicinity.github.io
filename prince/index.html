@@ -94,7 +94,45 @@
     window.onload = function() {
       loadGame('princeOfPersia');
     };
-
+    export function enableTypingSound() {
+      // Array of typing sound file paths for random selection
+      const typingSounds = [
+        "sounds/Wav_Keyboard_key1.WAV",
+        "sounds/Wav_Keyboard_key2.WAV",
+        "sounds/Wav_Keyboard_key3.WAV",
+        "sounds/Wav_Keyboard_key4.WAV",
+        "sounds/Wav_Keyboard_key5.WAV"
+      ];
+    
+      // Paths for Enter and Spacebar sounds
+      const enterSound = "sounds/Wav_Keyboard_ENTER.WAV";
+      const spacebarSound = "sounds/SpacebarZvuk.WAV";
+    
+      // Add event listener for keydown events on the entire document
+      document.addEventListener("keydown", (event) => {
+        let soundToPlay;
+    
+        // Check if the Enter key is pressed
+        if (event.key === "Enter") {
+          soundToPlay = new Audio(enterSound);
+    
+        // Check if the Spacebar is pressed
+        } else if (event.key === " ") {
+          soundToPlay = new Audio(spacebarSound);
+    
+        // Otherwise, randomly pick one of the regular typing sounds
+        } else {
+          const randomSoundIndex = Math.floor(Math.random() * typingSounds.length);
+          soundToPlay = new Audio(typingSounds[randomSoundIndex]);
+        }
+    
+        soundToPlay.volume = 0.4; // Set a reasonable volume
+        soundToPlay.play().catch((error) => {
+          console.error("Error playing typing sound:", error);
+        });
+      });
+    }
+    
     var Module = {
       preRun: [],
       postRun: [],

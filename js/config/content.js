@@ -4,6 +4,8 @@ export const githubURL = "https://github.com/invicinity/invicinity.github.io";
 
 // Banner text ascii art
 
+
+
 export const intro1 = `
 
 Invicinity Terminal v4.1.9 - Secure Terminal Access
