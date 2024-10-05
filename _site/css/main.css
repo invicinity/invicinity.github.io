@@ -4,6 +4,3 @@
 @import url("animations-styles.css");
 @import url("scanline-styles.css");
 
-h1 {
-    display: none; /* Hides all <h1> elements */
-}

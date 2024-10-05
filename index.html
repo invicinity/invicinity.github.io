@@ -7,16 +7,31 @@
 
     <!-- Include 98.css -->
     <link rel="stylesheet" href="https://jdan.github.io/98.css/98.css">
+    <link rel="stylesheet" href="https://unpkg.com/xp.css@0.8.0/dist/98.css">
     
+
     <link rel="stylesheet" href="css/main.css">
     <title>invicinity_terminal</title>
     <script src="js/main.js" type="module"></script>
     <script async src="pinball/SpaceCadetPinball.js"></script>
 
     <style>
+        /* Set box-sizing for all elements */
+        *, *::before, *::after {
+            box-sizing: border-box; 
+        }
+
+        /* Ensure no default margins/padding */
+        html, body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            height: 100%; /* Full height */
+            overflow: hidden; /* Prevent scrolling */
+        }
+
         /* Main container to hold title bar and terminal */
         .container {
-            border: 5px solid white; /* White border around the entire container */
+            border: 4px solid #FFFFFF; /* White border for Windows 2000 style */
             position: fixed; /* Fixed position */
             top: 0; /* Align to the top */
             left: 0; /* Align to the left */
@@ -24,23 +39,62 @@
             bottom: 0; /* Align to the bottom */
             z-index: 999; /* Ensure it stays above other content */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
+            background: linear-gradient(to right, #0A246A, #A6CAF0); /* Gradient from dark blue to light blue */
+        }
+
+        /* Title Bar Styles */
+        .title-bar {
+            background: linear-gradient(to right, #0A246A, #A6CAF0); /* Match the gradient to the container */
+            border-bottom: 2px solid #808080; /* Darker bottom border */
+            height: 30px; /* Adjusted height for a standard title bar */
+            display: flex; /* Use flexbox for centering */
+            align-items: center; /* Center vertically */
+            padding: 0 5px; /* Horizontal padding */
+        }
+
+        .title-bar-text {
+            color: white; /* Set title bar text color to white */
+            font-weight: bold; /* Make the title bar text bold */
+            padding: 0 10px; /* Add padding for better positioning */
         }
 
         /* Main terminal wrapper */
         #crt {
             margin-top: 0; /* No margin */
             background-color: black; /* Black background for the terminal */
-            height: calc(100% - 42px); /* Adjust height to fill remaining space below title bar and separator */
+            height: calc(100% - 30px); /* Adjust height to fill remaining space below title bar */
             overflow: hidden; /* Hide overflow */
+            padding: 0; /* Remove padding */
         }
 
-        /* Terminal content styling */
+        @font-face {
+            font-family: 'CmdFont'; /* Name you will use for the font */
+            src: url('assets/cmd_font.ttf') format('truetype'); /* Path to your font file */
+            font-weight: normal; /* Specify weight */
+            font-style: normal; /* Specify style */
+        }
+        
+        /* Apply the font to your terminal class */
         .terminal {
-            padding: 10px; /* Inner padding for terminal */
-            height: 100%; /* Full height */
-            overflow-y: auto; /* Scroll if content exceeds height */
-            color: white; /* Terminal text color */
-            font-family: 'Courier New', Courier, monospace; /* Monospace font for terminal */
+            font-family: 'CmdFont', monospace; /* Fallback to monospace if the font fails to load */
+            color: white; /* Set text color */
+            background-color: black; /* Set background color */
+        }
+
+
+        /* Button Styles for Windows 2000 */
+        .title-bar-controls button {
+            background-color: #D3D3D3; /* Light gray button color */
+            border: 1px solid #A0A0A0; /* Gray border */
+            border-radius: 0; /* Sharp corners */
+            width: 20px; /* Fixed width */
+            height: 20px; /* Fixed height */
+            margin: 0 2px; /* Margin between buttons */
+        }
+
+        /* Button hover styles */
+        .title-bar-controls button:hover {
+            background-color: #C0C0C0; /* Slightly darker on hover */
         }
 
         /* Disable text selection */
@@ -49,51 +103,11 @@
             -webkit-user-select: none; /* Chrome, Safari, Edge */
             -moz-user-select: none; /* Firefox */
             -ms-user-select: none; /* IE 10+ */
-            margin: 0; /* Remove default body margin */
         }
 
         /* Prevent text highlight with double-click or dragging */
         body::selection {
             background: none;
-        }
-
-        /* Title Bar Styles */
-        .title-bar {
-            background: linear-gradient(to right, #010683, #1083cf); /* Keep original gradient */
-            border-bottom: 2px solid black; /* Keep original border */
-            padding: 2px;
-            color: white; /* Keep original text color */
-            height: 30px; /* Keep height */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: Tahoma, sans-serif; /* Keep font family */
-        }
-    
-        .title-bar-text {
-            margin-left: 10px;
-            font-size: 16px; /* Increased font size */
-            font-weight: bold; /* Keep it bold */
-            color: white; /* Ensure text color remains white */
-        }
-    
-        .title-bar-controls button {
-            width: 25px; /* Increased width */
-            height: 25px; /* Increased height */
-            margin-right: 5px;
-            background-color: #ecead8; /* Original button background */
-            border: 1px solid black; /* Original button border */
-            cursor: pointer;
-            font-size: 14px; /* Adjust font size for better visibility */
-        }
-        
-        .title-bar-controls button[aria-label="Close"] {
-            background-color: #b0b0b0; /* Original close button color */
-        }
-        
-        .title-bar-controls button[aria-label="Maximize"],
-        .title-bar-controls button[aria-label="Minimize"] {
-            background-color: #b0b0b0; /* Original minimize and maximize button colors */
         }
 
         /* Separator line styles */
@@ -109,9 +123,9 @@
 
     <!-- Main container for title bar and terminal -->
     <div class="container">
-        <!-- Windows 98 Style Title Bar -->
+        <!-- Windows 2000 Style Title Bar -->
         <div class="title-bar">
-            <div class="title-bar-text">C:\WINDOWS\system32\cmd.exe</div>
+            <div class="title-bar-text">C:\NIHILITY\system32\vicinity_terminal.exe</div>
             <div class="title-bar-controls">
                 <button aria-label="Minimize"></button>
                 <button aria-label="Maximize"></button>
@@ -119,9 +133,6 @@
             </div>
         </div>
 
-        <!-- Separator Line -->
-        <div class="separator"></div>
-        
         <!-- Terminal body -->
         <div id="crt" class="off" onClick="handleClick(event)">
             <div class="terminal-wrapper">
@@ -183,18 +194,7 @@
             e.preventDefault();
         });
 
-        // Button event listeners for 98.css
-        document.querySelector('.title-bar-controls button[aria-label="Minimize"]').onclick = function() {
-            alert("Minimize clicked!"); // Placeholder for minimize action
-        };
-
-        document.querySelector('.title-bar-controls button[aria-label="Maximize"]').onclick = function() {
-            alert("Maximize clicked!"); // Placeholder for maximize action
-        };
-
-        document.querySelector('.title-bar-controls button[aria-label="Close"]').onclick = function() {
-            alert("Close clicked!"); // Placeholder for close action
-        };
+       
     </script>
 
 </body>
