@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>doom</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+  <style>
+    :root {
+      --Background: rgb(0, 0, 0); /* Complete black background */
+      --Window: rgb(0, 0, 0); /* Complete black for the window */
+      --ActiveBorder: rgb(255, 255, 255); /* White borders */
+    }
+
+    h1 {
+      display: none; /* Ensure <h1> is hidden */
+    }
+
+    body {
+      font-family: 'Courier New', Courier, monospace; /* Terminal-like font */
+      background-color: var(--Background);
+      margin: 0;
+      overflow: hidden; /* Prevent scrollbars */
+      display: flex;
+      justify-content: center; /* Center content horizontally */
+      align-items: flex-start; /* Align items at the top */
+      height: 100vh; /* Full viewport height */
+      zoom: 200%; /* Simulate zoom at 200% */
+    }
+
+    /* New Container for Border */
+    .container {
+      border: 2px solid var(--ActiveBorder); /* Outer white border */
+      display: flex; /* Enable flexbox for positioning */
+      justify-content: center; /* Center the window horizontally */
+      align-items: flex-start; /* Align the window to the top of the container */
+      height: 100%; /* Full height */
+      width: 100%; /* Full width */
+      box-sizing: border-box; /* Include border in element's dimensions */
+    }
+
+    .active.window {
+      background-color: var(--Window); /* Complete black background for the window */
+      border: 1px solid var(--ActiveBorder); /* Thicker border for visibility */
+      width: 800px; /* Set a fixed width for the window */
+      height: 600px; /* Set a fixed height for the window */
+      margin-top: 20px; /* Optional: Add some margin from the top */
+    }
+
+    /* Canvas styling */
+    canvas.emscripten {
+      width: 100%; /* Full width of the window */
+      height: 100%; /* Full height of the window */
+      border: none; /* Remove border */
+    }
+
+    /* Iframe to display DOSBox games, aligned to top-left */
+    iframe {
+      position: absolute; /* Positioning it absolutely */
+      top: 0;  /* Stick to the top */
+      left: 0; /* Stick to the left */
+      width: 100%;  /* Full width of the window */
+      height: 100%; /* Full height of the window */
+      border: none;
+      display: block; /* Show iframe by default */
+    }
+  </style>
+</head>
+<body>
+  <div class="background-decorator"></div> <!-- Background decorations -->
+  
+  <!-- Outer container to add the border -->
+  <div class="container">
+    <div class="active window">
+      <div class="emscripten" id="status" style="display: none"></div>
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default"></canvas>
+      <iframe id="iframe" src="https://archive.org/embed/doom_dos" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    var statusElement = document.getElementById("status"),
+      canvasElement = document.getElementById("canvas"),
+      iframeElement = document.getElementById("iframe");
+
+    // Function to load the selected game
+    function loadGame(game) {
+      iframeElement.style.display = "block"; // Show iframe for Prince of Persia
+      iframeElement.src = "https://archive.org/embed/doom_dos"; // Set iframe source
+    }
+
+    // Automatically load the Prince of Persia game on page load
+    window.onload = function() {
+      loadGame('princeOfPersia');
+    };
+
+    var Module = {
+      preRun: [],
+      postRun: [],
+      print: function (e) {
+        console.log(e);
+      },
+      printErr: function (e) {
+        console.error(e);
+      },
+      canvas: (function () {
+        var e = document.getElementById("canvas");
+        e.addEventListener(
+          "webglcontextlost",
+          function () {
+            alert("WebGL context lost. You will need to reload the page."), e.preventDefault();
+          },
+          false
+        );
+        return e;
+      })(),
+      setStatus: function (e) {
+        if (e) {
+          statusElement.innerHTML = e;
+          statusElement.style.display = "";
+        } else {
+          statusElement.style.display = "none";
+        }
+      },
+      totalDependencies: 0,
+      monitorRunDependencies: function (e) {
+        this.totalDependencies = Math.max(this.totalDependencies, e);
+        Module.setStatus(
+          e
+            ? "Preparing... (" +
+              (this.totalDependencies - e) +
+              "/" +
+              this.totalDependencies +
+              ")"
+            : "All downloads complete."
+        );
+      },
+    };
+
+    Module.setStatus("Downloading..."),
+    (window.onerror = function () {
+      Module.setStatus("Exception thrown, see JavaScript console"),
+      (Module.setStatus = function (e) {
+        e && Module.printErr("[post-exception status] " + e);
+      });
+    });
+  </script>
+
+  <script async src="/pinball/SpaceCadetPinball.js"></script>
+</body>
+</html>

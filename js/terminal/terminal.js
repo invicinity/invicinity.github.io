@@ -127,8 +127,14 @@ export function processCommand(inputText) {
         "\n" +
         `It's currently ${timeOfDay} and the weather is ${weather}.`
       );
+    case "dosbox":
+      return (window.location.href = "./dosbox");
+    case "prince":
+      return (window.location.href = "./prince");
     case "pinball":
-      return (window.location.href = "https://invicinity.github.io/pinball");
+      return (window.location.href = "./pinball");
+      case "doom":
+      return (window.location.href = "./doom");
     case "contact email":
       window.open(`mailto:${email}`, "_blank");
       response = userCommand + "\n" + "Opening email client to send an email.";

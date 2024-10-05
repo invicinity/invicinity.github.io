@@ -103,7 +103,7 @@ function getRandomSentence() {
 }
 
 export const rules = `
-    - Rule 1:
+    - 
 	
     - Rule 2:
 	
@@ -136,7 +136,11 @@ export const help = `
     * Available Commands:
       - help: Display a list of available commands.
       - date: Show the current date and time.
-      - weather: Show the current weather
+      - weather: Show the current weather.
+      - pinball: Open Space Cadet Pinball.
+      - prince: Open Prince of Persia (msDOS).
+      - doom: Open DOOM (msDOS).
+      - dosbox: Open dosbox game terminal.
       - clear: Clears the terminal output.
       - random fact: Get a random fact.
       - contact: Show my contact information.

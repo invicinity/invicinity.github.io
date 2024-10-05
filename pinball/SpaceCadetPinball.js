@@ -359,7 +359,7 @@ Module.expectedDataFileDownloads++;
         audio: 0,
       },
       {
-        filename: "/game_resources/SOUND1.WAV",
+        filename: "/game_resources/SOUND1.WAVv",
         start: 684893,
         end: 740383,
         audio: 0,
