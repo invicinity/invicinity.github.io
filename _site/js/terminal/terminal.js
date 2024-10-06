@@ -288,7 +288,7 @@ export async function animateText(
 
     if (userInteracted) {
       // Play typing sound
-      typingSound.volume = 0.04;
+      typingSound.volume = 0.4;
       typingSound.currentTime = 0;
       typingSound.play().catch((error) => {
         console.error("Error playing typing sound:", error);
@@ -369,7 +369,7 @@ export async function animateText1(
     });
 
     // Uncomment if sound is desired
-    // typingSound.volume = 0.04;
+    // typingSound.volume = 0.4;
     // typingSound.currentTime = 0;
     // typingSound.play().catch((error) => {
     //   console.error("Error playing typing sound:", error);
