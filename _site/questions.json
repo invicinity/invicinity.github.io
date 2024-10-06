@@ -1,0 +1,58 @@
+{
+  "philosophical": {
+    "why am i here [R]": [
+      "You are here to observe, but the answer may not be found in observation alone.",
+      "Perhaps your purpose is to ask that very question and seek meaning in the process.",
+      "Existence precedes purpose. You create your meaning by what you choose to do."
+    ],
+    "what is life [O]": ["Baby don't hurt me", "No more", "No more"]
+  },
+  "space": {
+    "what is a black hole [R]": [
+      "A black hole is a region in space where gravity is so strong that nothing, not even light, can escape.",
+      "Black holes are cosmic objects of extreme density, pulling everything within their reach into them.",
+      "They warp space and time, and are some of the most mysterious entities in the universe."
+    ],
+    "how big is the universe [R]": [
+      "The universe is vast, possibly infinite, constantly expanding beyond our current understanding.",
+      "It's around 93 billion light years in diameter, but still expanding at an accelerating rate.",
+      "The size of the universe challenges human comprehension, and we may never know its full extent."
+    ],
+    "saturn [R]": [
+      "Evil planet.",
+      "Ringed planet.",
+      "Black cube."
+    ]
+  },
+  "music": {
+    "who is beethoven [R]": [
+      "Ludwig van Beethoven was a German composer and pianist, one of the most admired composers in Western music history.",
+      "Beethoven is known for his powerful and emotional symphonies, concertos, and sonatas.",
+      "Despite losing his hearing, Beethoven composed some of his most famous works later in life."
+    ],
+    "what is classical music [O]": [
+      "Classical music refers to a broad tradition of Western art music from the 18th century onward.",
+      "It encompasses symphonies, operas, chamber music, and more.",
+      "Classical music has influenced many modern genres, and its complexity often conveys deep emotions."
+    ]
+  },
+  "facts": {
+    "random fact [R]": [
+      "Octopuses have three hearts, and their blood is blue due to the presence of copper-based hemocyanin.",
+      "Bananas are berries, but strawberries aren't.",
+      "Honey never spoils; archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible."
+    ]
+  },
+  "dark": {
+    "what is death [R]": [
+      "Death is the absence of time, a place where memories can no longer follow.",
+      "Death is the end of one journey and the start of another, a mystery yet unsolved.",
+      "Death is not an end, but a transformation."
+    ],
+    "what is fear [R]": [
+      "Fear is a primal emotion, a survival mechanism that alerts us to danger.",
+      "It is the shadow in the corner of our vision, lurking where the unknown lies.",
+      "Fear shapes our decisions and lingers in the dark corners of our minds."
+    ]
+  }
+}

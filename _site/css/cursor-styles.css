@@ -1,21 +1,16 @@
 .cursor {
-  display: inline-block;
-  width: 5px;
-  height: 1.2em;
-  position: relative;
-}
-
-.cursor::before {
-  content: "";
-  position: absolute;
-  background-color: var(--cursor-color, rgb(255, 255, 255));
-  width: 100%;
-  height: 100%;
-  animation: blink 1s steps(1, end) infinite;
+  display: inline-block;                              /* Allows the cursor to sit next to the text */
+  width: 18px;                                       /* Width of the cursor (adjust as needed) */
+  height: 6px;                                       /* Height to resemble an underscore */
+  background-color: var(--cursor-color, rgb(255, 255, 255)); /* Cursor color */
+  animation: blink 1s steps(1, end) infinite;        /* Blinking effect */
+  vertical-align: bottom;                            /* Aligns cursor at the bottom */
+  margin-left: 1px;    
+  margin-top: 20px;                             /* Space between text and cursor */
 }
 
 @keyframes blink {
   50% {
-    opacity: 0;
+    opacity: 0;                                      /* Blink effect */
   }
 }

@@ -203,13 +203,36 @@
                         <div id="terminal-output"></div>
                         <div id="terminal-input-wrapper">
                             <span id="input-prefix">C:/></span>
-                            <div id="terminal-input" contenteditable="true"></div>
+                            <div id="terminal-input" contenteditable="true" tabindex="0"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Terminal</title>
+            <script type="module" src="main.js"></script>
+        </head>
+        <body>
+            <div id="terminal-output"></div>
+            <div id="terminal-input" contenteditable="true"></div>
+            <button onclick="executeCommand()">Execute</button>
+            
+            <script>
+              function executeCommand() {
+                const input = document.getElementById("terminal-input").textContent;
+                const output = processCommand(input);  // Call the command processor
+                document.getElementById("terminal-output").innerHTML += `<br>${output}`;
+                document.getElementById("terminal-input").textContent = ""; // Clear input after command
+              }
+            </script>
+        </body>
+        </html>
+        
         <!-- Fake Scrollbar (non-interactive) -->
         <div class="fake-scrollbar">
             <!-- Down arrow (moved to top) -->
