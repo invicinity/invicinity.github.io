@@ -224,6 +224,27 @@
             },
         };
 
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        // Disable mouse button navigation (back/forward etc.)
+        document.addEventListener('mousedown', function (e) {
+            if (e.button === 3 || e.button === 4 || e.button === 5 || e.button === 6) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent forward/backward navigation
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, null, window.location.href);
+        });
+
+        // Disable text selection via JavaScript as well (optional extra security)
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
         Module.setStatus("Downloading..."),
         (window.onerror = function () {
             Module.setStatus("Exception thrown, see JavaScript console"),

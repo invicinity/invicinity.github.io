@@ -34,7 +34,7 @@
     /* New Container for Border */
     .container {
       border: 2px solid var(--ActiveBorder); /* Outer white border */
-      display: flex; /* Enable flexbox for positioning */
+      display: absolute; /* Enable flexbox for positioning */
       justify-content: center; /* Center the window horizontally */
       align-items: flex-start; /* Align the window to the top of the container */
       height: 100%; /* Full height */
@@ -63,13 +63,15 @@
 
     /* Iframe to display DOSBox games, aligned to top-left */
     iframe {
-      position: absolute; /* Positioning it absolutely */
-      top: 0px;  /* Stick to the top */
-      left: 200px; /* Stick to the left */
-      width: 100%;  /* Full width of the window */
-      height: 100%; /* Full height of the window */
+      position: fixed;
+      top: 50%;    /* Center vertically */
+      left: 50%;   /* Center horizontally */
+      width: 80vw; /* 80% of the viewport width */
+      height: 80vh;/* 80% of the viewport height */
+      max-width: 100%; /* Prevents overflow beyond viewport width */
+      max-height: 100%;/* Prevents overflow beyond viewport height */
       border: none;
-      display: block; /* Show iframe by default */
+      transform: translate(-50%, -50%);  /* Adjust for element's width and height */
     }
   </style>
 </head>
@@ -140,6 +142,27 @@
       });
     }
     
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function (e) {
+          e.preventDefault();
+      });
+
+      // Disable mouse button navigation (back/forward etc.)
+      document.addEventListener('mousedown', function (e) {
+          if (e.button === 3 || e.button === 4 || e.button === 5 || e.button === 6) {
+              e.preventDefault();
+          }
+      });
+
+      // Prevent forward/backward navigation
+      window.addEventListener('popstate', function (event) {
+          history.pushState(null, null, window.location.href);
+      });
+
+      // Disable text selection via JavaScript as well (optional extra security)
+      document.addEventListener('selectstart', function (e) {
+          e.preventDefault();
+      });
     var Module = {
       preRun: [],
       postRun: [],
