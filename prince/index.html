@@ -4,13 +4,15 @@
   <meta charset="utf-8" />
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
   <title>prince</title>
+
+  
+
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js"></script>
+  
   <style>
     :root {
       --Background: rgb(0, 0, 0); /* Complete black background */
       --Window: rgb(0, 0, 0); /* Complete black for the window */
-      --ActiveBorder: rgb(255, 255, 255); /* White borders */
     }
 
     h1 {
@@ -42,11 +44,15 @@
 
     .active.window {
       background-color: var(--Window); /* Complete black background for the window */
+      display: absolute;
+      justify-content: center;
       border: 1px solid var(--ActiveBorder); /* Thicker border for visibility */
       width: 800px; /* Set a fixed width for the window */
       height: 600px; /* Set a fixed height for the window */
       margin-top: 20px; /* Optional: Add some margin from the top */
     }
+
+    /* Title Bar Styles */
 
     /* Canvas styling */
     canvas.emscripten {
@@ -58,8 +64,8 @@
     /* Iframe to display DOSBox games, aligned to top-left */
     iframe {
       position: absolute; /* Positioning it absolutely */
-      top: 0;  /* Stick to the top */
-      left: 0; /* Stick to the left */
+      top: 55px;  /* Stick to the top */
+      left: 200px; /* Stick to the left */
       width: 100%;  /* Full width of the window */
       height: 100%; /* Full height of the window */
       border: none;
@@ -68,13 +74,14 @@
   </style>
 </head>
 <body>
-  <div class="background-decorator"></div> <!-- Background decorations -->
+  
   
   <!-- Outer container to add the border -->
   <div class="container">
     <div class="active window">
       <div class="emscripten" id="status" style="display: none"></div>
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" style="cursor: default"></canvas>
+      
       <iframe id="iframe" src="https://archive.org/embed/invicinity_prince" allowfullscreen></iframe>
     </div>
   </div>
@@ -176,15 +183,9 @@
       },
     };
 
-    Module.setStatus("Downloading..."),
-    (window.onerror = function () {
-      Module.setStatus("Exception thrown, see JavaScript console"),
-      (Module.setStatus = function (e) {
-        e && Module.printErr("[post-exception status] " + e);
-      });
-    });
+   
   </script>
 
-  <script async src="/pinball/SpaceCadetPinball.js"></script>
+
 </body>
 </html>
