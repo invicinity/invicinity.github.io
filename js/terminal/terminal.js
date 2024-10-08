@@ -10,8 +10,6 @@ import {
   demo,
   help,
   test,
-  linkedinURL,
-  githubURL,
   email,
 } from "../config/content.js";
 import { scrollToBottom } from "../handlers/utils.js";
@@ -86,11 +84,28 @@ function showImage() {
   });
 }
 
-// Move lastResponses and responseIndexes outside of the processCommand function to persist data between calls
-
 let questionCategories = {}; // Initialize an empty object to hold questions by categories
 let responseIndexes = {}; // To keep track of ordered responses for all questions
 let lastResponses = {}; // To keep track of last random responses for all questions
+let conversationStage = 0; // Stage of conversation for greeting sequence
+let isInSpecialConversation = false; // Flag to determine if in special conversation mode
+let pendingQuestionType = null; // Track if expecting yes/no or custom answer
+
+
+
+// Call the function to load questions
+loadQuestions();
+
+// Bind the Enter key to the input field
+document.getElementById("terminal-input").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    const inputText = document.getElementById("terminal-input").value.trim();
+    const response = processCommand(inputText);
+    document.getElementById("terminal-output").innerHTML += response + "\n";
+    document.getElementById("terminal-input").value = ""; // Clear the input after pressing Enter
+  }
+});
 
 // Fetch the questions from the questions.json file and store them in the questionCategories object
 async function loadQuestions() {
@@ -105,44 +120,86 @@ async function loadQuestions() {
 // Call the function to load questions
 loadQuestions();
 
+// Bind the Enter key to the input field
+document.getElementById("terminal-input").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    const inputText = document.getElementById("terminal-input").value.trim();
+    const response = processCommand(inputText);
+    document.getElementById("terminal-output").innerHTML += response + "\n";
+    document.getElementById("terminal-input").value = ""; // Clear the input after pressing Enter
+  }
+});
+
 export function processCommand(inputText) {
   const terminalInput = document.getElementById("terminal-input");
-  const userCommand = terminalInput.textContent;
+  const userCommand = inputText.trim().toLowerCase(); // Get text input and convert to lowercase
   let response = "";
 
-  // Function to get a response in order for specific questions
-  function getOrderedResponse(question, responses) {
-    if (responseIndexes[question] === undefined) {
-      responseIndexes[question] = 0;
+  // Conversation stages based on greetings
+  const greetingResponses = {
+    0: ["...Oh, hello.", "Well, this is unexpected. Hi."], // Stage 1 - Timid response
+    1: ["You're talking to me? Odd.", "This doesn't usually happen."], // Stage 2 - Computer is confused
+    2: ["Why are you talking to me?", "What do you want from this conversation?"], // Stage 3 - AI starts asking questions
+    3: ["Do you expect me to respond like a human?", "Am I supposed to... understand you?"], // Stage 4
+    4: ["What do you think I am?", "You seem curious..."], // Stage 5 - AI turns the conversation
+  };
+
+  // Process conversation based on stages
+  function handleGreetingSequence() {
+    const greetings = ["hello", "hi", "hey", "good afternoon", "good morning", "greetings"];
+    
+    if (greetings.includes(userCommand)) {
+      if (conversationStage in greetingResponses) {
+        response = greetingResponses[conversationStage][Math.floor(Math.random() * greetingResponses[conversationStage].length)];
+        conversationStage++; // Move to the next stage
+      } else {
+        response = "You've said enough. Let's focus on other matters now."; // Final stage response
+      }
     }
-    const response = responses[responseIndexes[question]];
-    responseIndexes[question] = (responseIndexes[question] + 1) % responses.length;
     return response;
   }
 
-  // Function to get a random response from an array without repeating the last one
-  function getNonRepeatingResponse(question, responses) {
-    let newResponse;
-    if (!lastResponses[question]) {
-      newResponse = responses[Math.floor(Math.random() * responses.length)];
-    } else {
-      do {
-        newResponse = responses[Math.floor(Math.random() * responses.length)];
-      } while (newResponse === lastResponses[question]);
+  // Function to get a response based on matching a trigger (not just a keyword)
+function getTriggerResponse(userInput) {
+  for (const [category, questions] of Object.entries(questionCategories)) {
+    for (const [question, data] of Object.entries(questions)) {
+      if (data.triggers) {
+        for (const trigger of data.triggers) {
+          if (userInput.includes(trigger.toLowerCase())) {
+            const responses = data.responses;
+            return getNonRepeatingResponse(question, responses);
+          }
+        }
+      }
     }
-    lastResponses[question] = newResponse;
-    return newResponse;
   }
+  return null; // Return null if no trigger response is found
+}
 
-  // Helper function to determine if a question should be ordered or random
-  function isOrdered(question) {
-    return question.endsWith("[O]");
+  // Loop through categories to find a matching question
+  // Loop through categories to find a matching question via triggers
+// Loop through categories to find a matching question
+function findMatchingQuestion(inputText) {
+  for (const [category, questions] of Object.entries(questionCategories)) {
+    for (const [question, data] of Object.entries(questions)) {
+      if (data.triggers) {
+        for (const trigger of data.triggers) {
+          if (inputText.includes(trigger.toLowerCase())) {
+            const responses = data.responses; // Access responses array
+            if (isOrdered(question)) {
+              return getOrderedResponse(question, responses);
+            } else {
+              return getNonRepeatingResponse(question, responses);
+            }
+          }
+        }
+      }
+    }
   }
+  return null; // Return null if no match is found
+}
 
-  // Helper function to strip the flag ([O] or [R]) from the internal question
-  function stripFlag(question) {
-    return question.replace(/\s*\[[OR]\]$/, "");
-  }
 
   // Process standard commands and philosophical questions
   switch (inputText.toLowerCase()) {
@@ -151,15 +208,19 @@ export function processCommand(inputText) {
     case "date":
       let specificDate = "30-Dec-1999"; // Example date
       let timeOnly = new Date().toLocaleTimeString(); // Current time
-      return userCommand + "\n" + "Date: " + specificDate + "\nTime: " + timeOnly;
+      return (
+        userCommand + "\n" + "Date: " + specificDate + "\nTime: " + timeOnly
+      );
     case "clear":
       document.getElementById("terminal-output").innerHTML = "";
       return "";
     case "about":
-      return userCommand + "\n" + "Vicinity Terminal\nSystem status: operational.";
+      return (
+        userCommand + "\n" + "Vicinity Terminal\nSystem status: operational."
+      );
     case "demo":
       return userCommand + "\n" + demo;
-    case "random fact":
+    case "open image":
       showImage();
       return userCommand + "\n" + about();
     case "rules":
@@ -167,7 +228,11 @@ export function processCommand(inputText) {
     case "contact":
       return userCommand + "\n" + contact;
     case "weather":
-      return userCommand + "\n" + `It's currently ${timeOfDay} and the weather is ${weather}.`;
+      return (
+        userCommand +
+        "\n" +
+        `It's currently ${timeOfDay} and the weather is ${weather}.`
+      );
     case "dosbox":
       return (window.location.href = "./dosbox");
     case "prince":
@@ -188,32 +253,70 @@ export function processCommand(inputText) {
     case "test":
       return userCommand + "\n" + test;
 
-    // Check for category-specific questions
+    // Check for keyword-based responses
     default:
-      // Loop through categories to find a matching question
-      for (const [category, questions] of Object.entries(questionCategories)) {
-        // Find the matching question within this category
-        const matchedQuestion = Object.keys(questions).find(
-          (q) => stripFlag(q).toLowerCase() === inputText.toLowerCase()
-        );
+      // Handle the greeting sequence first
+      const greetingResponse = handleGreetingSequence();
+      if (greetingResponse) {
+        return userCommand + "\n" + greetingResponse;
+      }
 
-        if (matchedQuestion) {
-          const question = matchedQuestion;
-          const responses = questions[question];
+      // If no greeting, check for a keyword-based response
+      const keywordResponse = getTriggerResponse(userCommand);
+      if (keywordResponse) {
+        return userCommand + "\n" + keywordResponse;
+      }
 
-          // Check if the question should follow an ordered or random response
-          if (isOrdered(question)) {
-            return userCommand + "\n" + getOrderedResponse(question, responses);
-          } else {
-            return userCommand + "\n" + getNonRepeatingResponse(question, responses);
-          }
-        }
+      // If no keyword match, loop through categories to find a matching question
+      const matchedQuestionResponse = findMatchingQuestion(userCommand);
+      if (matchedQuestionResponse) {
+        return userCommand + "\n" + matchedQuestionResponse;
       }
 
       // If no match found, handle unknown command
       return userCommand + "\n" + "Unknown command: " + userCommand;
   }
 }
+
+// Helper functions
+
+function getOrderedResponse(question, responses) {
+  // Initialize response index if it doesn't exist
+  if (responseIndexes[question] === undefined) {
+    responseIndexes[question] = 0;
+  }
+  // Get the current response based on index
+  const response = responses[responseIndexes[question]];
+  // Increment the index and wrap around if necessary
+  responseIndexes[question] = (responseIndexes[question] + 1) % responses.length;
+  return response; // Return the ordered response
+}
+
+function getNonRepeatingResponse(question, responses) {
+  let newResponse;
+  // If no last response exists, pick a random one
+  if (!lastResponses[question]) {
+    newResponse = responses[Math.floor(Math.random() * responses.length)];
+  } else {
+    // Pick a new response that isn't the same as the last one
+    do {
+      newResponse = responses[Math.floor(Math.random() * responses.length)];
+    } while (newResponse === lastResponses[question]);
+  }
+  // Save the last response for future comparisons
+  lastResponses[question] = newResponse;
+  return newResponse; // Return the non-repeating response
+}
+
+function isOrdered(question) {
+  return stripFlag(question).endsWith("[O]");
+}
+
+function stripFlag(question) {
+  return question.replace(/\s*\[[OR]\]$/, "");
+}
+
+
 let userInteracted = false;
 document.addEventListener("keydown", () => {
   userInteracted = true;

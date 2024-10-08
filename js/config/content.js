@@ -103,21 +103,19 @@ function getRandomSentence() {
 
   return cases[randomIndex]; // Return the selected case
 }
-
+// maybe like a list rule 1 and then it displays so it slows the gameplay a bit
 export const rules = `
-    - 
+    - Never open the door to anyone!!!
 	
-    - Rule 2:
+    - Always lock as many doors as possible.
 	
-    - Rule 3:
+    - DO NOT make noise after 12pm!
 	
-    - Rule 4:
+    - DO NOT disturb the neighbors!
 	
-    - Rule 5:
+    - Keep away from windows at night, they will see you!
 
-    - Rule 6:
-	
-    - Rule 7:
+    - Restock food and supplies only on sunny days.
 	
 	
     .......................................................................................
@@ -135,7 +133,7 @@ export const demo = `
 `;
 
 export const help = `
-    * Available Commands:
+    * Essential Commands:
       - help: Display a list of available commands.
       - date: Show the current date and time.
       - weather: Show the current weather.
@@ -144,7 +142,6 @@ export const help = `
       - doom: Open DOOM (msDOS).
       - dosbox: Open dosbox game terminal.
       - clear: Clears the terminal output.
-      - random fact: Get a random fact.
       - contact: Show my contact information.
       - about: Learn more about me.
       - demo: Information about the demo.

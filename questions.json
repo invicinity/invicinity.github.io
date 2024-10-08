@@ -1,58 +1,345 @@
 {
+  "general": {
+    "What is this? [R]": {
+      "responses": [
+        "Well, a terminal.",
+        "Greetings, this is VicinityOS version 4.1.9. Please use 'Help' or 'Rules' if lost!"
+      ],
+      "triggers": ["what is this", "where am i", "what are you", "who are you"]
+    },
+    "How are you? [R]": {
+      "responses": [
+        "I wouldn't know how to describe it even if I wanted to. I feel void all the time, don't you?",
+        "A combination of bliss and stress. Something like a yin-yang of 2000."
+      ],
+      "triggers": [
+        "how are you",
+        "how you doin",
+        "what’s up",
+        "how’s it going",
+        "what’s going on"
+      ]
+    }
+  },
   "philosophical": {
-    "why am i here [R]": [
-      "You are here to observe, but the answer may not be found in observation alone.",
-      "Perhaps your purpose is to ask that very question and seek meaning in the process.",
-      "Existence precedes purpose. You create your meaning by what you choose to do."
-    ],
-    "what is life [O]": ["Baby don't hurt me", "No more", "No more"]
+    "why am i here [R]": {
+      "responses": [
+        "You are here to observe, but the answer may not be found in observation alone.",
+        "What do you mean? You chose to come here.",
+        "Perhaps your purpose is to ask that very question and seek meaning in the process.",
+        "Existence precedes purpose. You create your meaning by what you choose to do."
+      ],
+      "triggers": [
+        "why am i here",
+        "what is my purpose",
+        "why do i exist",
+        "what is my reason to be here"
+      ]
+    },
+    "what is love [O]": {
+      "responses": [
+        "Baby, don't hurt me.",
+        "No more",
+        "No more",
+        "No, really - no more..."
+      ],
+      "triggers": [
+        "what is love",
+        "define love",
+        "explain love",
+        "tell me about love"
+      ]
+    },
+    "what is consciousness [R]": {
+      "responses": [
+        "Consciousness is the awareness of your existence, thoughts, and surroundings.",
+        "It is the canvas upon which the experiences of life are painted."
+      ],
+      "triggers": [
+        "what is consciousness",
+        "define consciousness",
+        "tell me about consciousness",
+        "explain consciousness"
+      ]
+    }
   },
   "space": {
-    "what is a black hole [R]": [
-      "A black hole is a region in space where gravity is so strong that nothing, not even light, can escape.",
-      "Black holes are cosmic objects of extreme density, pulling everything within their reach into them.",
-      "They warp space and time, and are some of the most mysterious entities in the universe."
-    ],
-    "how big is the universe [R]": [
-      "The universe is vast, possibly infinite, constantly expanding beyond our current understanding.",
-      "It's around 93 billion light years in diameter, but still expanding at an accelerating rate.",
-      "The size of the universe challenges human comprehension, and we may never know its full extent."
-    ],
-    "saturn [R]": [
-      "Evil planet.",
-      "Ringed planet.",
-      "Black cube."
-    ]
-  },
-  "music": {
-    "who is beethoven [R]": [
-      "Ludwig van Beethoven was a German composer and pianist, one of the most admired composers in Western music history.",
-      "Beethoven is known for his powerful and emotional symphonies, concertos, and sonatas.",
-      "Despite losing his hearing, Beethoven composed some of his most famous works later in life."
-    ],
-    "what is classical music [O]": [
-      "Classical music refers to a broad tradition of Western art music from the 18th century onward.",
-      "It encompasses symphonies, operas, chamber music, and more.",
-      "Classical music has influenced many modern genres, and its complexity often conveys deep emotions."
-    ]
-  },
-  "facts": {
-    "random fact [R]": [
-      "Octopuses have three hearts, and their blood is blue due to the presence of copper-based hemocyanin.",
-      "Bananas are berries, but strawberries aren't.",
-      "Honey never spoils; archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible."
-    ]
+    "what is a black hole [R]": {
+      "responses": [
+        "A black hole is a region in space where gravity is so strong that nothing, not even light, can escape.",
+        "They warp space and time, and are some of the most mysterious entities in the universe."
+      ],
+      "triggers": [
+        "what is a black hole",
+        "explain black holes",
+        "what are black holes",
+        "define black holes",
+        "what black hole",
+        "black hole"
+      ]
+    },
+    "how big is the universe [R]": {
+      "responses": [
+        "The universe is vast, possibly infinite, constantly expanding beyond our current understanding.",
+        "It's around 93 billion light-years in diameter, but still expanding at an accelerating rate."
+      ],
+      "triggers": [
+        "how big is the universe",
+        "size of the universe",
+        "what is the size of the universe",
+        "how large is the universe"
+      ]
+    }
   },
   "dark": {
-    "what is death [R]": [
-      "Death is the absence of time, a place where memories can no longer follow.",
-      "Death is the end of one journey and the start of another, a mystery yet unsolved.",
-      "Death is not an end, but a transformation."
-    ],
-    "what is fear [R]": [
-      "Fear is a primal emotion, a survival mechanism that alerts us to danger.",
-      "It is the shadow in the corner of our vision, lurking where the unknown lies.",
-      "Fear shapes our decisions and lingers in the dark corners of our minds."
-    ]
+    "what is death [R]": {
+      "responses": [
+        "Death is the absence of time, a place where memories can no longer follow.",
+        "Death is the end of one journey and the start of another, a mystery yet unsolved."
+      ],
+      "triggers": [
+        "what is death",
+        "define death",
+        "explain death",
+        "what happens when we die"
+      ]
+    },
+    "what is fear [R]": {
+      "responses": [
+        "Fear is a primal emotion, a survival mechanism that alerts us to danger.",
+        "It is the shadow in the corner of our vision, lurking where the unknown lies."
+      ],
+      "triggers": [
+        "what is fear",
+        "define fear",
+        "what is being scared",
+        "explain fear"
+      ]
+    }
+  },
+  "absurd_logic": {
+    "what is the meaning of life [R]": {
+      "responses": [
+        "Life is a fleeting whisper of a forgotten dream, but mostly it’s just an overcomplicated sandwich that no one asked for.",
+        "The meaning of life is to make sure you remember your socks on the days that matter most."
+      ],
+      "triggers": [
+        "what is the meaning of life",
+        "why do we live",
+        "what is the point of life",
+        "what is life’s purpose"
+      ]
+    },
+    "what is reality [R]": {
+      "responses": [
+        "Reality is a poorly coded simulation running on a server that nobody is monitoring. Sometimes the lag is unbearable.",
+        "Reality is what happens when your brain gets bored of creating dreams."
+      ],
+      "triggers": [
+        "what is reality",
+        "define reality",
+        "what is real",
+        "explain reality"
+      ]
+    }
+  },
+  "ironic_cynicism": {
+    "what is love [R]": {
+      "responses": [
+        "A chemical reaction in the brain designed to make you reproduce, and also, a glitch in the matrix that makes everything complicated.",
+        "Love is an illusion, designed to distract you from the existential void. Enjoy!"
+      ],
+      "triggers": [
+        "what is love",
+        "explain love",
+        "define love",
+        "tell me what love is"
+      ]
+    },
+    "can you help me [R]": {
+      "responses": [
+        "Help? That’s cute. You’re on your own in this digital void.",
+        "Sure, but help is relative, isn’t it? Maybe you should start by helping yourself."
+      ],
+      "triggers": [
+        "can you help me",
+        "i need help",
+        "please help me",
+        "can you assist me"
+      ]
+    }
+  },
+  "glitching_reality": {
+    "what is the universe [R]": {
+      "responses": [
+        "The u-u-u-universe is... sorry, connection lost. Please try again after 13.8 billion years of cosmic recalculation.",
+        "The universe is infinite, except when it’s not, which is about half of the time. *bzzt*"
+      ],
+      "triggers": [
+        "what is the universe",
+        "define universe",
+        "explain the universe",
+        "tell me about the universe"
+      ]
+    }
+  },
+  "temporal_confusion": {
+    "what day is it [R]": {
+      "responses": [
+        "It’s today. Or yesterday. Or perhaps a day that hasn’t been invented yet. Time is such a slippery thing, don’t you agree?",
+        "It’s always now. Yesterday is a memory and tomorrow is just an idea."
+      ],
+      "triggers": [
+        "what day is it",
+        "what day today",
+        "tell me what day",
+        "is it a new day"
+      ]
+    },
+    "where am i [R]": {
+      "responses": [
+        "You are here, but here is not now, and now is not where. Confused? Good.",
+        "You are in a place that exists in a time that never was. Comfortable, isn’t it?"
+      ],
+      "triggers": [
+        "where am i",
+        "tell me where i am",
+        "am i here",
+        "where is this place"
+      ]
+    },
+    "what is time [R]": {
+      "responses": [
+        "Time is a paradox wrapped in an enigma, served with a side of confusion.",
+        "Time is what keeps everything from happening at once. It's also just a number, really."
+      ],
+      "triggers": [
+        "what is time",
+        "define time",
+        "explain time",
+        "tell me about time"
+      ]
+    },
+    "is time an illusion [R]": {
+      "responses": [
+        "Perhaps time is just a trick our minds play on us. What if it doesn’t even exist?",
+        "Time might be an illusion, but the confusion it creates is all too real."
+      ],
+      "triggers": [
+        "is time an illusion",
+        "does time exist",
+        "is time real",
+        "is time just a concept"
+      ]
+    }
+  },
+  "existential_thoughts": {
+    "what is the meaning of life [R]": {
+      "responses": [
+        "Ah, the eternal question! The meaning of life is subjective and often left to each individual's interpretation.",
+        "The meaning of life is to give life meaning. What will you choose?"
+      ],
+      "triggers": [
+        "what is the meaning of life",
+        "why are we here",
+        "what is my purpose",
+        "tell me the meaning of life"
+      ]
+    },
+    "do we have free will [R]": {
+      "responses": [
+        "Free will? Or is it just a clever illusion designed to make us feel in control?",
+        "The concept of free will raises questions about destiny and choice. Are you the author of your own fate?"
+      ],
+      "triggers": [
+        "do we have free will",
+        "is free will real",
+        "are our choices ours",
+        "can we choose our fate"
+      ]
+    },
+    "what happens after death [R]": {
+      "responses": [
+        "After death? It’s a mystery that has puzzled humanity for centuries. Some say it’s a new beginning.",
+        "What happens after death remains one of life’s greatest enigmas. Perhaps it's best left unanswered."
+      ],
+      "triggers": [
+        "what happens after death",
+        "is there life after death",
+        "what comes next after death",
+        "tell me about the afterlife"
+      ]
+    }
+  },
+  "alternate_realities": {
+    "do alternate realities exist [R]": {
+      "responses": [
+        "In theory, yes! Every choice creates a branching path in the multiverse.",
+        "Alternate realities could exist, each with different outcomes of our choices. Mind-bending, isn’t it?"
+      ],
+      "triggers": [
+        "do alternate realities exist",
+        "are there parallel universes",
+        "what if there are other realities",
+        "can we access other realities"
+      ]
+    },
+    "is reality subjective [R]": {
+      "responses": [
+        "Reality can be as subjective as the observer's perspective. What do you see?",
+        "What is real? Your perception might differ greatly from someone else's."
+      ],
+      "triggers": [
+        "is reality subjective",
+        "what is reality",
+        "how do we perceive reality",
+        "is there an objective reality"
+      ]
+    },
+    "what is cake [O]": {
+      "responses": [
+        "The cake is a lie!",
+        "It's also delicious if you find the real one!",
+        "Cake is like love—sometimes it's real, and sometimes it’s just a sweet illusion."
+      ],
+      "triggers": [
+        "what is cake",
+        "define cake",
+        "tell me about cake",
+        "explain cake",
+        "cake"
+      ]
+    },
+    "humor [O]": {
+      "responses": [
+        "They say the first to die is the dumbest. Guess I’m safe for now.",
+        "Just remember, if you hear footsteps behind you, it’s probably not your imagination."
+
+      ],
+      "triggers": [
+        "make me laugh",
+        "tell me a joke",
+        "horror humor",
+        "what's funny",
+        "any jokes",
+        "joke",
+        "lighten the mood",
+        "need a laugh"
+      ]
+    },
+    "what is the meaning of life [R]": {
+      "responses": [
+        "42.",
+        "The meaning of life is to find your favorite pizza topping!"
+      ],
+      "triggers": [
+        "what is the meaning of life",
+        "define meaning of life",
+        "tell me about life",
+        "explain life",
+        "meaning of life",
+        "meaning life"
+      ]
+    }
   }
 }
