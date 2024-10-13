@@ -531,19 +531,15 @@ function placeCaretAtEnd(el) {
     sel.addRange(range);
   }
 }
-const terminal = document.querySelector('.terminal');
+document.addEventListener('DOMContentLoaded', () => {
+  const terminal = document.querySelector('.terminal');
 
-// Function to scroll the terminal to the left
-function scrollToLeft() {
-    terminal.scrollLeft = 0;
-}
-
-// Scroll to the left whenever the terminal content changes
-const observer = new MutationObserver(scrollToLeft);
-observer.observe(terminal, { childList: true, subtree: true });
-
-// Also, reset the scroll position when clicking on the terminal
-terminal.addEventListener('click', scrollToLeft);
+  if (terminal) {
+      terminal.addEventListener('click', () => {
+          terminal.scrollLeft = 0; // Scroll to the left on click
+      });
+  }
+});
 // Optionally, handle focus when the terminal body (#crt) is clicked
 function handleClick(event) {
   const terminalInput = document.getElementById("terminal-input");
