@@ -83,7 +83,15 @@ function showImage() {
     }
   });
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const terminal = document.querySelector('.terminal');
 
+  if (terminal) {
+      terminal.addEventListener('click', () => {
+          terminal.scrollLeft = 0; // Scroll to the left on click
+      });
+  }
+});
 let questionCategories = {}; // Initialize an empty object to hold questions by categories
 let responseIndexes = {}; // To keep track of ordered responses for all questions
 let lastResponses = {}; // To keep track of last random responses for all questions

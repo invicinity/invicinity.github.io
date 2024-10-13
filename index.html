@@ -19,13 +19,15 @@
         *, *::before, *::after {
             box-sizing: border-box; 
         }
-
+        img, iframe, .terminal, .any-other-large-element {
+            max-width: 100%; /* Prevents the content from expanding beyond the viewport */
+        }
         /* Ensure no default margins/padding */
         html, body {
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
-            height: 100%; /* Full height */
-            overflow: hidden; /* Prevent scrolling */
+            overflow-x: hidden; /* Disable horizontal scrolling on the entire page */
+            margin: 0;
+            padding: 0;
+            width: 100vw; /* Limit the width to the viewport */
         }
 
         /* Main container to hold title bar and terminal */
