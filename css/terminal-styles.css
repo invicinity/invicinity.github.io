@@ -21,7 +21,7 @@ background: radial-gradient(circle, hsla(0, 0%, 14%, 1) 0%, hsla(0, 0%, 0%, 1) 1
   max-height: calc(85vh);
   background: radial-gradient(circle, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
   animation: txt-shadow 1.6s infinite;
-  font-size: calc(20px + (16 - 10) * ((55vw - 300px) / (1600 - 300)));
+  font-size: calc(5px + (16 - 10) * ((300vw - 300px) / (1600 - 300)));
   overflow: hidden;
    /* Disable horizontal scrolling */
     overflow-x: hidden; /* This will prevent any horizontal scroll */
