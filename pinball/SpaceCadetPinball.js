@@ -134,6 +134,7 @@ Module.expectedDataFileDownloads++;
         this.start = start;
         this.end = end;
         this.audio = audio;
+        
       }
       DataRequest.prototype = {
         requests: {},
@@ -1471,6 +1472,7 @@ var ASM_CONSTS = {
     var SDL2 = Module["SDL2"];
     if (!$0) {
       SDL2.audio = {};
+
     } else {
       SDL2.capture = {};
     }
@@ -5693,6 +5695,7 @@ var Browser = {
           finish(audio);
         };
         audio.src = url;
+        
         Browser.safeSetTimeout(function () {
           finish(audio);
         }, 1e4);
